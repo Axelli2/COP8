@@ -1,0 +1,155 @@
+README.DOC:
+
+The unpacked files from the Distribution Diskette in this release of 
+the Host Software for the COP8 Evaluation & Programming Unit (EPU) are:
+
+    README.DOC     The file you are now reading.
+
+      === Host Software Files ===
+
+    EPU880.BAT     Batch file used to invoke the EPU-COP8 Host Software
+                   executable program when using a COP880 EPU.
+    EPU888GG.BAT   Batch file used to invoke the EPU-COP8 Host Software
+                   executable program when using a COP888GG EPU.
+    EPU888FH.BAT   Batch file used to invoke the EPU-COP8 Host Software
+                   executable program when using a COP888FH EPU.
+
+                   (To determine what model of EPU you have, look at the
+                    COP8 chip that is located next to the 40-pin header
+                    (J1).  Every EPU board has two COP8 devices.  The one
+                    that determines the model of the EPU board is the COP8
+                    chip located next to the 40-pin header (J1).)
+
+    EPU.EXE        EPU-COP8 Host Software executable program.
+                   (Do not invoke this program directly;
+                    rather, use one of the EPU*.BAT files listed above.)
+
+    $CLR1$         File containing default video display color and 
+                   highlighting values suitable for color CGA/EGA/VGA monitors.
+
+    $CLR2$         File containing default video display color and 
+                   highlighting values suitable for color EGA/VGA monitors.
+
+    $CLRL$         File containing default video display "color" and 
+                   highlighting values suitable for LCD monitors.
+
+    $CLRM$         File containing default video display "color" and 
+                   highlighting values suitable for monochrome monitors.
+
+    $EPU_MOD.880   Host Sofware configuration file for the COP880   processor.
+    $EPU_MOD.8GG    "      "          "        "    "   "  COP888GG     "     
+    $EPU_MOD.8FH    "      "          "        "    "   "  COP888FH     "     
+
+    $EPU_HLP       Host Sofware On-line Help support files.
+    $EPU_HLI        
+
+
+      === Demonstration Programs ===
+
+      --- C8A1.COF:  Assembly Language Demo Program ---
+      --- (National COP8 Assembler/Linker)          ---
+
+    C8A1.COF      Linker-generated absolute, loadable COFF file
+                  (with debug information)
+    C8A1MAKE.BAT  Batch file to create loadable C8A1.COF file from scratch
+    C8A1MAKE.LNK  Linker control file for creating C8A1.COF
+    C8A1INC.INC   COP8 demo program, Include File (COP8 assembly source)
+    C8A1MAIN.ASM  COP8 demo program, Module #1    (COP8 assembly source)
+    C8A1SPIN.ASM  COP8 demo program, Module #2    (COP8 assembly source)
+
+      --- BC82MAIN.COD: Byte Craft C Demo Program ---
+
+    BC82INNR.C    Function 'innerloop()' (C source)
+    BC82MAIN.C    Main program (function 'main()';  C source)
+    BC82MAIN.COD  Loadable, absolute object module format,
+                  (with debug information)
+    BC82MAIN.HEX  Loadable HEX file for BC82MAIN
+    BC82MAIN.SYM  Compiler-generated symbolic information file for BC82MAIN
+    BC82MAKE.BAT  Batch file to generate BC82MAIN.COD from scratch
+    BC82PRAG.H    C #include file
+    BC82WAST.C    Function 'wastetime()' (C source)
+
+------------------------------------------------------------------------------
+
+Beginning with Version 3.0 Revision 12, the host software utilizes not only
+code overlaying, but also data overlaying.  This capability is provided by the
+'.RTLink/Plus' linker (.RTLink/Plus is a trademark of Pocket Soft, Inc.).
+The advantage of overlaying data as well as code is that the host software
+consumes less memory during execution.  This provides more memory for you
+to load larger programs with full symbolic information.
+
+During execution of the host software, the .RTLink/Plus overlay manager swaps
+overlay sections out to temporary files on disk.  If you have the environment
+variable 'TMP' defined, .RTLink/Plus uses the directory designated by this
+variable.  If the 'TMP' environment variable is not defined, .RTLink/Plus
+places the temporary files in the root directory.  In either case, the
+temporary files all have the extension '.TMP'.
+
+If, during execution of the host software, there is not enough available
+disk space for .RTLink/Plus to create one of the temporary files,
+you will see the messages:
+
+     eca0001: .RTLink CACHE - Save File Handling
+     DOS Function code 0040, Error code FFFF
+
+In some cases, the first line above will not be displayed and you will see
+only the 'DOS Function code' message.  In either case, the message(s) may
+display anywhere on the screen.  When this happens, the host software has
+been terminated and you may even need to reboot your computer.  Delete any
+residual '.TMP' files and ensure that you have enough available disk space.
+We have found that approximately 400K-800K of disk space should be free
+before invoking the host software.
+
+------------------------------------------------------------------------------
+
+Software Setup:  Environment Variables 'TMP' and 'TEMP':
+
+The 'TMP' and 'TEMP' environment variables are used not only by the host
+software program, but also by many other programs.  Each designates the
+directory where an executing program's temporary files should be created.
+These temporary files typically are for the program's internal use and are
+usually deleted when the program terminates.  To determine where these
+temporary files should be created, some programs use the environment
+variable 'TMP', others use the environment variable 'TEMP'.  It is safest
+and easiest to set both environment variables, 'TMP' and 'TEMP', and have
+them designate ("point to") the same directory on your computer.  You can
+do this by adding the following statements to your AUTOEXEC.BAT file:
+
+      SET TEMP=C:\TMP
+      SET  TMP=C:\TMP
+
+It is important that the designated directory ('C:\TMP' in this case)
+actually exists on your computer.  You can create this directory by
+typing:
+
+      MKDIR C:\TMP
+
+If the designated directory does not exist on your computer, the host
+software will probably terminate with the following message displayed
+somewhere on the screen:
+
+     Fatal Error evm0013:  Error in VM save file handling
+                           (Probably out of disk space).
+
+If you choose to have separate directories for 'TMP' and 'TEMP', you
+would add something like the following to your AUTOEXEC.BAT file:
+
+      SET TEMP=C:\ABC
+      SET  TMP=C:\XYZ\ZYX
+
+and type the following to create the designated directories:
+
+      MKDIR C:\ABC
+      MKDIR C:\XYZ
+      MKDIR C:\XYZ\ZYX
+
+Note that the actual directory path(s) and name(s) can be whatever you
+choose.  The only critical items are the names of the environment
+variables ('TMP' and 'TEMP') set to designate those directory path(s)
+and name(s).
+
+In a networked environment, make sure that you have "create" and "write"
+permissions on the drive and directory that you designate for both 'TMP'
+and 'TEMP'.
+
+=== End of:  README.DOC ===
