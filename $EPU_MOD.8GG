@@ -1,0 +1,656 @@
+# (c)Copyright MetaLink Corporation 1989-1996
+# Model File for 888GG (40-pin configuration, 888GG EPU)
+A0 "iceMASTER EPU-COP8:  COP888GG (40-pin)";
+A21 "MetaLink Corporation" "Chandler, Arizona";
+A16 "iceMASTER";
+A17 "MetaLink";
+A18 "(800)METAICE {(800)638-2423}";
+A45 "iceMASTER-";
+# (c)Copyright MetaLink Corporation 1989-1996
+A1 1 0 0 0 ;
+A2  82 "COP888GG";
+A3 0 1 0xB0 0 0x00 "TMR3LO"	;
+A3 0 1 0xB1 0 0x00 "TMR3HI"	;
+A3 0 1 0xB2 0 0x00 "T3RALO"	;
+A3 0 1 0xB3 0 0x00 "T3RAHI"	;
+A3 0 1 0xB4 0 0x00 "T3RBLO"	;
+A3 0 1 0xB5 0 0x00 "T3RBHI"	;
+A3 0 1 0xB6 0 0x00 "T3CNTRL";
+A3 0 1 0xB7 0 0x00 "CMPSL"	;
+A3 0 1 0xB8 0 0x00 "TBUF"	;
+A3 0 1 0xB9 0 0x00 "RBUF"	;
+A3 0 1 0xBA 0 0x01 "ENU"	;
+A3 0 1 0xBB 0 0x00 "ENUR"	;
+A3 0 1 0xBC 0 0x00 "ENUI"	;
+A3 0 1 0xBD 0 0x00 "BAUD"	;
+A3 0 1 0xBE 0 0x00 "PSR"	;
+A3 0 1 0xC0 0 0x00 "TMR2LO"	;
+A3 0 1 0xC1 0 0x00 "TMR2HI"	;
+A3 0 1 0xC2 0 0x00 "T2RALO"	;
+A3 0 1 0xC3 0 0x00 "T2RAHI"	;
+A3 0 1 0xC4 0 0x00 "T2RBLO"	;
+A3 0 1 0xC5 0 0x00 "T2RBHI"	;
+A3 0 1 0xC6 0 0x00 "T2CNTRL";
+A3 0 1 0xC7 0 0xD9 "WDSVR"	;
+A3 0 1 0xC8 0 0x00 "WKEDG"	;
+A3 0 1 0xC9 0 0x00 "WKEN"	;
+A3 0 1 0xCA 0 0x00 "WKPND"	;
+A3 0 1 0xD0 0 0x00 "PORTLD"	;
+A3 0 1 0xD1 0 0x00 "PORTLC"	;
+A3 0 1 0xD2 0 0x00 "PORTLP"	;
+A3 0 1 0xD4 0 0x00 "PORTGD"	;
+A3 0 1 0xD5 0 0x00 "PORTGC"	;
+A3 0 1 0xD6 0 0x00 "PORTGP"	;
+A3 0 1 0xD7 0 0x00 "PORTI"	;
+A3 0 1 0xD8 0 0x00 "PORTCD"	;
+A3 0 1 0xD9 0 0x00 "PORTCC"	;
+A3 0 1 0xDA 0 0x00 "PORTCP"	;
+A3 0 1 0xDC 0 0xFF "PORTD"	;
+A3 0 1 0xE6 0 0x00 "T1RBLO"	;
+A3 0 1 0xE7 0 0x00 "T1RBHI"	;
+A3 0 1 0xE8 0 0x00 "ICNTRL"	;
+A3 0 1 0xE9 0 0x00 "SIOR"	;
+A3 0 1 0xEA 0 0x00 "TMR1LO"	;
+A3 0 1 0xEB 0 0x00 "TMR1HI"	;
+A3 0 1 0xEC 0 0x00 "T1RALO"	;
+A3 0 1 0xED 0 0x00 "T1RAHI"	;
+A3 0 1 0xEE 0 0x00 "CNTRL"	;
+A3 0 1 0xEF 0 0x00 "PSW"	;
+A3 0 1 0xF0 0 0x00 "F0"		;
+A3 0 1 0xF1 0 0x00 "F1"		;
+A3 0 1 0xF2 0 0x00 "F2"		;
+A3 0 1 0xF3 0 0x00 "F3"		;
+A3 0 1 0xF4 0 0x00 "F4"		;
+A3 0 1 0xF5 0 0x00 "F5"		;
+A3 0 1 0xF6 0 0x00 "F6"		;
+A3 0 1 0xF7 0 0x00 "F7"		;
+A3 0 1 0xF8 0 0x00 "F8"		;
+A3 0 1 0xF9 0 0x00 "F9"		;
+A3 0 1 0xFA 0 0x00 "FA"		;
+A3 0 1 0xFB 0 0x00 "FB"		;
+A3 0 1 0xFC 0 0x00 "X"		;
+A3 0 1 0xFD 0 0x6F "SP"		;
+A3 0 1 0xFE 0 0x00 "B"		;
+A3 0 1 0xFF 0 0x00 "S"		;
+A3 1 0 0x01 0xB6 0 "@T3ENB"	;
+A3 1 0 0x02 0xB6 0 "@T3PNDB";
+A3 1 0 0x04 0xB6 0 "@T3ENA"	;
+A3 1 0 0x08 0xB6 0 "@T3PNDA";
+A3 1 0 0x10 0xB6 0 "@T3C0"	;
+A3 1 0 0x20 0xB6 0 "@T3C1"	;
+A3 1 0 0x40 0xB6 0 "@T3C2"	;
+A3 1 0 0x80 0xB6 0 "@T3C3"	;
+#A3 1 0 0x01 0xB7 0 "@---"		;
+A3 1 0 0x02 0xB7 0 "@CMP1EN"	;
+A3 1 0 0x04 0xB7 0 "@CMP1RD"	;
+A3 1 0 0x08 0xB7 0 "@CMP1OE"	;
+A3 1 0 0x10 0xB7 0 "@CMP2EN"	;
+A3 1 0 0x20 0xB7 0 "@CMP2RD"	;
+A3 1 0 0x40 0xB7 0 "@CMP2OE"	;
+#A3 1 0 0x80 0xB7 0 "@---"		;
+A3 1 0 0x01 0xBA 0 "@TBMT"		;
+A3 1 0 0x02 0xBA 0 "@RBFL"		;
+A3 1 0 0x04 0xBA 0 "@ERR"		;
+A3 1 0 0x08 0xBA 0 "@CHL0"		;
+A3 1 0 0x10 0xBA 0 "@CHL1"		;
+A3 1 0 0x20 0xBA 0 "@XBIT9_PSEL0";
+A3 1 0 0x40 0xBA 0 "@PSEL1"		;
+A3 1 0 0x80 0xBA 0 "@PEN"		;
+A3 1 0 0x01 0xBB 0 "@RCVG"		;
+A3 1 0 0x02 0xBB 0 "@XMTG"		;
+A3 1 0 0x04 0xBB 0 "@ATTN"		;
+A3 1 0 0x08 0xBB 0 "@RBIT9"		;
+A3 1 0 0x10 0xBB 0 "@SPARE"		;
+A3 1 0 0x20 0xBB 0 "@PE"		;
+A3 1 0 0x40 0xBB 0 "@FE"		;
+A3 1 0 0x80 0xBB 0 "@DOE"		;
+A3 1 0 0x01 0xBC 0 "@ETI"	;
+A3 1 0 0x02 0xBC 0 "@ERI"	;
+A3 1 0 0x04 0xBC 0 "@XTCLK"	;
+A3 1 0 0x08 0xBC 0 "@XRCLK"	;
+A3 1 0 0x10 0xBC 0 "@SSEL"	;
+A3 1 0 0x20 0xBC 0 "@ETDX"	;
+A3 1 0 0x40 0xBC 0 "@STP78"	;
+A3 1 0 0x80 0xBC 0 "@STP2"	;
+A3 1 0 0x01 0xC6 0 "@T2ENB"		;
+A3 1 0 0x02 0xC6 0 "@T2PNDB"	;
+A3 1 0 0x04 0xC6 0 "@T2ENA"		;
+A3 1 0 0x08 0xC6 0 "@T2PNDA"	;
+A3 1 0 0x10 0xC6 0 "@T2C0"		;
+A3 1 0 0x20 0xC6 0 "@T2C1"		;
+A3 1 0 0x40 0xC6 0 "@T2C2"		;
+A3 1 0 0x80 0xC6 0 "@T2C3"		;
+A3 1 0 0x01 0xD0 0 "@LD0"			;
+A3 1 0 0x02 0xD0 0 "@LD1_CKX"		;
+A3 1 0 0x04 0xD0 0 "@LD2_TDX"		;
+A3 1 0 0x08 0xD0 0 "@LD3_RDX"		;
+A3 1 0 0x10 0xD0 0 "@LD4_T2A"		;
+A3 1 0 0x20 0xD0 0 "@LD5_T2B"		;
+A3 1 0 0x40 0xD0 0 "@LD6_T3A"		;
+A3 1 0 0x80 0xD0 0 "@LD7_T3B"		;
+A3 1 0 0x01 0xD1 0 "@LC0"			;
+A3 1 0 0x02 0xD1 0 "@LC1_CKX"		;
+A3 1 0 0x04 0xD1 0 "@LC2_TDX"		;
+A3 1 0 0x08 0xD1 0 "@LC3_RDX"		;
+A3 1 0 0x10 0xD1 0 "@LC4_T2A"		;
+A3 1 0 0x20 0xD1 0 "@LC5_T2B"		;
+A3 1 0 0x40 0xD1 0 "@LC6_T3A"		;
+A3 1 0 0x80 0xD1 0 "@LC7_T3B"		;
+A3 1 0 0x01 0xD2 0 "@LP0"			;
+A3 1 0 0x02 0xD2 0 "@LP1_CKX"		;
+A3 1 0 0x04 0xD2 0 "@LP2_TDX"		;
+A3 1 0 0x08 0xD2 0 "@LP3_RDX"		;
+A3 1 0 0x10 0xD2 0 "@LP4_T2A"		;
+A3 1 0 0x20 0xD2 0 "@LP5_T2B"		;
+A3 1 0 0x40 0xD2 0 "@LP6_T3A"		;
+A3 1 0 0x80 0xD2 0 "@LP7_T3B"		;
+A3 1 0 0x01 0xD4 0 "@GD0_INTR"		;
+A3 1 0 0x02 0xD4 0 "@GD1_WDOUT"		;
+A3 1 0 0x04 0xD4 0 "@GD2_T1B"		;
+A3 1 0 0x08 0xD4 0 "@GD3_T1A"		;
+A3 1 0 0x10 0xD4 0 "@GD4_SO"		;
+A3 1 0 0x20 0xD4 0 "@GD5_SK"		;
+A3 1 0 0x40 0xD4 0 "@GD6_SI"		;
+A3 1 0 0x80 0xD4 0 "@GD7_CKO_HALT"	;
+A3 1 0 0x01 0xD5 0 "@GC0_INTR"		;
+A3 1 0 0x02 0xD5 0 "@GC1_WDOUT"		;
+A3 1 0 0x04 0xD5 0 "@GC2_T1B"		;
+A3 1 0 0x08 0xD5 0 "@GC3_T1A"		;
+A3 1 0 0x10 0xD5 0 "@GC4_SO"		;
+A3 1 0 0x20 0xD5 0 "@GC5_SK"		;
+A3 1 0 0x40 0xD5 0 "@GC6_SI"		;
+A3 1 0 0x80 0xD5 0 "@GC7_CKO_HALT"	;
+A3 1 0 0x01 0xD6 0 "@GP0_INTR"		;
+A3 1 0 0x02 0xD6 0 "@GP1_WDOUT"		;
+A3 1 0 0x04 0xD6 0 "@GP2_T1B"		;
+A3 1 0 0x08 0xD6 0 "@GP3_T1A"		;
+A3 1 0 0x10 0xD6 0 "@GP4_SO"		;
+A3 1 0 0x20 0xD6 0 "@GP5_SK"		;
+A3 1 0 0x40 0xD6 0 "@GP6_SI"		;
+A3 1 0 0x80 0xD6 0 "@GP7_CKO_HALT"	;
+A3 1 0 0x01 0xD7 0 "@I0"			;
+A3 1 0 0x02 0xD7 0 "@I1_CMP1INM"	;
+A3 1 0 0x04 0xD7 0 "@I2_CMP1INP"	;
+A3 1 0 0x08 0xD7 0 "@I3_CMP1OUT"	;
+A3 1 0 0x10 0xD7 0 "@I4_CMP2INN"	;
+A3 1 0 0x20 0xD7 0 "@I5_CMP2INP"	;
+A3 1 0 0x40 0xD7 0 "@I6_CMP2OUT"	;
+A3 1 0 0x80 0xD7 0 "@I7"			;
+A3 1 0 0x01 0xD8 0 "@CD0"		;
+A3 1 0 0x02 0xD8 0 "@CD1"		;
+A3 1 0 0x04 0xD8 0 "@CD2"		;
+A3 1 0 0x08 0xD8 0 "@CD3"		;
+#	A3 1 0 0x10 0xD8 0 "?CD4"		;
+#	A3 1 0 0x20 0xD8 0 "?CD5"		;
+#	A3 1 0 0x40 0xD8 0 "?CD6"		;
+#	A3 1 0 0x80 0xD8 0 "?CD7"		;
+A3 1 0 0x01 0xD9 0 "@CC0"		;
+A3 1 0 0x02 0xD9 0 "@CC1"		;
+A3 1 0 0x04 0xD9 0 "@CC2"		;
+A3 1 0 0x08 0xD9 0 "@CC3"		;
+#	A3 1 0 0x10 0xD9 0 "?CC4"		;
+#	A3 1 0 0x20 0xD9 0 "?CC5"		;
+#	A3 1 0 0x40 0xD9 0 "?CC6"		;
+#	A3 1 0 0x80 0xD9 0 "?CC7"		;
+A3 1 0 0x01 0xDA 0 "@CP0"		;
+A3 1 0 0x02 0xDA 0 "@CP1"		;
+A3 1 0 0x04 0xDA 0 "@CP2"		;
+A3 1 0 0x08 0xDA 0 "@CP3"		;
+#	A3 1 0 0x10 0xDA 0 "?CP4"		;
+#	A3 1 0 0x20 0xDA 0 "?CP5"		;
+#	A3 1 0 0x40 0xDA 0 "?CP6"		;
+#	A3 1 0 0x80 0xDA 0 "?CP7"		;
+A3 1 0 0x01 0xDC 0 "@D0"		;
+A3 1 0 0x02 0xDC 0 "@D1"		;
+A3 1 0 0x04 0xDC 0 "@D2"		;
+A3 1 0 0x08 0xDC 0 "@D3"		;
+A3 1 0 0x10 0xDC 0 "@D4"		;
+A3 1 0 0x20 0xDC 0 "@D5"		;
+A3 1 0 0x40 0xDC 0 "@D6"		;
+A3 1 0 0x80 0xDC 0 "@D7"		;
+A3 1 0 0x01 0xE8 0 "@T1ENB"		;
+A3 1 0 0x02 0xE8 0 "@T1PNDB"	;
+A3 1 0 0x04 0xE8 0 "@UWEN"		;
+A3 1 0 0x08 0xE8 0 "@UWPND"		;
+A3 1 0 0x10 0xE8 0 "@T0EN_PPEN"	;
+A3 1 0 0x20 0xE8 0 "@T0PND_PPND";
+A3 1 0 0x40 0xE8 0 "@LPEN_FLAG2";
+#	A3 1 0 0x80 0xE8 0 "@---"		;
+A3 1 0 0x01 0xEE 0 "@SL0"		;
+A3 1 0 0x02 0xEE 0 "@SL1"		;
+A3 1 0 0x04 0xEE 0 "@IEDG"		;
+A3 1 0 0x08 0xEE 0 "@MSEL"		;
+A3 1 0 0x10 0xEE 0 "@T1C0"		;
+A3 1 0 0x20 0xEE 0 "@T1C1"		;
+A3 1 0 0x40 0xEE 0 "@T1C2"		;
+A3 1 0 0x80 0xEE 0 "@T1C3"		;
+A3 1 0 0x01 0xEF 0 "@GIE"		;
+A3 1 0 0x02 0xEF 0 "@EXEN"		;
+A3 1 0 0x04 0xEF 0 "@BUSY"		;
+A3 1 0 0x08 0xEF 0 "@EXPND"		;
+A3 1 0 0x10 0xEF 0 "@T1ENA"		;
+A3 1 0 0x20 0xEF 0 "@T1PNDA"	;
+A3 1 0 0x40 0xEF 0 "@C"			;
+A3 1 0 0x80 0xEF 0 "@HC"		;
+A4	0x08000	
+0x7FFF;	
+A5	0	
+0;	
+A6 896 896 112;	
+A7 "3.077" ;	
+A9		
+9		
+0		
+0		
+0		
+"\x03"	
+&"\x00"	
+&"\x00"	
+&"\x00"	
+&"\xFC"	
+&"\x00"	
+&"\x00"	
+&"\x63"	
+&"\x77"	
+&"\x00"	
+;		
+A9		
+1		
+0		
+0		
+0		
+"\x05"
+&"\xFE"	
+&"\xFD"	
+&"\xFC"	
+&"\xEF"	
+&"\xFF"	
+&"\x00"	
+&"\x6F"	
+&"\x00"	
+&"\x00"	
+&"\x00"	
+&"\x98"	
+&"\xA4"	
+&"\x8C"	
+&"\xD4"	
+&"\x80"	
+&"\x66"	
+&"\x69"	
+&"\x6C"	
+&"\x7F"	
+&"\x61"	
+;			
+A9		
+2		
+0		
+0		
+0		
+"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xBC"	
+&"\xFF"	
+&"\zpp"	
+&"\x98"	
+&"\zqq"	
+&"\xBC"	
+&"\xFE"	
+&"\zrr"	
+&"\xBC"	
+&"\xFD"	
+&"\zss"	
+&"\xBC"	
+&"\xFC"	
+&"\ztt"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xAC"	
+&"\zxx"	
+&"\zyy"	
+&"\xB8"	
+&"\xFC"	
+&"\xB8"	
+&"\xB8"	
+&"\xBC"	
+&"\xEF"	
+&"\zzz"	
+;		
+A9		
+3		
+0		
+0		
+0		
+"\xB8"	
+&"\xA4"	
+&"\xB8"	
+&"\x00"	
+&"\xA4"	
+&"\xB8"	
+&"\xB8"	
+&"\xA4"	
+&"\xA4"
+&"\x00"	
+&"\xB8"	
+&"\x9C"	
+&"\xEF"	
+&"\xB8"	
+&"\xA4"	
+&"\xB8"	
+&"\x00"	
+&"\xB8"	
+&"\x9C"	
+&"\xEF"	
+&"\xB8"	
+&"\xA4"	
+&"\xB8"
+&"\x00"	
+&"\xB8"
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\x9C"	
+&"\xFD"	
+&"\x00"	
+&"\xA4"	
+&"\x00"	
+&"\x00"	
+&"\x9C"	
+&"\xFE"	
+&"\x00"	
+&"\xA4"	
+&"\x00"	
+&"\x00"	
+&"\x9C"	
+&"\xFC"	
+&"\x00"	
+&"\xA4"	
+&"\x00"	
+&"\x00"	
+&"\x9C"	
+&"\xFF"	
+&"\x00"	
+&"\xA4"	
+&"\x00"	
+&"\x00"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xB8"	
+&"\xAC"	
+&"\x0C"	
+&"\x00"	
+&"\x00"	
+;		
+# The A11 directive specifies the order in which the registers
+# will be displayed in the "Registers" Window:
+#        0:  display registers (left-to-right, top-to-bottom)
+#            in the order supplied in the Model File
+#        1:  display registers (left-to-right, top-to-bottom)
+#            alphabetically (ASCII collating sequence)
+#        2:  display registers (left-to-right, top-to-bottom)
+#            in increasing address order
+A11	0;
+A12 3;
+A13   1  "\xFF";
+A15 0;	
+A23 0;
+A24 1 1 0x08000 0x08000 0x00000 0x00000 0x00000 0x00000  0 0 0x01    0 0 0   0 " ";
+A26  0;
+A32 7;	
+A35 2 "A" "B" "HALT Disabled"	"HALT Enabled"	;	
+A37		"COP8";
+A38		"COP8";
+A40
+0			
+0			
+0			
+0			
+0			
+""			
+;
+A41 0 # HLL source display:  leading blanks -- skip (1) / don't skip (0)
+4;    # HLL source display:  tab stops (column width) for ASCII TAB chars (0-10)
+# A42 directive is for Performance Analyzer (primarily):
+A42 0xDB # 4% bar char  (video display)
+'#'      # 4% bar char  (when writing to file)
+0x10     # 2% bar char  (video display)
+'>'      # 2% bar char  (when writing to file)
+0xE6     # "micro-" (mu) symbol (video display)
+'u'      # "micro-" (mu) symbol (when writing to file)
+0xB3     # vertical line char   (video display)
+'|'      # vertical line char   (when writing to file)
+0;       # in Symbolic and Mixed mode, display both Global & Local code labels
+#        #   (0 = Globals & Locals, 1 = Globals only, 2 = Locals only)
+A43 ','; # separator for every 3rd digit in time/count values
+#
+#A49:
+#
+#		The 1st number in the A49 directive is used to set the
+#		time-out limit for normal reception from, and transmission to,
+#		the emulator.  Note that the number specified here is not
+#		an actual clock time value, but rather a count for the number
+#		of times the host SW will execute (wait in) the innermost
+#		"wait for a byte to be received" or
+#		"wait for a byte to be transmitted" loop.  The larger the number,
+#		the longer the time-out interval will be (i.e., the more times the
+#		host SW will execute the innermost "wait" loop before declaring
+#		an actual time-out).  Generally, faster host computers will require
+#		a larger number here;  slower host computers can get by with a
+#		smaller number.  Note that if the number here is too large and there
+#		actually is a communication failure/problem, it will take a very
+#		long time for the host SW to detect and report the problem.
+#
+#		The 2nd number in the A49 directive is used to set the
+#		time-out limit for the quick communication test routine
+#		which is used to detect a warm-start condition when the host SW
+#		is first invoked.  The larger the number specified here,
+#		the longer the host SW will wait for a response from the emulator
+#		during the host SW's one-time-initialization
+#		(only performed when the host SW is first invoked).
+A49		#
+10	# 1st RS232 communication time-out limit (normal comm)
+4	# 2nd RS232 communication time-out limit (warm-start comm test)
+;	# end of A49
+A51				
+3			
+0x00		
+"$cl1" ;	
+A51				
+3			
+0x01		
+"$cl1a" ;	
+A51				
+3			
+0x02		
+"$cl1a" ;	
+A52	"$cr_c888" ;	
+A53	0x6F ;	
+A54	1 ;	
+A57
+0		
+0		
+0		
+12		
+;
+A60
+12		
+6		
+;
+A61
+6				
+600004			
+1100			
+"$p6"			
+;
+A63
+6	
+6	
+;
