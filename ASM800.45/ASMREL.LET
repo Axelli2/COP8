@@ -1,0 +1,325 @@
+1.0	SOFTWARE PRODUCT DESCRIPTION
+
+Product Name:		COP8-DEV-IBMA
+
+Software Part Number:	925421632-001
+
+Description:		COP8 Assembler/Linker/Librarian & Utilities, Version 4.5
+
+System:			MS-DOS (R) 3.1 or later (3.5 inch PC-DOS (R) format)
+
+This release package contains software to support development of programs for
+National Semiconductor's COP8 series of microcontrollers.
+
+The software executes on an IBM PC/AT or compatible running MS-DOS or PC-DOS.
+The package consists of the following programs:
+ ______________________________________________________________________
+|Name:      |Version:   |Date:        |Description:                    |
+|___________|___________|_____________|________________________________|
+|  ASMCOP   |    4.5    |  24 Feb 95  | Cross-assembler for COP8       |
+|___________|___________|_____________|________________________________|
+|  LNCOP    |    4.5    |  24 Feb 95  | Cross-linker for COP8          |
+|___________|___________|_____________|________________________________|
+|  LIBCOP   |    4.5    |  24 Feb 95  | Cross-librarian for COP8       |
+|___________|___________|_____________|________________________________|
+|  PROMCOP  |    4.0    | 30 Sept 92  | Utility program to convert COFF|
+|           |           |             | files for burning proms        |
+|___________|___________|_____________|________________________________|
+|  DUMPCOFF |    4.0    | 30 Sept 92  | Utility program to display COFF|
+|           |           |             | information                    |
+|___________|___________|_____________|________________________________|
+|  HEXDIFF  |    4.0    | 30 Sept 92  | Utility program to compare     |
+|           |           |             | Hex/LM files                   |
+|___________|___________|_____________|________________________________|
+|  HEXLM    |  Rev. D   |  27 Jul 87  | Utility program to convert HEX |
+|           |           |             | files to LM format             |
+|___________|___________|_____________|________________________________|
+|  LMHEX    |  Rev. D   |  27 Jul 87  | Utility program to convert LM  |
+|           |           |             | files to HEX format            |
+|___________|___________|_____________|________________________________|
+
+
+2.0	OPERATING ENVIRONMENT
+
+This package has been developed and tested on an IBM PC/AT running PC-DOS 5.0.
+It runs under the MS-DOS or PC-DOS operating system, Version 3.1 or later, on
+an IBM PC/AT or compatible.  The system requirements are:
+
+o  At least 256 Kbytes of memory.
+
+o  A 3.5 inch floppy drive capable of reading double sided, high density format
+   (1.44 MB) diskettes.
+
+o  An asynchronous, RS232-compatible serial port for communication.
+
+
+3.0	ENHANCEMENTS 
+
+Support for the COP888GD chip has been added to Version 4.5.  Default ranges
+for this chip are given in the following table:
+
+ __________________________________________________________________________
+|  CHIP      | ROM     | RAM       | BASE  | REG      | SEG      | SEGB    |
+|____________|_________|___________|_______|__________|__________|_________|
+|  COP888GD  | 0:3FFF  | 0:6F,REG  | 0:F   | F0:FB    | 100:17F  | 100:10F |    
+|            |         |           |       |          | 200:27F  | 200:20F |    
+|            |         |           |       |          | 300:37F  | 300:30F |    
+|____________|_________|___________|_______|__________|__________|_________|
+
+For more details, see the COP8 Assembler/Linker/Librarian User's Manual
+and the appropriate data sheet.
+
+
+4.0	COMPATIBILITY ISSUES
+
+4.1	METALINK ICEMASTER(TM)-COP8
+
+This software is compatible with the COP8 MetaLink debugger, iceMASTER-COP8 3.2,
+Rev. 11 and above.
+
+
+4.2	DBCOP
+
+This software is not compatible with the debugger DBCOP.
+
+
+5.0	INSTALLATION PROCEDURE
+
+Place the COP8-DEV-IBMA disk into a floppy drive.  Enter:
+
+   	<drive>INSTALL		(Where <drive> is either A: or B:)
+
+INSTALL will prompt for the drive letter of the source drive.  Enter if
+other than A.
+
+It will then prompt for the directory to install the files.  Enter if other
+than C:\COP.
+
+After confirming that there is room for the files, INSTALL copies them to
+the installation directory.
+
+Pay particular attention to the notes on editing your CONFIG.SYS and
+AUTOEXEC.BAT files.  You must properly set up your path and environment
+variables.  If you need to redisplay the notes, enter:
+
+   	TYPE ASMREAD.ME
+
+
+6.0	STANDARD INCLUDE FILES
+
+The assembler package provides standard include files for each member of the
+COP8 family of chips.  The files are named as follows:
+
+	COP<chipname>.INC	(Example:  COP888GD.INC)
+
+The first line of each assembly source program should contain the line:
+
+	.INCLD COPxxx.INC
+
+where xxx is the appropriate chip name.
+
+Each include file contains the proper .CHIP directive, and defines symbolic
+names for frequently used memory locations.
+
+If you choose not to use an include file, you must include the .CHIP directive
+before the beginning of code.
+
+
+7.0	NOTES AND CAUTIONS
+
+7.1	CAUTIONS FOR ASMCOP
+
+  o  The assembler may run out of memory if macros are nested more than two
+     levels deep.
+
+  o  The assembler truncates intermediate results of expression evaluation
+     to 16 bits.  As a result, it produces incorrect code for expressions in
+     which intermediate values exceed the maximum value that can be represented
+     in 16 bits.
+
+     For example, for the following instruction:
+
+	LD A, #(0X101B * 0X64) / 0X679
+
+     The assembler evaluates (0X101B * 0X64) to 0X64A8C and truncates it to
+     0X4A8C.  As a result, the value of the complete expression will be 0X0B
+     instead of the expected value of 0XF8.
+
+  o  In some cases, the use of primary controls (e.g., #PWIDTH) may apply only
+     to the first file.  Subsequent modules may revert to the default condition.
+
+
+7.2	NOTES FOR ASMCOP
+
+  o  The assembler always interprets the address specified with a JP instruction
+     as an absolute address, even though in the instruction opcode it is
+     represented as relative.  The conversion from absolute to relative is done
+     by the assembler.
+
+     To specify a relative address, use .+<n> or .-<n>
+
+     Example:
+   
+	.chip  880
+	.sect  test,ROM
+	start: LD A, #5
+	       X A, B
+	       IFBIT 2,[B]
+	       JP .+2      ; relative jump of +2 (skips over next instr)
+			   ; JP +2 would mean the absolute address 2
+	       ADD A,#15
+	       IFBIT 5,[B]
+	       JP start    ; relative jump of -10 (to label start:)
+	.end
+
+  o  You must initialize the stack pointer for non-888 type chips.  For example:
+
+	LD SP,#top-of-stack
+
+
+7.3	NOTES FOR HEXDIFF
+
+  o  HEXDIFF compares LM and/or HEX files for equivalent code, even if the data
+     records are in different order.  Command for invocation is:
+
+	HEXDIFF <file1> <file2>
+
+
+7.4	CAUTIONS FOR HEXLM
+
+  o  No error is given if HEX file contains record type 02, and an erroneous
+     LM file is generated.
+
+     Workaround:  Do not convert HEX file with record type 02.
+
+
+8.0	PACKAGE CONTENTS
+
+8.1	OVERALL CONTENTS
+ ___________________________________________________________________________
+|Item: | Part number:   | Description                                       |
+|______|________________|___________________________________________________|
+|  1   | 440421759-003  | 3.5 inch Floppy Diskette labeled "COP8-DEV-IBMA   |
+|      |                | Version 4.5. COP8 Assembler/Linker/Librarian      |
+|      |                | 27 Feb 1995 (Disk 1 of 1)"                        |
+|______|________________|___________________________________________________| 
+|  2   | 424421632-001  | COP8 Assembler/Linker/Librarian User's Manual,    |
+|      |                | Rev. B  (Not included in upgrade package          |
+|      |                | UPG-COP8-IBMA) *                                  |
+|______|________________|___________________________________________________|
+|  3   | 433421632-001  | COP8 Assembler/Linker/Librarian & Utilities       |
+|      |                | release letter, Rev. F                            |
+|______|________________|___________________________________________________|
+
+   * If needed, please order separately.
+
+
+8.2	CONTENTS OF DISK
+
+The floppy disk contains the following files:
+ ___________________________________________________________________________
+| Filename:     | Description:                                              |
+|_______________|___________________________________________________________|
+|  ASMCOP.EXE   |  Program ASMCOP                                           |
+|_______________|___________________________________________________________|
+|  ASMCOP.HLP   |  Help file for ASMCOP                                     |
+|_______________|___________________________________________________________|
+|  ASMREAD.ME   |  Read me text (read this first)                           |
+|_______________|___________________________________________________________|
+|  ASMREL.LET   |  Release Letter                                           |
+|_______________|___________________________________________________________|
+|  COP*.ASM     |  Assembly files used by SAMPLE.BAT                        |
+|_______________|___________________________________________________________|
+|  COP*.INC     |  Chip-specific include files                              |
+|_______________|___________________________________________________________|
+|  COPXXX.FIL   |  Linker file used by SAMPLE.BAT                           |
+|_______________|___________________________________________________________|
+|  DUMPCOFF.EXE |  Program DUMPCOFF                                         |
+|_______________|___________________________________________________________|
+|  HEXDIFF.EXE  |  Program to compare HEX and/or LM files                   |
+|_______________|___________________________________________________________|
+|  HEXLM.EXE    |  Program HEXLM                                            |
+|_______________|___________________________________________________________|
+|  INSTALL.EXE  |  Program to install files                                 |
+|_______________|___________________________________________________________|
+|  LIBCOP.EXE   |  Program LIBCOP                                           |
+|_______________|___________________________________________________________|
+|  LIBCOP.HLP   |  Help file for LIBCOP                                     |
+|_______________|___________________________________________________________|
+|  LMHEX.EXE    |  Program LMHEX                                            |
+|_______________|___________________________________________________________|
+|  LNCOP.CFG    |  Default configuration file for LNCOP                     |
+|_______________|___________________________________________________________|
+|  LNCOP.EXE    |  Program LNCOP                                            |
+|_______________|___________________________________________________________|
+|  LNCOP.HLP    |  Help file for LNCOP                                      |
+|_______________|___________________________________________________________|
+|  PROMCOP.EXE  |  Program PROMCOP                                          |
+|_______________|___________________________________________________________|
+|  SAMPLE.BAT   |  Sample build file                                        |
+|_______________|___________________________________________________________|
+|  XCRC.EXE     |  Program to verify disk                                   |
+|_______________|___________________________________________________________|
+|  XCRC.OUT     |  Output of XCRC program                                   |
+|_______________|___________________________________________________________|
+
+
+9.0	RELATED DOCUMENTATION
+
+  o  COP800 Basic Family User's Manual, Order Number 420410703-001
+  o  COP888 Features Family User's Manual, Order Number 420411060-001
+  o  COP8 Databook
+  o  Disk Operating System (DOS) Manual (Published by IBM)
+
+  The following documentation can be obtained from MetaLink Corporation:
+     325 E. Elliot Road, Suite 23
+     Chandler, AZ 85225
+     Ph:  1-602-926-0797
+     Fax: 1-602-926-1198
+
+  o  iceMASTER User's Manual
+  o  iceMASTER COP8 Debug Module User's Manual
+  o  iceMASTER COP8 EPU User's Manual
+  o  iceMASTER-COP8 Supplement
+
+
+10.0	USER SUPPORT
+
+Technical Support numbers are:
+
+  o  1-800-272-9959		USA and Canada
+  o  49-8141-103-0 		Germany for Europe and Israel
+  o  852-737-1800		Hong Kong for South East Asia, Australia,
+				New Zealand, and India
+  o  04-3-299-2300		Japan
+  o  5511-212-5066 		Brazil
+
+Dial-A-Helper:
+
+  o  You may also access our 24 hour electronic bulletin board information
+     system.  You can use the Message Section to leave messages for
+     communications to and from the Microcontroller Applications Group.
+     There are several news groups available to direct your questions to the
+     appropriate applications engineering groups, to look up answers in
+     specific response groups, or to retrieve application notes.
+
+     The minimum requirement for access through Dial-A-Helper is a Hayes
+     compatible modem or Internet access.  Data transfer rates up to
+     14.4 Kbytes/second are now supported.
+
+     Modem (Canada/US:)  1-800-NSC-MICRo
+                         1-800-672-6427
+
+           Baud:         14.4K
+
+           Setup:        Length:  8-bit
+                         Parity:  None
+                         Stop Bit:  1
+
+           Operation:    24 hours, 7 days
+
+     Internet:
+
+           telnet:         nscmicro.nsc.com
+           anonymous ftp:  nscmicro.nsc.com
+           ip address:     139.187.71.5

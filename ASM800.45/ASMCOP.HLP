@@ -1,0 +1,80 @@
+
+
+Usage:	ASMCOP	asmfile [,asmfile ...] [@cmdfile]  [options]
+
+/Aserrorfile[=file]	- enable source error file [default extension = .ase]
+/NOAserrorfile		- disable source error file
+/CHip=chip              - specify chip= COPxxx | xxx | ANYCOP  
+/[NO]CNDDirectives	- enable/disable listing of conditional directives
+/[NO]CNDLines		- enable/disable listing of conditional lines
+/[NO]COMMentlines	- enable/disable listing of comment lines
+/[NO]COMPlexrel 	- enable/disable complex relocation
+/[NO]CONstants		- enable/disable constants appearing in symbol table
+/[NO]Crossref		- enable/disable cross reference table listing
+/[NO]DAtadirectives	- enable/disable listing of more than the first line
+			  of data generating directives, e.g. .db
+/Define symbol[=value]	- set symbol to a value.  If no value, set to 1
+/[NO]ECho		- enable/disable echoing of command files
+/Errorfile[=file]	- enable error file [default extension = .err].
+/NOErrorfile		- disable error file
+/[NO]Formfeed		- enable/disable formfeeds between listing pages
+/[NO]Headings		- enable/disable headings on each page
+/[NO]ILines		- enable/disable line numbers on include files
+/Include=directory	- specify directory for include file search
+
+
+?+
+
+
+/Listfile[=file]	- specify listing file [default extension = .lis]
+/NOListfile		- disable listing file
+/[NO]LOcalsymbols	- enable/disable local symbols in symbol table and
+			  object module
+/[NO]Masterlist 	- enable/disable master listing flag
+/[NO]MCAlls		- enable/disable listing of macro calls
+/[NO]MCOmments		- enable/disable listing of macro comment lines
+/[NO]MDefinitions	- enable/disable listing of macro definitions
+/[NO]MEMory		- enable/disable using memory for optimization
+/[NO]MExpansions	- enable/disable listing of macro expansions
+/[NO]MLocals		- enable/disable  macro local symbols in symbol table
+/[NO]MObject		- enable/disable listing of lines in macros which
+			  generate code
+/MODel=S | M | L	- override default memory model; Small, Medium, Large
+/Numberlines		- lines have same line number as position in file
+/NONumberlines		- all lines have sequential line numbers
+/Objectfile[=file]	- specify object file [default extension = .obj]
+/NOObjectfile		- inhibit object file
+/PAss=count | ALL	- set number of passes. PASS=ALL means assembler will
+			  take as many passes as necessary to optimize code.
+			  PASS=2 is assembly without optimization.
+
+
+?+
+
+
+
+/PLength=length 	- set page length
+/PWidth=width		- set page width
+/Quick			- perform errors only assembly. No object file, list
+			  file or symbol table is produced.  Only errors are
+			  listed.
+/[NO]Remove		- enable/disable removal of error lines produced by
+			  the /Aserrorfile option.
+/REStore		- restore flags saved by /SAve control
+/SAve			- save all control flags
+/SIGnedcompare		- >, >=, < , <= operators use signed compare
+/NOSIGnedcompare	- >, >=, < , <= operators use unsigned compare
+/SIZesymbol=size	- set maximum symbol size
+/SYm_debug		- generate symbolic debug information
+/[NO]Tablesymbols	- enable/disable symbol table listing
+/[NO]TABS		- enable/disable tabs in output listing. /NOTABS
+			  implies all tabs will be converted to appropriate
+			  numbers of blanks.
+/Undefine symbol	- undefine symbol defined with /Define control
+/[NO]UPpercase		- enable/disable uppercase conversion for symbols
+/[NO]Verify		- enable/disable output listing on all passes
+/[NO]Warnings		- enable/disable warning messages
+/[NO]Xdirectory 	- enable/disable searching standard directories for
+			  include files
+
+?-

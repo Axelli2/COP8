@@ -1,0 +1,25 @@
+
+
+Usage:	LIBCOP	libfile  [name [,name ...]] [@cmdfile]	options
+
+Only one of following options/invocation: Add,Delete,List,Replace,Update
+
+/Add			- add module(s) to library
+/[NO]Backup		- enable/disable creation of backup library
+/Delete 		- delete module(s) from library. Warning if module
+			  does not exist in library
+/[NO]Echo		- enable/disable echoing of lines in command files
+/List[=file]		- specify listing file [default extension = .lis]
+/Replace		- replace module(s) in library
+/Update 		- replace module(s) in library with newer object
+/[NO]Warnings		- enable/disable warning messages
+
+
+
+
+
+
+
+
+
+?-

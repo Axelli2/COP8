@@ -1,0 +1,48 @@
+
+Usage:  LNCOP  objfile [,objfile ...]] [@cmdfile]  [options]
+
+Option
+
+/[NO]Briefmap              - specify full or brief map format
+/[NO]Crossref              - enable/disable cross reference table listing
+/[NO]Debug                 - enable/disable debugger symbols to COFF file
+/[NO]ECho                  - enable/disable echoing of command files
+/EXtract=(libs=modules)    - extract module(s) from library(s)
+/EXTRACTSymbol=(libs=syms) - extract symbol(s) from library(s)
+/FIle=bankfile             - read command from file (default extension = .fil)
+/Format=type[=args]        - specify output object module format.  this
+                             may be coff, hex, lm. Optional arguments
+                             may be specified for some types.
+/Ignoreerrors              - force object module even if errors
+/LIBDirectory=directory    - specify directory for library file search
+/LIBFile=(libs[=syms])     - specify library file
+/Load=objfile,..           - load object module(s). Primarily for /FILE file
+/[NO]LOCalsymbols          - enable/disable assembly local symbols to crossref 
+
+
+
+?+
+
+
+
+
+/Mapfile[=file]            - specify load map file
+/NOMapfile                 - disable load map file
+/Outputfile[=file]         - specify output object file
+/NOOutputfile              - inhibit object file
+/Range=(ranges)            - specify memory range(s)
+/Sect=section=address      - specify section address or range
+/SIzesect=section=size     - specify section size
+/[NO]Tablesymbols          - enable/disable symbol table listing
+/[NO]Warnings              - enable/disable warning messages
+/[NO]Xdirectory            - enable/disable searching standard directories for
+                             include files
+
+
+The above commands may also be used within a Link File (/FILE)
+without the leading / and only one command per line; to load
+object modules, use LOAD command.
+
+
+
+?-

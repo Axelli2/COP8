@@ -1,0 +1,25 @@
+	Please do following before using software:
+
+* In your AUTOEXEC.BAT file, add the installation directory to your path.
+   If you installed to C:\COP, and your path currently is:
+   PATH=C:\ 
+   Change it to:
+   PATH=C:\COP;C:\
+
+* In your AUTOEXEC.BAT file, add the following:
+  SET COP=C:\COP   (assuming C:\COP is your installation directory)
+
+* In your CONFIG.SYS file, the following should specify 16 or more:
+   FILES=16
+
+* For performance improvement, install a disk cache and RAM disk; 
+  for example, see DOS/MS-Windows manual to install SMARTDRV.SYS and
+  RAMDRIVE.SYS in your CONFIG.SYS file. Recommended disk cache size and 
+  recommended RAM disk size is 256K or larger. If memory is limited, 
+  disk cache generally provides more improvement than RAM disk. 
+  If RAM disk is installed, add the following to your AUTOEXEC.BAT file,
+   MKDIR G:\TMP     	(if G: is your RAM drive)
+   SET TMP=G:\tmp
+  This will direct temporary files to RAM disk, which improves link time.
+
+* Read printed release letter (or file ASMREL.LET in installation directory).

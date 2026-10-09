@@ -1,0 +1,82 @@
+NSC LNCOP, Version 4.5 (Feb 24 12:58 1995)                     13-Feb-98 18:17
+
+
+
+-- Range Definitions --
+
+BASE    0000:000F
+ROM     0000:0FFF
+RAM     0000:006F
+RAM     REG     
+REG     00F0:00FB
+REG     00FF:00FF
+
+-- Memory Order Map --
+
+   Code Space
+0000  0FC0   ROM   
+
+   Data Space
+
+
+
+-- Memory Type Map --
+
+BASE  
+  [size = 0000]
+
+RAM   
+  [size = 0000]
+
+REG   
+  [size = 0000]
+
+EERAM 
+  [size = 0000]
+
+SEG   
+  [size = 0000]
+
+SEGB  
+  [size = 0000]
+
+ROM   
+  0000  0FC0
+  [size = 0FC1]
+
+
+
+
+-- Total Memory Map --
+
+TOTAL RAM = BASE + RAM + REG + EERAM + SEG + SEGB
+  [size = 0000]
+
+
+TOTAL ROM = ROM
+  0000  0FC0
+  [size = 0FC1]
+
+
+
+
+-- Section Table --
+
+start end    attributes       Section
+                                Module
+
+0F20  0F26   ROM   BYTE       PRGID
+0F20  0F26                      ATCMAN09
+0000  0F1F   ROM   BYTE       CODE
+0000  0F1F                      ATCMAN09
+0F27  0F65   ROM   INPAGE     SPRUNG
+0F27  0F65                      ATCMAN09
+0F66  0FC0   ROM   INPAGE     SRNORM
+0F66  0FC0                      ATCMAN09
+
+
+Checksum:     0x3C1F
+Byte Count:   0x0F5D (3933)
+Output File:  atcman09.cof
+Memory Model: Small
+Chip:         888CF   

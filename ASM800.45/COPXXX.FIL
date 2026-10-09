@@ -1,0 +1,7 @@
+range rom=0:01fff
+range base=0:0f
+range ram=0:06f
+range eeram=080:0bf
+range reg=0f0:0fb
+range seg=0100:017f
+range segb=0100:010f
