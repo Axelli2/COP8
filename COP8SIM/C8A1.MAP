@@ -1,0 +1,105 @@
+NSC LNCOP, Version 4.0 (Sep 30 09:24 1992)                     06-Oct-92 08:26
+
+
+
+-- Range Definitions --
+
+BASE    0000:000F
+ROM     0000:07FF
+RAM     0000:006F
+EERAM   0080:0085
+REG     00F0:00FB
+REG     00FF:00FF
+SEG     0103:0105
+
+-- Memory Order Map --
+
+   Code Space
+0000  0025   ROM   
+
+   Data Space
+0000  0000   BASE  
+0001  0001   RAM   
+0080  0080   EERAM 
+00F0  00F2   REG   
+0103  0103   SEG   
+
+
+
+-- Memory Type Map --
+
+BASE  
+  0000  0000
+  [size = 0001]
+
+RAM   
+  0001  0001
+  [size = 0001]
+
+REG   
+  00F0  00F2
+  [size = 0003]
+
+EERAM 
+  0080  0080
+  [size = 0001]
+
+SEG   
+  0103  0103
+  [size = 0001]
+
+SEGB  
+  [size = 0000]
+
+ROM   
+  0000  0025
+  [size = 0026]
+
+
+
+
+-- Total Memory Map --
+
+TOTAL RAM = BASE + RAM + REG + EERAM + SEG + SEGB
+  0000  0000
+  0001  0001
+  0080  0080
+  00F0  00F2
+  0103  0103
+  [size = 0007]
+
+
+TOTAL ROM = ROM
+  0000  0025
+  [size = 0026]
+
+
+
+
+-- Section Table --
+
+start end    attributes       Section
+                                Module
+
+00F0  00F2   REG   BYTE COM   REG_VARIABLES
+00F0  00F2                      C8A1MAIN
+00F0  00F2                      C8A1SPIN
+0000  0020   ROM   BYTE       CODE
+0000  0020                      C8A1MAIN
+0021  0025   ROM   BYTE       SPIN_CODE
+0021  0025                      C8A1SPIN
+0000  0000   BASE  BYTE       UNUSED_SECT_1
+0000  0000                      C8A1SPIN
+0001  0001   RAM   BYTE       UNUSED_SECT_2
+0001  0001                      C8A1SPIN
+0080  0080   EERAM BYTE       UNUSED_SECT_3
+0080  0080                      C8A1SPIN
+0103  0103   SEG   BYTE       UNUSED_SECT_4
+0103  0103                      C8A1SPIN
+
+
+Checksum:     0x144D
+Byte Count:   0x0026 (38)
+Output File:  c8a1.cof
+Memory Model: Small
+Chip:         840     

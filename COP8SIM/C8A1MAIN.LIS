@@ -1,0 +1,92 @@
+   1                     #crossref
+   2                     #noformfeed
+   3                     #noheadings
+   4                              .TITLE  c8a1main,'Simple Multi-Module COP8 As
+   5                              .LIST   X'FF             ;complete listing
+   6                              .CONTRL 0                ;disable all code al
+   7                              .CHIP   840              ;(doesn't really mat
+   8                     ;        .MAXROM X'0FFF
+   9                     ;=====================================================
+  10                     ; Output a pulse pattern on bit/pin 0 of PORTD
+  11                     ;=====================================================
+  12                              .INCLD C8A1INC.INC       ;Equates, Variables
+                         ;File:  C8A1INC.INC
+
+                         ; Bit Definitions
+          0000           outbit   =     0                  ;Bit #0 in PORTD
+          0001           outmsk   =     X'01               ;Mask for Bit #0 in
+
+                         ; Register Definitions
+          00DC           PORTD    =     X'DC               ;standard PORTD regi
+
+                         ; Register Variable Definitions
+     0000                         .SECT    reg_variables,REG,COMMON
+     0000                r0:      .dsb     1                 ;=     X'F0
+     0001                tmpcnt:  .dsb     1                 ;=     X'F1
+     0002                trpcnt:  .dsb     1                 ;=     X'F2
+     0000                         .ENDSECT
+  13                     ;=====================================================
+  14 0000                         .SECT  code,ROM
+  15                              .EXTRN spin
+  16 0000 DD2F      3    reset:   LD    SP,#X'2F           ;(make it work on al
+  17 0002 D2FF      3 R  start:   LD    trpcnt,#X'FF       ;
+  18 0004 BDDC68    4    outer:     RBIT  outbit,PORTD     ;outbit <- 0  ------
+  19 0007 D10A      3 R             LD    tmpcnt,#10       ;
+  20 0009 3000      5 X  inner:       JSR   spin           ;-------------------
+  21 000B 9DDC      3                 LD    A,PORTD        ;Complement
+  22 000D 9601      2                 XOR   A,#outmsk      ;  bit #0
+  23 000F 9CDC      3                 X     A,PORTD        ;  in PORTD
+  24 0011 5F        1                 LD    B,#0           ;B register reflects
+  25 0012 BDDC70    4                 IFBIT outbit,PORTD   ;  current state of
+  26 0015 5E        1                 LD    B,#1           ;  'outbit' in PORTD
+  27 0016 C1        3 R               DRSZ  tmpcnt         ;
+  28 0017 F1        3                 JP    inner          ;-------------------
+  29 0018 C2        3 R             DRSZ  trpcnt           ;tripcnt--,
+  30 0019 B8        1               NOP                    ;  and nothing more
+  31 001A 3000      5 X             JSR   spin             ;
+  32 001C 3000      5 X             JSR   spin             ;
+  33 001E E5        3               JP    outer            ;
+  34 001F 2002      3 R  endprg:  JMP   start              ;-------------------
+  35                     ;=================================;
+  36 0021                         .END  reset              ;program starting ad
+
+
+
+
+
+ .sect_CODE_1  0000 Rel Null ROM      
+  
+ endprg . . .  001F Rel Null ROM      
+       -34
+ inner  . . .  0009 Rel Null ROM      
+       -20      28
+ outbit . . .  0000 Abs Null          
+       -12      18      25
+ outer  . . .  0004 Rel Null ROM      
+       -18      33
+ outmsk . . .  0001 Abs Null          
+       -12      22
+ PORTD  . . .  00DC Abs Null          
+       -12      18      21      23      25
+ r0 . . . . .  0000 Rel Byte REG      
+       -12
+ reset  . . .  0000 Rel Null ROM      
+       -16      36
+ spin . . . .  **** Rel Null ROM   Ext
+        15      20      31      32
+ start  . . .  0002 Rel Null ROM      
+       -17      34
+ tmpcnt . . .  0001 Rel Byte REG      
+       -12      19      27
+ trpcnt . . .  0002 Rel Byte REG      
+       -12      17      29
+
+
+ **** Errors:    0, Warnings:    0
+
+Checksum:     0x10CA
+Byte Count:   0x0021 (33)
+Input File:   c8a1main.asm
+Output File:  c8a1main.obj
+Memory Model: Small
+Chip:         840

@@ -1,0 +1,184 @@
+
+COP8 'C' COMPILER à0.16  11-May-1992                                    PAGE  1
+
+
+                                    /* File:  bc82main.c */
+
+                                    /* C Language Demo Program 'BC82MAIN.COD',
+                                    ** for use with the Byte Craft COP8 C Cross-compiler,
+                                    ** Version 1.00 or later.
+                                    ** Version actually used here:     Compiler:  Alpha V0.16
+                                    **
+                                    ** This program replicates, as closely as possible (except for actual timing),
+                                    ** the functionality of the assembly language demo program 'demo_c8.asm'.
+                                    **
+                                    ** Modules (Files) in BC82MAIN.COD:
+                                    **   bc82main.c -- C, main program (function 'main()')
+                                    **   bc82innr.c -- C, function 'InnerLoop( repeat_cnt )'
+                                    **   bc82wast.c -- C, function 'WasteTime()'
+                                    **   bc82prag.h -- include file
+                                    */
+
+                                    #include "bc82prag.h"
+                                    #pragma option v;
+                                    #pragma option s1;
+
+                                    /* 8 Apr 1992 WB V0.10 changed RAM and ROM declarations to RAM and ROM */
+                                    /* COP888CF */
+0000 1000                           #pragma memory ROM [0x1000]  @ 0;
+0000 0070                           #pragma memory RAM [112]  @ 0;
+00F0 000C                           #pragma memory RAM [0xc]  @ 0xf0;
+                                    #pragma has 888;
+
+
+                                    /* external function prototypes (interface specifications) */
+                                    /*extern*/ static void	InnerLoop	(char);	/* prototype */
+                                    /*extern*/ static void	WasteTime	(void);	/* prototype */
+
+                                    /*#include <stdio.h>*/
+
+0001                                #define	TRUE	1
+0000                                #define	FALSE	0
+
+00DC                                bits		PORTD	@0xDC;	/* standard PORTD register */
+0000                                #define	OUTBIT	0		/* Bit #0 in PORTD */
+0001                                #define	OUTMSK	0x01	/* mask for Bit #0 in PORTD */
+
+0008                                char	trip_count;	/* dummy counter (rolls over at 256) */
+
+                                    void main(void)
+                                    {
+                                    	/* Allow program to run in any COP8 processor --
+                                    	** (load a valid value into the Stack Pointer).
+                                    	*/
+                                    #asm
+0003 DD 2F              	LD	SP,#47		; 0x2F == 47 decimal
+                                #endasm
+
+0005 BC 08 FF  LD     08,#FF        	trip_count = 255;
+                                    	while (TRUE) {
+
+COP8 'C' COMPILER à0.16  11-May-1992                                    PAGE  2
+
+
+0008 BD DC 68  RBIT   00,0DC        		PORTD.OUTBIT = 0;	/* Set bit #0 in PORTD low at start */
+000B 98 0A     LD     A,#00A        		InnerLoop( 10 );	/* Generate 5 pulses */
+000D AD 00 1D  JSRL   001D          
+0010 9C 08     X      A,008         		trip_count--;
+0012 8B        DECA                 
+0013 9C 08     X      A,008         
+0015 AD 00 45  JSRL   0045          		WasteTime();		/* Call 'wastetime' twice to generate   */
+0018 AD 00 45  JSRL   0045          		WasteTime();		/* blank pulse between sets of 5 pulses */
+001B EC        JP     00008         		} /* while TRUE */
+
+001C 8E        RET                  } /* end of function:  'main()' */
+
+                                    #include "bc82innr.c"
+                                    /* File:  bc82innr.c */
+
+0009                                char	state;		/* 'state' reflects value in B (in original demo_c8.asm) */
+000A                                char	i;
+
+                                    static void InnerLoop( char repeat_cnt )
+000B                                {
+001D 9C 0B     X      A,00B         
+001F BC 0A 00  LD     0A,#00        	for ( i = 0;  i < repeat_cnt;  i++ ) {
+0022 9D 0A     LD     A,00A         
+0024 A1        SC                   
+0025 54        LD     B,#0B         
+0026 81        SUBC   A,[B]         
+0027 88        IFC                  
+0028 AC 00 44  JMPL   0044          
+002B AD 00 45  JSRL   0045          		WasteTime();
+002E 9D DC     LD     A,0DC         		PORTD.OUTBIT ^= OUTMSK;				/* complement PORTD.0 */
+0030 96 01     XOR    A,#001        
+0032 9C DC     X      A,0DC         
+0034 64        CLA                  		state = (PORTD.OUTBIT) ? 1 : 0 ;
+0035 98 01     LD     A,#001        
+0037 AC 00 3B  JMPL   003B          
+003A 64        CLA                  
+003B 9C 09     X      A,009         
+                                    		} /* end of:  for 'i' */
+003D 9C 0A     X      A,00A         
+003F 8A        INCA                 
+0040 9C 0A     X      A,00A         
+0042 20 22     JMP    00022         
+
+0044 8E        RET                  } /* end of function:  'InnerLoop( repeat_cnt )' */
+                                    #include "bc82wast.c"
+                                    /* File:  bc82wast.c */
+
+000C                                static char	j;
+
+                                    static void WasteTime( void )
+                                    {
+                                    	
+0045 BC 0C 00  LD     0C,#00        	for ( j = 0;  j < 3;  j++ ) {
+0048 9D 0C     LD     A,00C         
+004A 93 02     IFGT   A,#002        
+
+COP8 'C' COMPILER à0.16  11-May-1992                                    PAGE  3
+
+
+004C AC 00 55  JMPL   0055          
+                                    		;
+                                    		} /*for*/
+004F 9C 0C     X      A,00C         
+0051 8A        INCA                 
+0052 9C 0C     X      A,00C         
+0054 F3        JP     00048         
+
+0055 8E        RET                  } /* end of function:  'WasteTime()' */
+                                    #pragma endlibrary /* Directive for Version 4.0 libraries */
+
+
+
+0000 AC 00 03  JMPL   0003
+
+COP8 'C' COMPILER à0.16  11-May-1992                                    PAGE  4
+
+
+
+
+SYMBOL TABLE
+
+LABEL        VALUE  LABEL        VALUE  LABEL        VALUE  
+
+FALSE            0000| InnerLoop    Fun 001D| OUTBIT           0000
+OUTMSK           0001| PORTD            00DC| TRUE             0001
+WasteTime    Fun 0045| __888            0000| __COP800         0000
+__MAIN           0003| __RESET          0000| __STARTUP    Fun 0000
+__longAC     Reg 0002| __longIX     Reg 0000| i            Reg 000A
+j            Reg 000C| main         Fun 0003| state        Reg 0009
+trip_count   Reg 0008| 
+
+
+MEMORY USAGE MAP ('X' = Used, '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXX---------- ---------------- ----------------
+0080 : ---------------- ---------------- ---------------- ----------------
+00C0 : ---------------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+
+
+REGISTER USAGE MAP ('X' = Used, '-' = Unused)
+
+00 : --------XXXXX--- ---------------- ---------------- ----------------
+40 : ---------------- ---------------- ---------------- ----------------
+80 : ---------------- ---------------- ---------------- ----------------
+C0 : ---------------- ---------------- ---------------- ----------------
+00 : ---------------- ---------------- ---------------- ----------------
+40 : ---------------- ---------------- ---------------- ----------------
+80 : ---------------- ---------------- ---------------- ----------------
+C0 : ---------------- ---------------- ---------------- ----------------
+
+
+
+
+Errors             :    0
+Warnings           :    0
+
+

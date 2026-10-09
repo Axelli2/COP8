@@ -1,0 +1,12 @@
+InnerLoop    001D
+PORTD        00DC
+WasteTime    0045
+__MAIN       0003
+__RESET      0000
+__longAC     0002
+__longIX     0000
+i            000A
+j            000C
+main         0003
+state        0009
+trip_count   0008

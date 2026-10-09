@@ -1,0 +1,112 @@
+   1                     #crossref
+   2                     #noformfeed
+   3                     #noheadings
+   4                              .TITLE  c8a1spin,'Simple Multi-Module COP8 As
+   5                              .LIST   X'FF             ;complete listing
+   6                              .CONTRL 0                ;disable all code al
+   7                              .CHIP   840              ;(doesn't really mat
+   8                     ;        .MAXROM X'0FFF
+   9                     ;=====================================================
+  10                     ; Output a pulse pattern on bit/pin 0 of PORTD
+  11                     ;=====================================================
+  12                              .INCLD C8A1INC.INC       ;Equates, Variables
+                         ;File:  C8A1INC.INC
+
+                         ; Bit Definitions
+          0000           outbit   =     0                  ;Bit #0 in PORTD
+          0001           outmsk   =     X'01               ;Mask for Bit #0 in
+
+                         ; Register Definitions
+          00DC           PORTD    =     X'DC               ;standard PORTD regi
+
+                         ; Register Variable Definitions
+     0000                         .SECT    reg_variables,REG,COMMON
+     0000                r0:      .dsb     1                 ;=     X'F0
+     0001                tmpcnt:  .dsb     1                 ;=     X'F1
+     0002                trpcnt:  .dsb     1                 ;=     X'F2
+     0000                         .ENDSECT
+  13                     ;=====================================================
+  14 0000                         .SECT   spin_code,ROM
+  15                              .PUBLIC spin
+  16
+  17                     ;=================================;
+  18 0000 D004      3 R  spin:    LD    r0,#X'04           ;
+  19 0002 C0        3 R  spinlp:  DRSZ  r0                 ;
+  20 0003 FE        3             JP    spinlp             ;
+  21 0004 8E        5             RET                      ;
+  22                     ;=================================;
+  23
+  24                     ; Test other section types:
+  25
+  26 0000                         .SECT    unused_sect_1,BASE
+  27 0000                us1_b_1: .dsb     1
+  28 0005                         .ENDSECT
+  29
+  30 0000                         .SECT    unused_sect_2,RAM
+  31 0000                us2_b_1: .dsb     1
+  32 0005                         .ENDSECT
+  33
+  34                     ;Warning 251 on the follwing is OK (harmless)
+  35 0000                         .SECT    unused_sect_3,EERAM
+ !***  Warning 251, Section type not valid for this chip
+  36 0000                us3_b_1: .dsb     1
+ !***  Warning  41, Default section size specified by .CHIP directive exceeded
+  37 0005                         .ENDSECT
+  38
+  39                     ;Warning 251 on the follwing is OK (harmless)
+  40 0000                         .SECT    unused_sect_4,SEG
+ !***  Warning 251, Section type not valid for this chip
+  41 0000                us4_b_1: .dsb     1
+ !***  Warning  41, Default section size specified by .CHIP directive exceeded
+  42 0005                         .ENDSECT
+  43
+  44 0005                         .END
+
+
+
+
+
+ .sect_SPIN_CODE_1  0000 Rel Null ROM      
+  
+ .sect_SPIN_CODE_2  0005 Rel Null ROM      
+        28
+ .sect_SPIN_CODE_3  0005 Rel Null ROM      
+        32
+ .sect_SPIN_CODE_4  0005 Rel Null ROM      
+        37
+ .sect_SPIN_CODE_5  0005 Rel Null ROM      
+        42
+ outbit . . . . .   0000 Abs Null          
+       -12
+ outmsk . . . . .   0001 Abs Null          
+       -12
+ PORTD  . . . . .   00DC Abs Null          
+       -12
+ r0 . . . . . . .   0000 Rel Byte REG      
+       -12      18      19
+ spin . . . . . .   0000 Rel Null ROM   Pub
+        15     -18
+ spinlp . . . . .   0002 Rel Null ROM      
+       -19      20
+ tmpcnt . . . . .   0001 Rel Byte REG      
+       -12
+ trpcnt . . . . .   0002 Rel Byte REG      
+       -12
+ us1_b_1  . . . .   0000 Rel Byte BASE     
+       -27
+ us2_b_1  . . . .   0000 Rel Byte RAM      
+       -31
+ us3_b_1  . . . .   0000 Rel Byte EERAM    
+       -36
+ us4_b_1  . . . .   0000 Rel Byte SEG      
+       -41
+
+
+ **** Errors:    0, Warnings:    4
+
+Checksum:     0x0320
+Byte Count:   0x0005 (5)
+Input File:   c8a1spin.asm
+Output File:  c8a1spin.obj
+Memory Model: Small
+Chip:         840
