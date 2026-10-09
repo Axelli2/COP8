@@ -1,0 +1,184 @@
+
+COP8 "C" COMPILER        21-Nov-1994                                    PAGE  1
+
+
+                                    /*               K E Y P A D    S C A N
+                                     * Sample typical application code for the COP8C Code Development System
+
+                                           The applications described herein is for illustrative
+                                           purposes only.  Byte Craft Limited makes no representation
+                                           or warranty that such applications will be suitable for the
+                                           specified use without further testing or modification.
+
+
+                                     * (c) Copyright 1992
+                                     * Byte Craft Limited
+                                     * Waterloo Ontario CANADA N2J 4E4.
+                                     *
+                                     * Scan the 3x4 keyboard and returns a code made of the column/row
+                                     * in the a register.  The top nybble is the column, the bottom nybble
+                                     * is the row.  If no keys were depressed, it returns 0xff.
+
+                                                           зддддддддддддддддддддддд©
+                                                           Ё  зддд©  зддд©  зддд©  Ё     10K
+                                              A.7 шшшддддддедд╢ 1 цдд╢ 2 цдд╢ 3 цддедддд╟╟╟╟дд©
+                                                           Ё  юдбды  юдбды  юдбды  Ё          Ё
+                                                           Ё  здад©  здад©  здад©  Ё          Ё
+                                              A.6 шшшддддддедд╢ 4 цдд╢ 5 цдд╢ 6 цддедддд╟╟╟╟дд╢
+                                                           Ё  юдбды  юдбды  юдбды  Ё          Ё
+                                                           Ё  здад©  здад©  здад©  Ё          Ё
+                                              A.5 шшшддддддедд╢ 7 цдд╢ 8 цдд╢ 9 цддедддд╟╟╟╟дд╢
+                                                           Ё  юдбды  юдбды  юдбды  Ё          Ё
+                                                           Ё  здад©  здад©  здад©  Ё          Ё
+                                              A.4 шшшддддддедд╢ * цдд╢ 0 цдд╢ # цддедддд╟╟╟╟дд╢
+                                                           Ё  юдбды  юдбды  юдбды  Ё          Ё
+                                              A.3 шшшд     юддддеддддддеддддддедддды         дад
+                                                                Ё      Ё      Ё               д
+                                              A.2 шшшддддддддддды      Ё      Ё
+                                                                       Ё      Ё
+                                              A.1 шшшдддддддддддддддддды      Ё
+                                                                              Ё
+                                              A.0 шшшддддддддддддддддддддддддды
+
+                                     *
+                                     * returns: The scan code of the key.
+                                     *          The scan code is made up of the column in the top
+                                     *             4 bits with the row in the bottom 4 bits.
+                                     *
+                                     */
+                                    #include <header>
+                                    /*  COP8 memory configuration */
+0000 0100                           #pragma memory ROM [0x100]  @ 0;
+0000 0070                           #pragma memory RAM [112]    @ 0;
+00F0 000C                           #pragma memory RAM [0xc]    @ 0xf0;
+                                    #pragma has 888;
+
+
+00D4                                #pragma portrw portgout  @ 0xD4;   /* Port G output        */
+00D5                                #pragma portrw portgcfg  @ 0xD5;   /* Port G congiguration */
+00D6                                #pragma portr  portgin   @ 0xD6;   /* Port G input         */
+
+COP8 "C" COMPILER        21-Nov-1994                                    PAGE  2
+
+
+
+00F0                                register int       tmpa   ;    /* Temporary Location */
+00F1                                register int       row    ;    /*  Keyboard row      */
+00F2                                register int       column ;    /*  Keyboard column   */
+00F3                                register int       key    ;
+00F4                                register char      delay  ;
+
+                                    int scan (void) {
+                                        /* start with the third column */
+0005 D0 04     LD     0F0,#004          for (tmpa = 0x04; tmpa !=0; tmpa >>= 1)
+0007 9D F0     LD     A,0F0
+0009 92 00     IFEQ   A,#000
+000B 20 4B     JMP    0004B
+                                          {                      /* check if key pressed, one col at a time */
+000D 9D F0     LD     A,0F0                portgout = tmpa;
+000F 9C D4     X      A,0D4
+0011 9D D6     LD     A,0D6                if (row = (portgin & 0xf0)) /* If key is pressed, get row & column */
+0013 95 F0     AND    A,#0F0        
+0015 9C F1     X      A,0F1         
+0017 9D F1     LD     A,0F1         
+0019 92 00     IFEQ   A,#000                {
+001B 20 40     JMP    00040
+001D 9D D6     LD     A,0D6                   column = portgin & 7;
+001F 95 07     AND    A,#007
+0021 9C F2     X      A,0F2
+0023 D4 FF     LD     0F4,#0FF                delay = 255;
+                                              do
+                                                {
+0025 B8        NOP                                NOP();
+                                                }
+0026 C4        DRSZ   0F4                     while (--delay) ;       /* delay */
+0027 FD        JP     00025
+                                              /* debounce by checking row with previous */
+0028 9D D6     LD     A,0D6                   if ((portgin & 0xf0) == row)
+002A 95 F0     AND    A,#0F0        
+002C 9F F1     LD     B,#0F1        
+002E B9        IFNE   A,[B]         
+002F 0D        JP     0003D         
+0030                                           {
+0030 9D D6     LD     A,0D6                      while (portgin & 0xf0);        /* check for key released */
+0032 95 F0     AND    A,#0F0
+0034 99 00     IFNE   A,#000
+0036 F9        JP     00030
+0037 9D F2     LD     A,0F2                     return column | row;            /* and return the code */
+0039 BD F1 87  OR     A,0F1
+003C 8E        RET
+                                              }
+003D 98 FF     LD     A,#0FF                  else return 0xff;          /*  not the same, return no key */
+003F 8E        RET
+
+                                            }
+                                        }
+0040 9C F0     X      A,0F0
+0042 A0        RC 
+0043 93 7F     IFGT   A,#07F
+
+COP8 "C" COMPILER        21-Nov-1994                                    PAGE  3
+
+
+0045 A1        SC 
+0046 B0        RRCA
+0047 9C F0     X      A,0F0
+0049 20 07     JMP    00007
+004B 98 FF     LD     A,#0FF            return 0xff;
+004D 8E        RET
+                                    }
+
+                                    void main ()
+                                      {
+004E BC D5 F0  LD     0D5,#F0            portgcfg = 0xf0;
+0051 30 05     JSR    00005              while (1) key = scan();
+0053 9C F3     X      A,0F3
+0055 FB        JP     00051
+0056 8E        RET                    }
+
+
+
+0000 AC 00 4E  JMPL   0004E
+
+COP8 "C" COMPILER        21-Nov-1994                                    PAGE  4
+
+
+
+
+SYMBOL TABLE
+
+LABEL                            VALUE  LABEL                            VALUE  LABEL                            VALUE  
+
+_BT2307                              0051| _BT3                                 0051| __888                                0000
+__COP8                               0000| __MAIN                               004E| __RAMEND                             00FB
+__RESET                              0000| __STARTUP                        Fun 0000| __longAC                         Reg 0002
+__longIX                         Reg 0000| column                           Reg 00F2| delay                            Reg 00F4
+key                              Reg 00F3| main                             Fun 004E| portgcfg                             00D5
+portgin                              00D6| portgout                             00D4| row                              Reg 00F1
+scan                             Fun 0005| tmpa                             Reg 00F0| 
+
+
+REGISTER USAGE MAP ('X' = Used, '-' = Unused)
+
+0000 : ---------------- ---------------- ---------------- ----------------
+0040 : ---------------- ---------------- ---------------- ----------------
+0080 : ---------------- ---------------- ---------------- ----------------
+00C0 : ---------------- ---------------- ---------------- XXXXX-----------
+0100 : ---------------- ---------------- ---------------- ----------------
+0140 : ---------------- ---------------- ---------------- ----------------
+0180 : ---------------- ---------------- ---------------- ----------------
+01C0 : ---------------- ---------------- ---------------- ----------------
+
+
+
+
+ROM USAGE MAP 
+
+    0000 to 0002    0005 to 0056
+    Total ROM used 0055
+
+
+Errors             :    0
+Warnings           :    0
+
+

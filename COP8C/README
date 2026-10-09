@@ -1,0 +1,88 @@
+      COP8C Code Development System Interactive Demonstration Disk
+      ------------------------------------------------------------
+
+      Thank you for your interest in our COP8C Code Development System.
+      This is a fully-functional demonstration version of the actual
+      COP8C Code Development System.  More than a "slide show" demo,
+      this demonstration lets you see for yourself the power and
+      versatility of the COP8C Code Development System.
+
+      Take a few minutes to try the samples we have included or run
+      some small ones of your own.  By comparing the code to an example
+      of your output you will experience the speed of the
+      optimizations.
+
+      Feel free to make copies of this demo diskette for anyone else
+      who is interested in using single-chip microprocessors.  Please
+      keep all of the files on the demonstration diskette together.
+
+      The demo includes a complete C compiler with the same powerful
+      features you will find in the COP8C itself with a few minor
+      limitations.
+
+         - Built in macro cross-assembler.
+         - Integrated Development Environment (IDE), linking shell.
+         - Expert system optimizations.
+         - Consistency checks between target and source code.
+
+         - Listing files are generated with a .LST extension.
+         - The demonstration compiler is restricted to generating
+           code for the first 512 bytes of the address space.
+         - The demonstration disk does not produce a code file.
+
+      The Integrated Development Environment (IDE) is also included on
+      this disk.  The IDE runs the COP8C compiler, lets you view the
+      listing file, and lets you edit your source program, or run your
+      favorite programs and utilities.
+
+      Please note, the demonstration version of the IDE also has some
+      restrictions:
+
+         - The Assemble / Compile menu option will only run COP8C.EXE.
+         - New programs cannot be added to the IDE menu.
+         - The editor is configured to use WordStar-like commands.
+
+      An example source program called KEYPAD.C is included on the disk.
+
+
+      Installing the COP8C Demo
+      -----------------------
+
+      1.  Create a new directory for the demo and change to it.
+          eg:
+               md \CDEMO
+               cd \CDEMO
+
+      2.  Copy all files on the distribution disk to that directory.
+          You will need about 500K of disk space.
+          eg:
+               copy a:\*.*
+
+      3.  Start the demo by running the IDE.
+          eg:
+              ide
+
+      4.  Select Assemble/Compile from the IDE Main Menu to compile a
+          test program.  Press Enter when prompted for a source file and
+          select one of the test programs from the distribution disk.
+
+
+      Ordering Information
+      --------------------
+
+      If you have comments or questions about the COP8C Code
+      Development System, or to place your order, please contact:
+
+         BYTE CRAFT LIMITED
+         421 King Street North
+         Waterloo, Ontario, CANADA
+         N2J 4E4
+
+         Phone : (519) 888-6911
+         FAX   : (519) 746-6751
+
+      Pricing information available on request.
+
+      American Express and VISA accepted.  Free overnight delivery within the
+      continental U.S. and Canada.  Orders outside North American incur
+      shipping charges.  Canadian orders please add applicable sales taxes.

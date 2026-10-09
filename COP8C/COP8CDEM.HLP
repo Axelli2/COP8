@@ -1,0 +1,274 @@
+                      BCL Help: COP8C Code Development Demo
+
+                                 COP8C HELP
+
+                      Page 1   Features of COP8C
+                      Page 2   Demo Restrictions
+                      Page 3   Running COP8C From IDE or DOS
+                      Page 6   COP8C C Extensions
+                      Page 8   COP8C C Restrictions
+                      Page 9   Preprocessor Directives
+
+
+
+
+
+
+
+
+
+
+
+@
+COP8C                                                            Page 1  of 12
+                                 COP8C FEATURES
+
+  The COP8C Code Development System has the following features:
+
+    þ Complete C compiler.
+
+    þ Built in macro cross-assembler.
+
+    þ Expert system optimizations.
+
+    þ Consistency checks between target processor and source code.
+
+    þ Listing files include C source, assembler and generated object code.
+
+    þ Separately compiled objects and libraries.
+
+    þ Built-in linker.
+
+
+@
+COP8C                                                            Page 2  of 12
+                  RESTRICTIONS ON THE DEMO VERSION OF COP8C
+
+  The demonstration version of the COP8C Code Development System has some
+  limitations:
+
+    þ The COP8C compiler is restricted to generating 256 bytes of object
+      code.
+
+    þ The COP8C compiler can not produce a code file or a hex dump file.
+
+    þ The Assemble / Compile menu option of the IDE will only run COP8C.EXE.
+
+    þ The full IDE allows you to add other programs to its menu.  New
+      programs cannot be added to the demonstration version of the IDE.
+
+
+
+
+
+@
+COP8C                                                            Page 3  of 12
+                       RUNNING COP8C FROM THE IDE MENU
+
+  To run the COP8C compiler from the IDE main menu, select Option
+  Selection and check these options:
+
+    þ Assembler/Compiler    Should be COP8C.EXE (may include the path).
+
+    þ Source File           The name of the source file you want to compile.
+
+    þ Error File, Cross-    Select Yes for each of these files you want to
+      Reference File, List  generate.  Move the cursor opposite the file name
+      File, Object File     and press <Enter> until the word "Yes" appears.
+
+    þ Hex Dump File         Press <Enter> to select: None, ASCII, Intel, S1,
+                            S2, S3, INHX8M, INHX8S, INHX16, INHX32.
+
+    þ Command Line Options  Other command line options for the COP8C.
+
+
+@
+COP8C                                                            Page 4  of 12
+                            RUNNING COP8C FROM DOS
+
+  The COP8C compiler can be run from the DOS command line by typing
+
+    COP8C [sourcefile [options]]
+
+  If you omit the sourcefile, the COP8C compiler will prompt you for:
+
+    þ Source File:          Name of the file to be compiled.
+    þ Error File:           Select Yes for sourcefile.ERR or type new name.
+    þ Cross Reference File: Select Yes for sourcefile.XRF or type new name.
+    þ Listing File:         Select Yes for sourcefile.LST or type new name.
+    þ Hex Dump Type         Select one of None, ASCII, Intel, S1, S2, S3,
+                            INHX8M, INHX8S, INHX16, INHX32.
+    þ Object File:          Select Yes for sourcefile.OBJ or type new name.
+    þ Call Macro Assembler: Select Yes to run macro assembler on source file.
+
+  The DOS command line options are described on the next page.
+
+@
+COP8C                                                            Page 5  of 12
+                      RUNNING COP8C FROM DOS (continued)
+
+  DOS command line options:
+    +da  ASCII hex format dump file    +di  Intel hex format dump file
+    +ds  S1 hex format dump file       -d   No dump file            (default)
+    +e   Generate error file           -e   No error file           (default)
+    +i   Use 16-bit ints.              -i   Use 8-bit ints.         (default)
+    +l   Generate listing file         -l   No listing file         (default)
+    +m   Run the built-in macro        -m   Assumes sourcefile is C (default)
+         assembler on sourcefile
+    +o   Generate object file          -o   No object file          (default)
+    +x   Generate cross-ref file       -x   No cross-reference file (default)
+    c=<codename>    Renames the code file to <codename>.
+    e=<errname>     Renames the error file to <errname>.
+    l=<listname>    Renames the list file to <listname>.
+    o=<objectname>  Renames the object file to <objectname>.
+    x=<xrefname>    Renames the cross reference file <xrefname>.
+    v=<video>       Change video mode to <video> (CGA, EGA, VGA or MONO).
+
+@
+COP8C                                                            Page 6  of 12
+                             COP8C C EXTENSIONS
+
+  The COP8C implementation has the following extensions to ANSI C:
+
+    þ Binary constants (eg: 0b01101010 or 0B01101010).
+
+    þ bits predefined struct allows single bit manipulations.
+
+    þ Superset of the case statement, including
+        ù case 4,5          multiple cases separated by commas
+        ù case '0'..'9'     range of cases
+        ù case var          variable case -- Use with caution!
+
+    þ Processor-specific functions:
+        ù NOP();    ù STOP();
+
+
+continued on next page...
+
+@
+COP8C                                                            Page 7  of 12
+                       COP8C C EXTENSIONS (continued)
+
+    þ Address fixing.  A variable or function can be fixed to a specific
+      location in memory with the @ operator.  (eg: int i @ 0x50;)
+
+    þ #pragma preprocessor directives are used to describe the target
+      processor to the compiler.
+
+    þ __STARTUP() function to perform initialization on reset.
+
+    þ Assemble single instruction with one of
+      ù #asm (instruction);
+      ù #asm <instruction>;
+      ù #asm "instruction";
+
+    þ defined(name) function which returns TRUE if "name" appears in the
+      symbol table.
+
+
+@
+COP8C                                                            Page 8  of 12
+                             COP8C C RESTRICTIONS
+
+  COP8C has the following restrictions because of the COP8 architecture:
+
+    þ Expression evaluation is limited to using Accumulator and Index
+      Register.  Temporary locations are used by the compiler only for
+      16-bit operations.
+
+    þ Arguments to functions are limited to 2 bytes (using AC and X).
+
+    þ Arrays are limited to a total of 256 bytes.  Multidimensional arrays
+      and arrays of structs or unions are not allowed.
+
+    þ Local variables have local scope (the same name may be used in
+      different functions) but are stored globally (RAM space is not reused).
+
+
+
+
+@
+COP8C                                                            Page 9  of 12
+                           PREPROCESSOR DIRECTIVES
+
+  The COP8C compiler supports the following C directives:
+    þ #asm              þ #if               þ #elif             þ #include
+    þ #endasm           þ #ifdef            þ #else             þ #pragma
+    þ #define           þ #ifndef           þ #endif            þ #error
+    þ #undef
+
+  #pragma directives:
+
+    þ #pragma has <instruction-set>;
+        Enables one of several instruction sets.  Replace <instruction-set>
+        with 880, 820 or 840 (for COP880, COP820 or COP840 respectively).
+
+    þ #pragma memory <special> [<size>] @ <location>;
+        Describes the processor memory.  <special> can be RAM or ROM.
+
+continued on next page...
+
+@
+COP8C                                                            Page 10 of 12
+                     PREPROCESSOR DIRECTIVES (continued)
+
+    þ #pragma option <compiler_directive>;   <compiler_directive> is one of:
+        +c or -c    Assembler C compatibility.                      default +c
+        +d or -d    Show disassembled code in listing file.         default +d
+        e nnn       Maximum number of error messages before abort.  default 20
+        f nnn       Form (page) length for listing file.            default 66
+        +i or -i    Initialize ALL page 0 variables to 0 on reset.  default -i
+        +l or -l    Turn listing on or off.                         default +l
+        +m or -m    Assembler: assign RAM at #pragma memory         default +m
+                    locations or at program counter.
+        n notice    Set notice string in binary code file (.COD).
+        +o          Generate modified listing file.
+        p           Skip to next page in listing file.
+        ra          RAM switch: switch to program RAM from page 0.
+        s1          Generate generic symbol table file (.SYM).
+
+continued on next page...
+
+@
+COP8C                                                            Page 11 of 12
+                     PREPROCESSOR DIRECTIVES (continued)
+
+        t title     Set title line for listing file pages.
+        +u or -u    Use unsigned or signed chars.                   default -u
+        v           Generate verbose symbol table information in
+                    binary code file.  Must be FIRST line in file.
+        +x or -x    Expand assembler macros.                        default -x
+
+    þ #pragma portxx <name> @ <location>;
+        Declares a variable as a port at the specified location.  "xx" is one
+        of "r" (read-only), "w" (write-only) or "rw" (read-write).
+
+    þ #pragma regxx <name>;
+        Declares a variable as a register.  "xx" is one of "ac" (Accumulator),
+        "ab" (B register) "cc" (condition codes which are read-only) or
+        "ix" (Index register).
+
+continued on next page...
+
+@
+COP8C                                                            Page 12 of 12
+                     PREPROCESSOR DIRECTIVES (continued)
+
+    þ #pragma stack [<size>] @ <location>;
+       Reserves <size> bytes at <location> for the stack.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@

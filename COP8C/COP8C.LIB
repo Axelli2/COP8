@@ -1,0 +1,221 @@
+#pragma library
+/*
+   COP8 Library V1.1
+
+   These routines may be adapted for any purpose when
+   used with the COP8C Code Development system and National
+   Semiconductor Corporation COP8 microcontrollers
+   No warranty is implied or given as to their usability
+   for any purpose.
+
+        (c) 1988,1991
+        Byte Craft Limited
+        Waterloo, Ontario
+        Canada N2J 4E4
+        (519) 888-6911
+
+        Walter Banks
+
+   V1.0 07 Mar 92  WB Initial release.
+   V1.1 26 Aug 92  WB COP800 to COP8.
+
+   Portions of this code copyright National Semiconductor
+
+*/
+
+/*
+          long __RMOD(void);
+
+void main(void)
+  {
+
+          long o,p,q,r;
+
+          o = p / q;      /* do the divide                          */
+          r = __RMOD();   /* Followed immediately by call to __RMOD */
+                          /* r has remainder and o the quotient     */
+
+
+          registerx index;
+
+          int i,j,k,l;
+
+          l = i % j;      /* Execute a modulus operation            */
+          k = index;      /* get the quotient                       */
+                          /* l has remainder and k the quotient     */
+  }
+
+*/
+
+
+long __MUL16x16(void)
+  {
+   int CNTR @0xF0;
+   #asm
+;
+;16x16 BINARY MULTIPLY
+;MULTIPLICANT IN M(0,1), MULTIPLIER IN M(2,3)
+;PRODUCT IN M(2,3,4,5)
+;
+BEGIN:	LD	CNTR,#0x11	;CNTR=17 COUNTS
+	LD	B,#004
+	LD	[B+],#000
+	LD	[B],#000
+	LD	X,#000
+	RC
+RSHIFT:	LD	A,[B]
+	RRC	A
+	X	A,[B-]
+	LD	A,[B]
+	RRC	A
+	X	A,[B-]
+	LD	A,[B]
+	RRC	A
+	X	A,[B-]
+	LD	A,[B]
+	RRC	A
+	X	A,[B]
+	LD	B,#005
+	IFNC
+        JP	TEST
+	RC
+	LD	B,#004
+	LD	A,[X+]
+	ADC	A,[B]
+	X	A,[B+]
+	LD	A,[X-]
+	ADC	A,[B]
+	X	A,[B]
+TEST:	DRSZ	CNTR
+	JP	RSHIFT
+	RET
+   #endasm
+   }
+
+long __MUL8x8(void)
+  {
+   int CNTR @0xF0;
+   #asm
+; 8 BY 8 MULTIPLICATION SUBROUTINE
+;
+;
+;         MULTIPLICAND IN [0]    (ICAND)
+;         MULTIPLIER IN [1]      (IER)
+;         PRODUCT IN [2,1]       (PROD)
+;
+;
+MPY88:    LD        CNTR,#9   ; LD CNTR WITH LENGTH OF
+          RC                  ;    MULTIPLIER FIELD + 1
+          LD        B,#2
+          CLR       A         ; CLEAR UPPER PRODUCT
+M88LUP:   RRC       A         ; RIGHT SHIFT
+          X         A,[B-]    ;    UPPER PRODUCT
+          LD        A,[B]
+          RRC       A         ; RIGHT SHIFT LOWER
+          X         A,[B-]    ;    PRODUCT/MULTIPLIER
+          CLR       A         ; CLR ACC AND TEST LOW
+          IFC                 ;    ORDER MULTIPLIER BIT
+          LD        A,[B]     ; MULTIPLICAND TO ACC IF
+          RC                  ;    LOW ORDER BIT = 1
+          LD        B,#2      ; ADD MULTIPLICAND TO
+          ADC       A,[B]     ;    UPPER PRODUCT
+          DRSZ      CNTR      ; DECREMENT AND TEST
+          JP        M88LUP    ;    CNTR FOR ZERO
+          RET                 ; RETURN FROM SUBROUTINE
+
+ #endasm
+   }
+
+void __DIV8BY8(void)
+  {
+   int CNTR @0xF0;
+   #asm
+; 8 BY 8 DIVISION SUBROUTINE
+;
+;         DIVIDEND IN [0]     (DD)
+;         DIVISOR IN [2]      (DR)
+;         QUOTIENT IN [0]     (QUOT)
+;         REMAINDER IN [1]    (TEST FIELD)
+;
+;
+DIV88:    LD        CNTR,#8   ; LOAD CNTR WITH LENGTH
+          LD        B,#1      ;    OF DIVIDEND FIELD
+          LD        [B],#0    ; CLEAR TEST FIELD
+DIV88S:   RC
+          LD        B,#0
+          LD        A,[B]
+          ADC       A,[B]     ; LEFT SHIFT DIVIDEND
+          X         A,[B+]
+          LD        A,[B]
+          ADC       A,[B]     ; LEFT SHIFT TEST FIELD
+          X         A,[B]
+          LD        A,[B+]    ; TEST FIELD TO ACC
+          SC                  ; TEST SUBTRACT DIVISOR
+          SUBC      A,[B]     ;    FROM TEST FIELD
+          IFNC                ; TEST IF BORROW
+          JP        DIV88B    ;    FROM SUBTRACTION
+          LD        B,#1      ; SUBTRACTION RESULT
+          X         A,[B-]    ;    TO TEST FIELD
+          SBIT      0,[B]     ; SET QUOTIENT BIT
+DIV88B:   DRSZ      CNTR      ; DECREMENT AND TEST
+          JP        DIV88S    ;    CNTR FOR ZERO
+          RET                 ; RETURN FROM SUBROUTINE
+
+   #endasm
+   }
+
+void __LDIV(void)
+  {
+   int CNTR @0xF0;
+   #asm
+; 16 BY 16 DIVISION SUBROUTINE
+;
+;         MINIMUM CODE
+;
+;         34 BYTES
+;         979 INSTRUCTION CYCLES AVERAGE
+;         1067 INSTRUCTION CYCLES MAXIMUM
+;
+;         DIVIDEND IN [1,0]    (DD)
+;         DIVISOR IN [5,4]     (DR)
+;         QUOTIENT IN [1,0]    (QUOT)
+;         REMAINDER IN [3,2]   (TEST FIELD)
+;
+;
+DV1616:   LD        CNTR,#16  ; LOAD CNTR WITH LENGTH
+                              ;    OF DIVIDEND FIELD
+          LD        B,#3
+          LD        [B-],#0   ; CLEAR
+          LD        [B],#0    ;    TEST FIELD
+DV616S:   RC
+          LD        X,#2      ; INITIALIZE X POINTER
+          LD        B,#0      ; INITIALIZE B POINTER
+DV616L:   LD        A,[B]     ; LEFT SHIFT DIVIDEND
+          ADC       A,[B]     ;    AND TEST FIELD
+          X         A,[B+]
+          IFBNE     #4
+          JP        DV616L
+          SC                  ; RESET BORROW
+          LD        A,[X+]    ; TEST FIELD LO TO ACC
+          SUBC      A,[B]     ; SUBT DR LO FROM REM LO
+          LD        A,[X]     ; TEST FIELD HI TO ACC
+          LD        B,#5
+          SUBC      A,[B]     ; SUBT DR HI FROM REM HI
+          IFNC                ; TEST IF BORROW
+          JP        DV616T    ;    FROM SUBTRACTION
+          X         A,[X-]    ; RESULT HI TO REM HI
+          LD        A,[X]     ; TEST FIELD LO TO ACC
+          LD        B,#4
+          SUBC      A,[B]     ; SUBT DR LO FROM REM LO
+          X         A,[X]     ; RESULT LO TO REM LO
+          LD        B,#0
+          SBIT      0,[B]     ; SET QUOTIENT BIT
+DV616T:   DRSZ      CNTR      ; DECREMENT AND TEST
+          JP        DV616S    ;    CNTR FOR ZERO
+          RET                 ; RETURN FROM SUBROUTINE
+   #endasm
+    }
+#pragma endlibrary
+
+
+
