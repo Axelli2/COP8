@@ -1,0 +1,96 @@
+NSC LNCOP, Version 4.5 (Feb 24 12:58 1995)                     11-Feb-97 15:33
+
+
+
+-- Range Definitions --
+
+BASE    0000:000F
+ROM     0000:1FFF
+RAM     0000:006F
+RAM     REG     
+REG     00F0:00FB
+SEG     0100:017F
+SEGB    0100:010F
+
+-- Memory Order Map --
+
+   Code Space
+0000  0031   ROM   
+00FF  0108   ROM   
+0200  0209   ROM   
+
+   Data Space
+00F0  00F0   REG   
+
+
+
+-- Memory Type Map --
+
+BASE  
+  [size = 0000]
+
+RAM   
+  [size = 0000]
+
+REG   
+  00F0  00F0
+  [size = 0001]
+
+EERAM 
+  [size = 0000]
+
+SEG   
+  [size = 0000]
+
+SEGB  
+  [size = 0000]
+
+ROM   
+  0000  0031
+  00FF  0108
+  0200  0209
+  [size = 0046]
+
+
+
+
+-- Total Memory Map --
+
+TOTAL RAM = BASE + RAM + REG + EERAM + SEG + SEGB
+  00F0  00F0
+  [size = 0001]
+
+
+TOTAL ROM = ROM
+  0000  0031
+  00FF  0108
+  0200  0209
+  [size = 0046]
+
+
+
+
+-- Section Table --
+
+start end    attributes       Section
+                                Module
+
+00F0  00F0   REG   BYTE       REGISTER
+00F0  00F0                      MAIN
+0000  002A   ROM   BYTE       CODE1
+0000  002A                      MAIN
+00FF  0108   ROM   ABS        INTR
+00FF  0108                      MAIN
+002B  002F   ROM   BYTE       DELAY
+002B  002F                      MAIN
+0200  0209   ROM   ABS        TOGGLE
+0200  0209                      MAIN
+0030  0031   ROM   BYTE       SUB_USER
+0030  0031                      SUB
+
+
+Checksum:     0x2AC1
+Byte Count:   0x0046 (70)
+Output File:  j:\proj\atc\asm800\wcop\test.cof
+Memory Model: Large
+Chip:         888EG   

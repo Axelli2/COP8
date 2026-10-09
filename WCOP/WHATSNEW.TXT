@@ -1,0 +1,12 @@
+-------------------
+ W H A T S  N E W
+-------------------
+Version: 1.05
+
+  - Multi level include files can now be found when using the C compiler.
+  - The Full View function now scans for multi level includes.
+  - On the dialog shown during assembling/compiling the action line has
+    been changed to 'Assembling' during assembling.
+
+K&K Development
+DK-Solbjerg, 3 November 1996

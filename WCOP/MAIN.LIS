@@ -1,0 +1,68 @@
+
+
+
+NSC ASMCOP, Version 4.5 (Feb 24 12:49 1995)     MAIN                                 11-Feb-97 15:33
+                                                                                            PAGE   1
+
+
+   1                     .chip COP888EG
+   2                     .incld main.inc
+   3 0000                .sect REGISTER,REG
+   4 0000                COUNT1:         .dsb 1
+   5 0000                .endsect
+   6                             .EXTRN Subroutine               ;Subr. from ext. module
+   7
+   8 0000                .sect code1,rom
+   9 0000                init:
+  10 0000 AD0000  > 5 X          JSR     Subroutine              ;Call subr from ext. module
+  11 0003 BCEEA0    3            LD      CNTRL,#B'10100000       ;PWM Mode, T1A Toggle
+  12 0006 BCEAE8    3            LD      TMR1LO,#L(1000) ;1ms, tc =1us
+  13 0009 BCEB03    3            LD      TMR1HI,#H(1000)
+  14 000C BCECF4    3            LD      T1RALO,#L(500)          ;0.5ms
+  15 000F BCED01    3            LD      T1RAHI,#H(500)
+  16 0012 BCE6E8    3            LD      T1RBLO,#L(1000)
+  17 0015 BCE703    3            LD      T1RBHI,#H(1000)
+  18 0018 BDD46B    4            RBIT    3,PORTGD
+  19 001B BDD57B    4            SBIT    3,PORTGC
+  20 001E BCEF11    3            LD      PSW,#B'00010001 ;Enable GIE,T1ENA
+  21 0021 BDEE7C    4            SBIT    4,CNTRL                 ;Start Timer T1
+  22 0024 AD0000  > 5 R  WAIT:   JSR     DELAY
+  23 0027 AD0200  > 5            JSR     TOGGLE
+  24 002A F9        3            JP      WAIT
+  25 0000                .endsect
+  26                     ;
+  27                     ;******Interrupt handler*******
+  28 00FF                .sect intr,rom,abs=0xff
+  29 00FF BDEF6D    4            RBIT    5,PSW                   ;Reset Timer T1A pending flag
+  30 0102 9DDC      3            LD      A,PORTD
+  31 0104 9601      2            XOR     A,#001                  ;Toggle Port D0, 1.5ms
+  32 0106 9CDC      3            X       A,PORTD
+  33 0108 8F        5            RETI
+  34 0000                .endsect
+  35                     ;******************************
+  36 0000                .sect delay,rom
+  37 0000 D0FF      3 R  DELAY:  LD      COUNT1,#0FF
+  38 0002 C0        3 R  LABEL1: DRSZ    COUNT1
+  39 0003 FE        3            JP      LABEL1
+  40 0004 8E        5            RET
+  41 0000                .endsect
+  42                     ;*******************************
+  43 0200                .sect toggle,rom,abs=0x200
+  44 0200 9DDC      3    TOGGLE: LD      A,PORTD
+  45 0202 9602      2            XOR     A,#002
+  46 0204 9CDC      3            X       A,PORTD
+  47 0206 AD0000  > 5 R          JSR     DELAY
+  48 0209 8E        5            RET
+  49 0000                .endsect
+  50                     ;******************************
+  51 0000                .end init
+
+
+ **** Errors:    0, Warnings:    0
+
+Checksum:     0x28F5
+Byte Count:   0x0044 (68)
+Input File:   j:\proj\atc\asm800\wcop\example\main.asm
+Output File:  j:\proj\atc\asm800\wcop\main.obj
+Memory Model: Large
+Chip:         888EG

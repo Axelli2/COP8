@@ -1,0 +1,21 @@
+[ASMCompiler]
+FilePath=j:\proj\atc\asm800\asm800.45\asmcop.exe
+Output=j:\proj\atc\asm800\wcop\
+Include=j:\proj\atc\asm800\wcop\example\
+Switches=/pw=100 /SYm_debug
+
+[CCompiler]
+FilePath=
+Output=j:\proj\atc\asm800\wcop\
+Include=j:\proj\atc\asm800\wcop\
+Switches=+l
+
+[Linker]
+FilePath=j:\proj\atc\asm800\asm800.45\lncop.exe
+Output=j:\proj\atc\asm800\wcop\
+Switches=/format=hex
+
+[Files]
+File1=j:\proj\atc\asm800\wcop\example\main.asm
+File2=j:\proj\atc\asm800\wcop\example\sub.asm
+

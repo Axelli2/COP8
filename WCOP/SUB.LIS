@@ -1,0 +1,29 @@
+
+
+
+NSC ASMCOP, Version 4.5 (Feb 24 12:49 1995)     SUB                                  11-Feb-97 15:33
+                                                                                            PAGE   1
+
+
+   1                             .CHIP COP888EG
+   2
+   3                                     .PUBLIC Subroutine              ;Subr. in this module for e
+   4
+   5                     ;********************************************************;
+   6
+   7 0000                                .SECT Sub_User,ROM
+   8 0000 B8        1    Subroutine:     NOP
+   9 0001 8E        5    ExitLabel:      RET
+  10 0000                                .ENDSECT                        ;Sub_User
+  11
+  12 0000                                .END                            ;No label, submodule!
+
+
+ **** Errors:    0, Warnings:    0
+
+Checksum:     0x0146
+Byte Count:   0x0002 (2)
+Input File:   j:\proj\atc\asm800\wcop\example\sub.asm
+Output File:  j:\proj\atc\asm800\wcop\sub.obj
+Memory Model: Large
+Chip:         888EG

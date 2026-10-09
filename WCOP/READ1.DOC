@@ -1,0 +1,50 @@
+
+                                                          Date: Nov. 11th, 1996
+
+ Dear WCOP8 User,
+
+please find below some additional hints to get started with WCOP8 and how
+to handle the example files provided on the disk.
+
+I. This disk contains version 1.05 of WCOP8. In case you observe any kind of
+  problems during installation of the software on your PC, or during operation
+  of WCOP8, then please report these problems directly to 'KKD'. 
+
+II. Receiving this disk you may ask for ONE official licence at 'KKD'. In order to 
+  do so, please return the code #er written on the disk lable (4 digit code) 
+  including your name and address-details to KKD. You will be also requested to
+  provide the key-code to KKD in order to obtain the final valid licence code.
+   This code is being displayed when opening WCOP8 and a valid licence
+  code is not yet entered.
+
+III. Once WCOP8 is established with a valid licence code it is fixed for ONE
+  particular PC. So please carefully decide on which PC you want to run WCOP8.
+  For later upgrades (revs) of WCOP8 there may be the chance to uninstall the s/w
+  and port the licence onto another PC.
+
+IV. You may distribute as many copies as you want. Installing WCOP8 on any new PC
+  will open the chance to use it 30 days for free. Thereafter a lock will be activated
+  and the user can only continue working with WCOP8 when purchasing a valid licence.
+  Further details are explained in the user's manaul.
+
+V. There are some additional COP800 coding examples included on the disk. Under:
+   ... EXAMPL\ASMEXAMP you will find 4 files which can be assembled and linked with
+   ASMCOP (version 4.6 and higher). The include files belonging to these files are
+   placed under ... EXAMPL\ASMINCL. These files are suitable to be run as a project
+   and allow to test all the advantages of WCOP8. The modules 'AD1.asm', 'PWM1.asm'
+   and 'NM93C06.asm' are specific subroutines executing particular tasks.
+    "AD1.asm" includes initialization and execution code for A/D in COP884EK devices.
+   "PWM1.asm" includes lookup data and shows basically the way how to handle them.
+   "NM93C06.asm" is an example for MicroWire Read/Write routines COP888x w/ EEPROM.
+
+    Under ...EXAMPL\C-SOURCE there is a COP8C example file. All include files needed
+   to compile this routine successfully are placed under ... EXAMPL\C_INCLUD 
+
+
+ If you have any questions regarding the contents of this disk please contact
+
+Siegfried Rueth/National Semiconductor GmbH/Livry-Gargan Str. 10/82256 Fürstenfeld-
+bruck/Tel.: +49 8141 351 389/Fax.: +49 8141 351 398.
+
+
+ good luck!
