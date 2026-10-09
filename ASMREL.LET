@@ -1,0 +1,486 @@
+
+1.  SOFTWARE PRODUCT DESCRIPTION
+
+Product Name:           MOLE-COP8-IBM
+Software Part Number:   925410527-001
+Description:            COP800 Assembler Release E
+System:                 MS-DOS 2.0 or later (5.25" PC-DOS format)
+
+This release  package contains software to support development of
+programs  for National Semiconductor's COP800 series of microcon-
+trollers, and is primarily meant for use  with  the  COP800  MOLE
+development system.  The software executes on an IBM PC/XT/AT or
+compatible  running  MS-DOS  or  PC-DOS.    The   communication
+software  requires  certain  hardware compatibility with the  IBM
+PC/XT/AT.
+
+This package consists of the following programs:
+________________________________________________________________
+          Name              Rev       Date         Description
+_________________________________________________________________
+ ASM800 		    E          21 JUN 90  Cross-assembler
+                                                  for COP800
+_________________________________________________________________
+ HEXLM                      D         27 JUL 87   Hex file to
+                                                  MOLE LM
+                                                  translation
+                                                  utility
+_________________________________________________________________
+ LMHEX			    D         27 JUL 87   MOLE LM to
+                                                  Hex file
+                                                  translation
+                                                  utility
+_________________________________________________________________
+ COMM                       A         22 JUL 83   IBM PC Com-
+                                                  munication
+                                                  program used
+                                                  with MOLE
+_________________________________________________________________
+ COMM2  		    A         22 JUL 83   IBM PC Com-
+                                                  munication
+                                                  program used
+                                                  with MOLE
+_________________________________________________________________
+ PC-TALK                                          General pur-
+                                                  pose IBM PC
+                                                  communication
+                                                  program
+_________________________________________________________________
+
+
+
+
+2.  OPERATING ENVIRONMENT
+
+This  package has been developed and tested on a IBM AT  running
+PC-DOS  3.2.   This   package  runs  under  MS-DOS  or  PC-DOS
+operating system, Rev. 2.0 or later, on an IBM PC/XT/AT or  com-
+patible.  The  communication  software  requires certain hardware
+compatibility with the IBM PC/XT/AT.   The  system  requirements
+are:
+1. At  least  128  free Kbytes of memory. 
+2. A 5.25" inch floppy drive capable of reading double sided 
+double density PC-DOS  2.x format diskettes.
+3. An asynchronous, RS232-compatible serial port for communication.
+
+
+-------------------------------------------------------
+MS/DOS is  a  registered  trademark  of  Microsoft  Corporation.
+PC/DOS, IBM PC/XT/AT are registered trademarks of International
+Business Machines Corporation.  MOLE and COP800 are trademarks of
+National Semiconductor Corporation.
+
+
+3.  PACKAGE CONTENTS
+
+
+3.1  OVERALL CONTENTS
+_________________________________________________________________
+      Item     Part number              Description
+_________________________________________________________________
+       1       440410527-001         5.25"  Floppy   Diskette,
+                                     labeled    "MOLE-COP8-IBM
+                                     Release E
+                                     COP800 Assembler
+                                     05 SEP 1990"
+_________________________________________________________________
+       2       424410527-001         THE MOLE COP800 Systems
+				     Software User's Manual Rev. B  
+_________________________________________________________________
+       3       420040416-001	     The PC-DOS Communication Program
+				     (COMM) Software User's Manual 
+			 	     Rev. A
+_________________________________________________________________
+
+
+3.2 CONTENT OF DISK
+This floppy disk contains the following files:
+_________________________________________________________________
+          Filename                   Description
+_________________________________________________________________
+        ASMREAD.ME           Read  me  text  (read   this
+                             first)
+_________________________________________________________________
+        ASMREL.LET           This release letter
+_________________________________________________________________
+        ASMUPDAT.MAN         Manual updates
+_________________________________________________________________
+        ASM800.EXE           Program 'ASM800'
+_________________________________________________________________
+        COP820.INC           Include file for COP820 and cop8620 
+			     programs
+_________________________________________________________________
+        COP840.INC           Include file for COP840 and cop8640 
+			     programs
+_________________________________________________________________
+        COP880.INC           Include file for COP880 programs
+_________________________________________________________________
+        COP888.INC           Include file for COP888 programs
+_________________________________________________________________
+        HEXLM.EXE            Program 'HEXLM'
+_________________________________________________________________
+        LMHEX.EXE            Program 'LMHEX'
+_________________________________________________________________
+        COMM.COM             Program 'COMM' for COM1 port
+_________________________________________________________________
+        COMM2.COM            Program 'COMM' for COM2 port
+_________________________________________________________________
+        PC-TALK.EXE          Program 'PC-TALK'  (provided
+                             free of charge)
+_________________________________________________________________
+        PC-TALK.DEF          Default communication param-
+                             eter file for PC-TALK
+_________________________________________________________________
+        XCRC.EXE             Program to verify disk
+_________________________________________________________________
+        XCRC\OUT             Output of XCRC program
+_________________________________________________________________
+
+
+4.  CHANGES FROM PREVIOUS REVISIONS
+
+4.1 CHANGES OF RELEASE PACKAGE REV. E FROM PACKAGE REV. D1
+
+4.1.1 ASM800 Rev. E
+
+The following changes were made to ASM800 Rev. D1:
+1.  Overlapping code  problem.
+    If the user sets the location counter to a value less than
+    its current value then the assembler issues a warning of a  possi-
+    ble  overlap in code. 
+2.  Underscore acceptance in .title directive.
+    The assembler now accepts underscore as a valid character in  the
+    .title directive. 
+3.  Error code return.
+    ASM800 now generates a return code of 0 when no errors are  found
+    during  assembly,  and 1 if errors are encountered.  Warnings are
+    not considered errors.
+4.  Forced listing with  /FL  option.
+    This new switch overrides  all  listing  directives  and forces a
+    listing on Pass Two.
+5.  Symbol file generation.
+    The  command  line  switch  /S  now causes a separate symbol file
+    to be generated.  The file will have an extension of .SYM and 
+    contains the same information as in the symbol listing in the .PRN
+    file generated by ASM800.
+
+4.2 CHANGES OF RELEASE PACKAGE REV. D1 FROM PACKAGE REV.D
+
+4.2.1 ASM800 Rev. D1
+
+The following changes were made to ASM800 Rev. D:
+1. A warning  is  now  generated for JP .+1 (a one byte jump to following
+   location) to remind the user that a NOP opcode is generated
+   (there is no  JP  .+1 opcode).  A NOP is a different number of
+   instruction cycles than a JP opcode.
+2. Division by zero will now generate  error  message;
+   previously  assembly aborted on this error.
+3. When an extension is specified on an object file, e.g. /O=z.qq,
+   the extension is no longer forced to .LM. (If no extension or filename is 
+   specified, the default extension is still .LM.)
+
+4.3 CHANGES OF PACKAGE REV. D FROM PACKAGE REV. C
+
+4.3.1 ASM800 Rev. D
+
+The following changes were made to ASM800 Rev. B:
+1. Instructions for  COP888 are now supported.  See .CHIP below.
+2. The .CHIP directive is required before any code. (If the 
+   appropriate COP8xx.INC file  is included at start of source,
+   this is taken care of; see installation instructions.)
+   The valid .CHIP arguments  are  820,840,888; these select proper
+   instruction set and proper ROM size (the ROM size check can be
+   overridden;  see .MAXROM directive below.)
+3. The .MAXROM  directive  is  added; it is used to override the default
+   ROM size selected by the .CHIP directive. The argument of .MAXROM
+   is  the address of the last valid ROM byte. If the .MAXROM direc-
+   tive is not used, the following are the default  values  provided
+   by the .CHIP directive:
+   03FF Hex for .CHIP 820       (1K ROM)
+   07FF Hex for .CHIP 840       (2K ROM)
+   0FFF Hex for .CHIP 888       (4K ROM)
+
+   The argument of .MAXROM must be less than 07FFF Hex, and  .MAXROM
+   must  appear  before any code. 
+4. The .ADDRW directive is added; it is identical to the .WORD 
+   directive, except that the  byte  order in the word are reversed,
+   i.e. high byte, then low byte. This is the correct order for the 
+   VIS address tables.
+
+The following bugs were fixed in ASM800 Rev. B:
+1. .MDEL directive now properly deletes macros with .MOLC symbols.
+2. In macro, ^symbol where symbol is >9999, now correctly shows
+   five  decimal  digits. 
+3. In macro,  an  error is now given if a ^symbol or @symbol is forward
+   referenced. This avoids phase errors in some cases.
+4. A .TITLE  or .FORM string of 26 characters now is correctly
+   shown in header.
+5. The symbol and macro table listing now has page breaks,  even  if
+   .LIST has disabled listing. 
+6. LD address,#immediate, where address or immediate is forward
+   referenced, no longer generates  a  phase error on following labels.
+7. The .INCLD directive now generates an error when no filename is given.
+8. Filenames may  now  start  with numeric characters.
+
+
+4.3.2 LMHEX Rev. D
+
+The following bug is fixed in LMHEX Rev. C:
+
+A carriage return-line feed is now generated after  the  hex  end
+record.
+
+4.3.3 HEXLM Rev.D
+
+The following bug is fixed in HEXLM Rev. C:
+
+Hex records with up to 255 bytes of data are now accepted (previ-
+ous maximum was 16 bytes of data).
+
+4.4  CHANGES OF PACKAGE REV. C FROM PACKAGE REV. B 
+
+4.4.1 ASM800 Rev. B
+
+The following bugs were fixed in ASM800 Rev. A:
+
+1. The ASCII character ~ now  correctly  passes  from  the  assembly
+source to the listing.
+2. the L() and H() operators can now operate on a forward  reference
+expression without generating an addressing mode error.
+
+
+4.5  CHANGES OF PACKAGE REV. B FROM PACKAGES REV. A
+
+4.5.1  LMHEX Rev. C
+
+The following bug is fixed in LMHEX Rev. B:
+
+The correct record type (01) is now generated  for  the  Hex  end
+record instead of record type (00).
+
+4.5.2  HEXLM Rev. C
+
+The following bug is fixed in HEXLM Rev. B:
+
+The Hex end record type is now read for checksum calculation.
+
+
+
+
+5.  COMPATIBILITY
+
+5.1  COMPATIBILITY WITH PREVIOUS REVISIONS
+Package rev. E is compatible with previous release packages,  ex-
+cept for minor changes to ASM800 as noted in section 4.  File 
+COP880.INC is added to support COP880 chip (see installation section 6).
+
+5.2  COMPATIBILITY WITH RELATED PRODUCTS
+
+5.2.1  MOLE
+This software is compatible with the following MOLE firmware:
+
+MOLE Brain Board COMM, Rev.B
+MOLE Brain Board EXEC, Rev.B
+MOLE COP820/840/880 Personality Board MONITOR, Rev. 4.00
+MOLE COP888 Personality Board MONITOR, Rev. 2.00                
+MOLE COP8620/COP8640 Personality Board MONITOR, Rev. 1.00                
+
+
+6.  INSTALLATION PROCEDURE
+Verify that the floppy disk (440410527-001) is correct by run-
+ning the following procedure:
+1. Put MOLE disk into a drive and logon that drive,  e.g.  if  drive
+B,  type  B:
+2. Type CD \ to get root directory
+3. Type XCRC *.* to get sum of CRC's of files
+4. Type TYPE XCRC\OUT and verify that  sum  of CRC's is same.
+   If there is a discrepancy, or the disk cannot be read,
+   contact NSC (See Sec 9 below).
+The CONFIG.SYS file in your root directory must contain the line
+FILES=16 (or greater); hard disk performance may be improved if
+the line  BUFFERS = value is modified (see DOS Manual for best value).
+Copy the .EXE and .COM files to a desired directory  (\COP800  is
+recommended).    Modify   the   PATH  command  (normally  in  the
+autoexec.bat file in your root directory) to include the  \COP800
+(or another) directory, e.g.
+
+ PATH=c:\             would be changed to
+ PATH=c:\;c:\COP800   (if .EXE and .COM files in directory c:\COP800)
+
+6.1 ASM800
+The first line of all assembly source programs should contain the line:
+  .INCLD COPxxx.INC
+where xxx = 820,840,880 or 888 as appropriate.  Note that the include
+file for COP8620 is COP820.INC, and the include file for COP8640 is
+COP840.INC.
+This include file contains the proper  .CHIP  directive,  defines
+symbolic names for frequently used memory locations, and initial-
+izes stack pointer to address location 02F Hex (for COP820 and COP8620) or ad-
+dress  location  06F Hex for COP840, COP8640, and COP880). The user should
+modify stack initialization address if necessary.
+Note : All assembly source and include files must  be  in  the
+current directory, as ASM800 does NOT accept pathnames.
+Note: If the user chooses not to use the COPXXX.INC include file, he must 
+include the following .CHIP/.MAXROM directives before the start of his code.
+1)  For COP820, COP8620
+    .CHIP 820
+
+2)  For COP840, COP8640
+    .CHIP 840
+
+3)  For COP880
+    .CHIP 840		; 820/840 instruction set
+    .MAXROM 0FFF        ; forces ROM size of 4k
+
+4)  For COP888
+    .CHIP 888
+
+Except for COP888, the stack pointer must be initialized also.
+
+6.2 PC-TALK
+This  public domain program is provided  for  terminal  emulation
+and  general  communication usage.  This program is provided free
+of charge and is not supported by NSC.  For  manual  and  support
+refer to invocation screen of program.
+
+6.3 COMM
+COMM is ready to run using the COM1 serial port. If you  want  to
+use  the COM2 port, rename COMM.COM to COMM1.COM (for backup) and
+rename COMM2.COM to COMM.COM. 
+
+You will need the following equipment to complete the installation
+and verification:
+
+1.  MOLE Brain Board (Product Name: MOLE-BRAIN)
+2.  One MOLE  Personality Board.  Foe example, the MOLE COP820/840
+PERSONALITY BOARD (Product Name: MOLE-COP8-PB1)
+3.  5V DC Power supply, required amps
+4.  Optional RS232 compatible CRT terminal.
+
+To determine which type of RS232 cable to use to connect MOLE  to
+IBM  PC,  first  read APPENDIX A of "PC-DOS COMMUNICATION PROGRAM
+(COMM) SOFTWARE USER'S MANUAL". Typically, the  IBM  RS232  cable
+supplied  with  your PC is DTE type, and will connect directly to
+the J3 port of the MOLE (J1 port may also be used if jumper W2 on
+MOLE  Brain Board is set to position 1-3.) If the IBM RS232 cable
+is DCE type, connect to J2 port instead. 
+No further  connections are necessary if you plan to use COMM's
+converse mode on the PC as a terminal emulator for the MOLE;
+skip the rest of  this  section.
+If  you  plan to use a CRT connected to the MOLE, connect
+the CRT to J1 using the cable supplied with the MOLE.  On  reset,
+the  MOLE  will  default  to using J2 as the COMM port to the PC;
+therefore, if the IBM RS232 cable (DTE type) is connected to  J3,
+do ONE of the following:
+
+      After every MOLE power-on (or reset), enter the following
+      command to set COMM port to J3:
+      X>STATUS SET SD=S3
+      OR construct the inverting RS232 cable shown in APPENDIX A,
+      Figure A-2, of "PCDOS COMMUNICATION PROGRAM (COMM) SOFTWARE
+      USER'S MANUAL".  The cable connects between the  IBM  cable
+  and
+      J2.
+Remember that on power-on or reset, the MOLE sets J1,J2,  and  J3
+to  the  RS232 parameters of the CRT on J1.  If necessary, adjust
+the RS232 parameters of J2 or J3 using the MOLE  STATUS  command,
+before using COMM.
+
+The installation procedure is:
+
+ COMM is already installed for COM1 port (or  COM2  port  if  you
+ modified  COMM  above).   Use the MS-DOS MODE program to set the
+ port parameters; enter:
+  MODE COMx:baud,N,8,1
+ where COMx is COM1 or COM2, and baud is baud rate.   The  recom-
+ mended baud rate is 9600, with the following restrictions:
+ File transfer has no restriction on baud rate.  However, in con-
+ verse  mode,  console output characters may be lost if baud rate
+ is greater than 300 baud (the exact baud rate depends on the  PC
+ hardware).  It is recommended to limit the baud rate if converse
+ mode is used; or optionally, the baud rate can be set to 9600 if
+ the  following procedure is followed (enter italicized commands,
+ assume disk with MODE and COMM program in drive A):
+
+  A>MODE COMx:9600,N,8,1       ;COMx = COM1 or COM2
+  A>COMM                       ;call up COMM program
+  #>C                          ;enter converse mode
+
+  Now reset MOLE!!!!
+
+  <carriage return>            ;enter carriage return key
+  -XR:5E8X>                    ;garbled sign-on line from MOLE
+                               ;(exact response may vary)
+  ->STATUS Sx CH=10,CR=10,LF=50;Sx is S1,S2,S3 depending on connection
+                               ;to J1,J2,J3 of MOLE respectively.
+                               ;(see MOLE BRAIN BOARD USER'S MANUAL
+                               ; for explanation of command; delay
+                               ; values required may be less depending
+                               ; on speed of PC)
+                               ;
+  -X>                          ;MOLE should now respond
+                               ;without characters being lost
+                               ;This procedure will not slow down
+                               ;COMM download
+ Optionally, the PC-TALK program can be used for terminal  emula-
+ tion with the MOLE, with COMM used only for download.
+ To verify that the COMM download is functional, follow  the  se-
+ quence of commands described in the COMM manual, Appendix C.
+
+
+
+7.  KNOWN SOFTWARE PRODUCTS ERRORS AND MANUAL UPDATES
+
+ Manual Updates:
+
+ See file ASMUPDAT.MAN on disk.
+
+
+ Software errors:
+1.  ASM800 does NOT accept  filenames  which  include
+    pathnames,  or  filenames which contain non-alphanumeric characters.
+2.  During macro expansion, the error message "EXPRESSION NOT
+ DEFINED  DURING  PASS 1" incorrectly occurs, for a concatenation
+ operation.
+
+
+8.  RELATED DOCUMENTATION
+
+1.  BRAIN BOARD USER'S MANUAL
+ Order Number 420408188-001 
+2.  COP820C/COP840C/COP880C  PERSONALITY  BOARD USER'S MANUAL
+ Order Number 420410806-001
+3.  COP820C/840C USER'S MANUAL
+ Order Number 420410703-001
+4.  COP888 PERSONALITY BOARD  USER'S MANUAL
+ Order Number 420420084-001 
+5.  COP888 USER'S MANUAL
+ Order Number 420411060-001 
+6.  COP8620C/8640C PERSONALITY BOARD USER'S MANUAL
+ Order Number 420421258-001
+7.  Datasheets  for COP800 series of microcontrollers
+8.  DISK OPERATING SYSTEM (DOS) manual
+ (Published by IBM)
+
+
+
+9.  USER SUPPORT
+
+1. Technical Support number is
+ (800) 759-0105
+2. Other  numbers  are 
+   a. (408)  739-1162  is  Dial-A-Helper,
+      a  24 hour electronic bulletin board information system
+      provided by Microcontroller Applications.  A 300, 1200, or 2400 baud
+      modem  and a terminal or host with terminal emulation capability
+      are required.
+  b.  (408) 721-5582 is  the  Microcontroller  Applications number.
+
+
+
+
+
+
+                             NSC Publication Number 433410527-001
+                                                   September 1990
+

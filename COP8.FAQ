@@ -1,0 +1,1314 @@
+From: rgetz@lcc1.nsc.com (Robin Getz)
+Subject: COP8 microcontroller FAQ 
+Summary: This artile is a collection of information sources on the line
+Date: Fri, 22 Sep 1995 00:01:26 GMT
+
+Archive-name: microcontroller-faq/COP8
+Posting-Frequency: monthly (20thish of each month)
+Last-modified: 20June1995
+URL: http://www.nsc.com/
+
+This article is a draft collection of information sources on the line of
+National Semiconductor Corporation ("National") COP8 microcontrollers.
+
+The following topics are addressed:
+
+0)  Changes Since Last Time
+
+1)  ABOUT THIS FAQ
+1.1)  Who put this FAQ together?
+1.2)  How can I contribute to this list?
+1.3)  What newsgroups will this FAQ be posted to?
+1.4)  May I post this FAQ to my local BBS?
+1.5)  Are there any FAQs pertaining to other microcontrollers?
+
+2)  ABOUT THE COP8
+2.1)  The COP8 microcontroller
+2.2)  COP8 flavors / Numbering Scheme
+2.3)  COP8 chips and approximate prices (in US $)
+2.4)  Advantages in implementing control applications on this
+      family of microcontrollers
+2.5)  Techy Details
+2.5.1) How fast are the parts?
+2.5.2) What is the operating voltage of the devices?
+2.5.3) How can I guarantee that my program will run reliably?
+2.5.4) What kind of power savings features are available?
+2.5.5) What about EMI?
+2.5.6) Instruction Set
+2.5.7) Can I hook up a LED to pins direct?
+
+3)  COP8 PRODUCTS
+3.1)  FTP sites
+3.2)  BBSs
+3.3)  Free languages and development tools
+3.4)  Free C compilers
+3.5)  Plans for COP8-based boards
+3.6)  Commercially available products
+3.7)  Contacting National
+
+4)  COP8 DOCUMENTATION
+4.1)  Periodicals
+4.2)  Data Books / Application Notes
+
+
+----------------------------------------------------------------------
+
+0)  Changes since Last Time
+
+    Added PRICING! I am not sure if this is close to what street price
+    is (street may be lower), but I saw this in a MicroController Selection
+    Guide that was being handed out at the Embedded Systems conference in
+    San Jose last week.
+
+    Somebody pointed out to me the other day - Since the COP8 and the 8051
+    are modified harvard - they can do a load/store instruction in one
+    instruction cycle. A Von Neuman machine can not do that. This makes
+    (for memory intensive applications) a harvard machine almost 2 times
+    as fast as a Von Neuman running at the same speed..... 
+
+    Maybe architecture does make a difference on a 8-bit controller....
+    
+-----------------------------------------------------------------------
+1)  ABOUT THIS FAQ
+
+1.1)  Who put this FAQ together?
+
+   After reading the excellent FAQs on the 8051 (Intel/Phillips) and
+   the 68hc11 (Motorola) put together by Russ Hersch 
+   <sibit@datasrv.co.il> (Nice work Russ), I decided to make a FAQ
+   on the COP8, National's family of 8-bit microcontrollers.
+
+   I work for National in the Geographic Business Unit (GBU) responsible for
+   technical support for New Business Development (NBD), so if you want to 
+   call this advertising, and don't want me to continue to post this in 
+   the future, please email me (that doesn't mean I will stop, but you 
+   will get it off your chest ;-). I think that I have kept most of the 
+   hype out - please let me know if you think otherwise.
+
+   This FAQ will hopefully give everyone a brief overview of why you should
+   have a further look at the COP8 instead of automatically picking a
+   HC11, or 8051. Not that they are bad parts, in fact they are better
+   at some things than the COP8. And COP8 is much better at some things
+   than the HC11 or 8051. The COP8 is a good chip, and well worth
+   learning and developing with. With everyone's help this FAQ should 
+   turn out to be a useful document.
+
+   Because I admire Russ's FAQ's and I was too lazy to take the time to think 
+   up my own format, I have copied his basic format and a couple of sections 
+   (with his permission, of course).
+
+1.2)  How can I contribute to this list?
+
+   I ask that if you have any suggestions or additions, or you would like to 
+   correct any of the information contained herein, please send me a note.
+
+        My Email address is:  rgetz@esd.nsc.com
+        My Smail address is:
+              Robin Getz
+              National Semiconductor Corporation
+              MS 16-325
+              Santa Clara, CA, 94086
+              USA
+
+   I certainly hope that those of you who know of interesting items for
+   the COP8 will share with everyone by contributing to this list.
+
+   If you are a manufacturer and have an anonymous ftp site available
+   that supports the COP8, please let me know by Email so that I can
+   add it to this FAQ.
+
+
+1.3)  What newsgroups will this FAQ be posted to?
+
+   This FAQ will be posted to the following newsgroups:
+         comp.realtime       Issues related to real-time computing.
+         comp.robotics       All aspects of robots and their applications.
+         sci.electronics     Circuits, theory, electrons and discussions.
+         comp.arch.embedded  Embedded computer systems topics.
+
+   And sometime later, depending on what people think....
+         news.answers
+         comp.answers
+         sci.answers
+
+   The first four newsgroups often contain discussions, announcements,
+   or information on microcontrollers.  Check them out from time to 
+   time. By posting to the *.answers newsgroups, the FAQ will 
+   automatically be archived.  The archive name of this FAQ (also 
+   included in the header) is: cop8-microcontroller-faq.
+
+   Items will be posted once a month.  I can't promise that
+   it will be on time, but I hope to post it on the 25th of each month.
+
+   You may also want to check out the following newsgroups, since they
+   occasionally have items of interest for COP8 users.
+         comp.lang.misc
+         alt.comp.hardware.homebuilt
+
+
+1.4)  May I post this FAQ to my local BBS?
+
+   I am putting no restrictions on the use of this FAQ except - It must
+   be distributed in its entirety with the copyright notice, and no
+   financial gain may be realized from it.  After all, I have spent, and
+   continue to spend, a lot of time on this, and the only thing that I
+   intend to gain from it is more information on the COP8, and getting
+   to know my fellow COP8 groupies better.
+
+   For this reason I have appended a copyright statement to the end of
+   this FAQ.  I feel pretty silly doing this, but I just want to protect
+   myself.  The copyright does not limit the use of this list for 
+   non-commercial purposes.  I hereby give my permission to one and all
+   to pass this list around and post it wherever you want - as long as
+   it is not for financial gain.
+
+       Thanks.
+
+
+1.5)  How about FAQs on other microcontrollers?
+
+   If anyone wishes to start a FAQ on another microcontroller, please
+   feel free to copy the format of this FAQ (I did).  With a common 
+   format, we will all benefit when trying to find information on a 
+   particular microcontroller.  If anyone has any comments on the format
+   itself, I'm open for suggestions.
+
+   Other Microcontroller FAQs
+
+     Subject:  68hc11 microcontrollers
+     Newsgroups:  comp.realtime
+                  comp.robotics
+                  sci.electronics
+     Archive:  rtfm.mit.edu :  <plus all mirror sites>
+               /pub/usenet/comp.answers/microcontroller-faq/68hc11
+               /pub/usenet/sci.answers/microcontroller-faq/68hc11
+               /pub/usenet/news.answers/microcontroller-faq/68hc11
+     Maintainer:  Russ Hersch
+                  Email:  sibit@datasrv.co.il
+
+     Subject:  PIC microcontrollers
+     Newsgroups:  comp.realtime
+                  comp.robotics
+                  sci.electronics
+     Maintainer:  Tom Kellett
+                  Tom@takdsign.demon.co.uk
+
+     Subject:  8051 microcontrollers
+     Newsgroups:  comp.sys.intel
+                  comp.realtime
+                  comp.robotics
+                  comp.lang.forth
+                  sci.electronics
+     Archive:  rtfm.mit.edu :  <plus all mirror sites>
+               /pub/usenet/comp.answers/microcontroller-faq/8051
+               /pub/usenet/sci.answers/microcontroller-faq/8051
+               /pub/usenet/news.answers/microcontroller-faq/8051
+     Maintainer:  Russ Hersch
+                  Email:  sibit@datasrv.co.il
+
+     Subject:  Microcontroller primer and FAQ
+     Newsgroups:  comp.sys.intel
+                  comp.realtime
+                  comp.robotics
+                  sci.electronics
+                  alt.comp.hardware.homebuilt
+     Archive:  rtfm.mit.edu :  <plus all mirror sites>
+               /pub/usenet/comp.answers/microcontroller-faq/primer
+               /pub/usenet/sci.answers/microcontroller-faq/primer
+               /pub/usenet/news.answers/microcontroller-faq/primer
+     Maintainer:  Russ Hersch
+                  Email:  sibit@datasrv.co.il
+
+   Additional FAQs of interest
+
+     Subject:  Robotics
+     Newsgroups:  comp.robotics
+     Maintainer:  Kevin Dowling
+                  Email:  nivek@ri.cmu.edu
+
+     Subject:  Electronics
+     Newsgroups:  sci.electronics
+     Maintainer:  Filip Gieszczykiewicz
+                  Email:  filip@smi.med.pitt.edu
+
+     Subject:  Real-time
+     Newsgroups:  comp.realtime, comp.answers, news.answers
+     Archive:  rtfm.mit.edu : pub/usenet/comp.realtime
+     Maintainer:  Mark Linimon
+                  Email:  linimon@nominil.lonesome.com
+
+     Subject:  Neural Networks
+     Newsgroups:  comp.ai.neural-nets,comp.answers,news.answers
+     Archive:  rtfm.mit.edu : pub/usenet/neural-net-faq
+     URL:  http://wwwipd.ira.uka.de/~prechelt/FAQ/neural-net-faq.html
+     Maintainer:  Lutz Prechelt
+                  Email:  prechelt@ira.uka.de
+
+     Subject:  Fuzzy Logic
+     Newsgroups:  comp.ai.fuzzy,comp.answers,news.answers
+     Archive:  rtfm.mit.edu : pub/usenet/fuzzy-logic/
+     URL:  http://www.cs.cmu.edu:8001/Web/Groups/AI/html/faqs
+             /ai/fuzzy/part1/faq.html (should be one line)
+     Maintainer:  Mark Kantrowitz
+                  Email:  mkant+@cs.cmu.edu 
+
+   Other useful articles are also available.  One article provides a
+   tabular cross reference of features and pin counts. This lists was
+   compiled and is being maintained by Roger Nelson
+   <rnelson@wsuaix.csc.wsu.edu>.
+
+   For more information on various microcontrollers and their features,
+   refer to the Microcontroller primer and FAQ listed above. URL:
+   ftp://rtfm.mit.edu/pub/usenet/comp.answers/microcontroller-faq/primer
+
+----------------------------------------------------------------------
+
+2)  ABOUT THE COP8
+
+
+2.1)  The COP8 microcontroller
+
+   General
+
+   Firstly - COP8 (Control Orientated Processor) actually stands for 
+   something. (Although the rest of the numbering scheme leaves something 
+   to be desired). This is not a failed microprocessor that was cut down for 
+   8-bit control (like some others). This is a full featured microcontroller 
+   designed for bit level control. (Although National does make a 32-bit 
+   processor (32000), the COP8 has nothing to do with it).
+
+   The COP8 is a powerful 8-bit data, 15-bit address (32K max ROM)
+   microcontroller from National with an instruction set that is 
+   similar (somewhat) to the 8051, although it is much easier for
+   the beginner to understand and pick up (In my unbasised opinion
+   of course :)
+
+   Depending on the variety, the COP8 has built-in EEPROM/OTPROM, RAM,
+   digital I/O, timers, A/D converter, PWM generator, and synchronous
+   and asynchronous communications channels (RS232 and MICROWIRE/PLUS).
+   Typical current draw is less than 12ma, with powerdown modes that 
+   can reduce current draw to typically less than 1 uA. (Although I 
+   have seen ***50nA***)
+
+   A typical COP8 contains:
+      - CPU with Boolean processor
+      - fully static processor
+      -  up to vectored 14 interrupts: 2 are external (8 pins can 
+          be ORed into one interrupt, for a total of 9 external)
+          - arbitration levels
+      - 1,2 or 3 16-bit timer/counters (min 1 max 3)
+      - programmable full-duplex serial port (UART/USART or 
+          MICROWIRE/PLUS)
+      - up to 56 I/O lines (11 pins min + Vcc/GND/Reset/CKI/CKO)
+      - up to 512 bytes RAM (64 bytes min)
+      - up to 16K ROM/EPROM in some models (768 bytes min)
+      - new parts are LOW EMI (typically lower than 14dB emissions)
+
+   The COP8 peripherals are POWERFUL. The timer that you will find on 
+   a COP8 is much more powerful than on a typical microcontroller.
+   I will get into this a little later.
+
+   The COP8 instruction set is optimized for the one-bit operations so
+   often desired in real-world, real-time control applications.  The
+   Boolean processor provides direct support for bit manipulation.  This
+   leads to more efficient programs that need to deal with binary input
+   and output conditions inherent in digital-control problems.  Bit
+   addressing can be used for test pin monitoring or program control
+   flags.
+
+    Architecture
+
+    The COP8 is a modified Harvard architecture. With the Harvard 
+    architecture, the ROM is separated from the data memory (RAM). Both 
+    ROM and RAM have their own separate addressing space with separate 
+    address busses (there are two 0 addresses - 1 for ROM, 1 for RAM). The
+    COP8, though based on the Harvard Architecture, permits transfers from
+    ROM to RAM (hence modified).
+
+    The CPU has an 8-bit accumulator (A) that all arithmetic operations go 
+    into. Two 8-bit index registers are present (X, B) to provide indexing 
+    to anywhere in the memory map. Having the two index registers means the 
+    COP8 is very good for processing data.  Although an 8-bit processor, the 
+    COP8 has some 16 bit (and bigger) peripherals (timers, 24 by 8 divide, 
+    16 by 8 multiply, 16-bit A/D). An 8 bit stack pointer is also present, 
+    and instructions are provided for stack manipulation.
+
+    Feature Family / Basic Family
+
+    The COP8 family is divided into two families - the Basic Family and 
+    the Feature Family. There is little difference between the devices 
+    although the feature family has the following advantages:
+      - 7 more instructions (including PUSH and POP)
+      - 2 auto-reload registers on timers / Basic family only has one
+      - IDLE Mode (Basic family only offers HALT mode)
+      - powerful peripherals ( A/D, UART, high speed timers, WatchDog,
+        comparators, etc. )
+
+    Onboard subsystems
+
+    Timer -  Main timer system comprises of a single 16-bit counter
+    (2 x 8-bit registers) clocked at tc (1MHz at Crystal frequency of 
+    10MHz). Timers have at least one associated register and all Feature 
+    Family devices have 2 registers. All timers have at least 1uSec 
+    accuracy and some have 100nS - check datasheet for specific details.
+    Timers can be configured in the following methods:
+       - External Counter (clocked on positive or negative edge)
+       - Timer w/ Auto-Load Register (PWM output)
+       - Timer with Capture (triggered on positive or negative edge)
+
+    Pulse Stream Generators - Some of the devices have specific timers
+    that are 100ns resolution 16-bit PWM (Pulse Width Modulation) outputs 
+    only.
+
+    Multi-Input Wakeup -The Multi-Input WakeUp (MIWU)  is used to return
+    (wakeup) the microcontroller from either HALT or IDLE modes. 
+    Alternately MIWU may also be used to generate up to 8 edge 
+    selectable external interrupts.  The user can select whether the 
+    trigger condition on the pins is going to be either a positive edge 
+    (low to high) or a negative edge (high to low).
+
+    A-D Converters - 8-bit, 8-channel (multiplexed input) SAR 
+    (Successive Approximation Register). Two dedicated pins Vref and 
+    Agnd are provided for voltage reference. The time required for an 
+    A/D conversion is dependent on the prescaler (fast conversion = more
+    power consumed - you can run the microcontroller fast - and the A/D 
+    slow). The A/D converter has the following different modes of 
+    operation:
+      - One channel conversion then stop
+      - Any specific channel to be scanned continuously
+      - Any differential channel pair measurement and then stop
+      - Any differential channel pair be scanned continuously
+
+    It also has a device that supports single slope A/D - the device 
+    contains a constant current source, a comparator, an analog 
+    mutliplexer, and a couple of 16-bit timers. These can be configured to
+    give the designer a 16-bit (resolution - not accuracy) A/D converter.
+
+    UART / USART - Asynchronous or synchronous serial communication block.
+    Clock generation (for asynchronous operation) is very sophisticated - 
+    standard baud rates (300,1200,2400,4800,9600,19200,38400) can be generated
+    without having to select some obscure crystal frequency (Run the 
+    controller at full speed). Synchronous operations occur at 16 x the speed 
+    of asynchronous. Framing formats supported are: 1 Start, 7,8 or 9 data, 
+    Parity/No Parity, 1 or 2 stop. The Attention Mode (or Network Mode) is 
+    also supported, whereby a single master / multi-slave environment is set 
+    up. This is a *very* powerful feature that can be used almost anywhere 
+    when you need to talk to more than one controller / CPU. Diagnostic 
+    mode is also enhanced from a regular UART. Internally, the Transmit 
+    Shift Register is "looped back" into the Receive Shift Register. 
+    Externally the receiver input pin (RDX) is connected to the 
+    transmitter output pin(TDX). This allows the external UART to do a 
+    continuity check of the external lines.
+
+    MICROWIRE/PLUS - A Synchronous serial communications port, comprised 
+    of Serial Clock (SK), Serial Data In (SI), Serial Data Out (SO) and 
+    optional chip selects.  There are many specific MICROWIRE, MICROWIRE/PLUS 
+    and SPI devices, (the only difference between SPI and MICROWIRE is 
+    when the data is shifted in - and with MICROWIRE/PLUS - you control that) 
+    such as A/Ds, D/As, EPROM, FLASH, EEPROM, MUX's.....
+
+    Comparator - A differential comparator, with a pair of inputs (positive 
+    and negative) and an output. The comparator can be software disabled (to 
+    save power). The output can either be brought outside (via a pin) or left 
+    as a bit somewhere inside the controller.
+
+    BrownOut - BrownOut protection is usually an on-board protection circuit 
+    that resets the device when the operating voltage (Vcc) is lower than the 
+    Brownout voltage.  The device is held in reset and will remain in reset 
+    when Vcc stays below the Brownout voltage. The device will resume 
+    execution (from reset) after Vcc has risen above the BrownOut Voltage.
+
+    CAN - The COP8 supports applications which require a low speed CAN 
+    interface. The interface is compatible with CAN Specification 2.0 part B,
+    without the capability to receive/transmit extended frames. However, 
+    extended frames on the bus are checked and acknowledged according to the 
+    CAN specification. The maximum bus speed achievable with the CAN interface
+    is a function of crystal frequency, message length and software overhead. 
+    The device can support a bus speed of up to 1 Mbit/s with a 10MHz 
+    oscillator and 2 byte messages.
+
+    Hardware Multiply / Divide - This block supports a 1 byte x 2 bytes
+    (3 byte result) multiply operation (in one instruction cycle - 1uS) or a
+    3 byte x 2 byte (2 byte result) divide operation (in two instruction 
+    cycles - 2uS). There are no multiplication errors that can occur ( FFh x
+    FF FFh = FE FF 01h which fits in three bytes). Divide errors are trapped
+    (overflow FF FF FFh / 1h = FF FF FFh which is bigger than two bytes and
+    division by zero)
+
+2.2)  COP8 flavors / Numbering Scheme
+
+    All devices include at least one 16-bit timer, MICROWIRE/PLUS serial
+    interface, common pinouts, common instruction set and most are 
+    available in ...
+
+    Basic Family Numbering Scheme
+
+    COP8720CJ-XXX/N
+    ^^^^^^^^^ ^^^ ^ 
+       |||||| ||| \-- Package Type : N  - DIP
+       |||||| |||                  : WM - Surface Mount
+       |||||| |||                  : V  - PLCC
+       |||||| |||                  : J  - DIP Windowed
+       |||||| |||
+       |||||| \\\---- Unique ROM id Code assigned by National
+       ||||||         NOTE: OTP and windowed parts do not have
+       ||||||               this code
+       ||||||
+       ||||\\-------- Features : CJ - Brown-out,high speed timers,
+       ||||                            comparators,MIWU
+       ||||                      C  - 16-bit timer 
+       ||||
+       |||\---------- Number of pins : 0 - 28/40/44 (depends on package)
+       |||                           : 1 - 28
+       |||                           : 2 - 20
+       |||                           : 3 - 16
+       |||                           : 8 - Indicates Feature Family 
+       |||                           : 5 - Indicates Feature Family 
+       |||                           : 4 - Indicates Feature Family 
+       |||
+       ||\------------ ROM/RAM : 2 - 1k ROM / 64 btyes RAM 
+       ||                      : 4 - 2k ROM / 128 bytes RAM
+       ||                      : 8 - 4k ROM / 128 bytes RAM
+       ||
+       |\------------- If 7 is there indicates Programmability (EPROM)
+       |               If 6 is there indicates EEPROM for RAM
+       |               If nothing indicates ROM device with volatile RAM
+       |
+       \-------------- Temp range : 6 - Military (-55C to +125C)
+                                    8 - Industrial (-40C to +85C)
+                                    9 - Commercial (0C to +70C)
+
+    Feature Family Numbering Scheme
+
+    COP8788EG-XXX/N-R
+    ^^^^^ ^^^ ^^^ ^ \ - OTP Oscillator Option: R - RC
+       || ||| ||| |                            X - Crystal
+       || ||| ||| |
+       || ||| ||| \-- Package Type : N  - DIP
+       || ||| |||                  : WM - Surface Mount
+       || ||| |||                  : V  - PLCC
+       || ||| |||                  : J  - DIP Windowed
+       || ||| |||
+       || ||| \\\---- Unique ROM id Code assigned by National
+       || |||         NOTE: OTP and windowed parts do not have
+       || |||               this code
+       || |||
+       || ||\-------- Features : F - 2 timers, 8-bit, 8-channel ADC
+       || ||                     G - 3 timers, 2 comparators, UART
+       || ||                     C - 1 timer, CAN, 2 comparators
+       || ||                     S - 1 timer, 1 comparator, UART
+       || ||                     L - 2 timers
+       || ||                     K - 1 time, Analog block, 1 comparator
+       || ||                     W - 2 timers, 4 Pulse Stream Generators
+       || ||                         Hardware Multiply divide
+       || ||
+       || |\--------- ROM/RAM : B - 2k ROM  /  64 RAM
+       || |                     C - 4k ROM  / 128 RAM
+       || |                     E - 8k ROM  / 256 RAM
+       || |                     G - 16k ROM / 512 RAM
+       || |
+       || \---------- Number of pins : 8 - 40/44 (depends on package)
+       ||                            : 5 - 20
+       ||                            : 4 - 28
+       ||                            : 2 - Indicates Basic Family device
+       ||                            : 1 - Indicates Basic Family device
+       ||                            : 0 - Indicates Basic Family device
+       ||
+       |\------------- If 7 is there indicates Programmability (EPROM)
+       |               If 6 is there indicates EEPROM for RAM
+       |               If nothing indicates ROM device with volatile RAM
+       |
+       \-------------- Temp range : 6 - Military (-55C to +125C)
+                                    8 - Industrial (-40C to +85C)
+                                    9 - Commercial (0C to +70C)
+
+2.3)  COP8 chips and approximate prices (in US $)
+
+   I am affiliated with the manufacturer of these devices, & you will most 
+   likely be purchasing parts from a distributor. If I was to list prices,
+   some people would think that was pricing fixing - so I can't (& won't).
+
+   The below prices are subject to lots of things, where you live (prices 
+   vary by region), package type (DIP, SO, PLCC), Temperature range 
+   (Commerical, Industrial, Military) and volume. Contact your favorite
+   National Distributor for more info.
+
+   OTPs
+   -----------
+   Basic Family      |ROM|RAM|DI|  |PL|TI|CO|UA|MI|WD|Other
+   Device    | 5000  |   |   |P |SO|CC|ME|MP|RT|WU|OG|
+   COP8780   | 3.25  | 4k|128|40|  |44| 1|  |  |  |  |
+   COP8781   | 2.55  | 4k|128|28|28|  | 1|  |  |  |  |
+   COP8782   | 2.30  | 4k|128|20|20|  | 1|  |  |  |  |
+   COP8720CJ | 4.00  | 1k| 64|28|28|  | 2| 1|  | Y| Y|
+   COP8722CJ | 3.50  | 1k| 64|20|20|  | 2| 1|  | Y| Y|
+   COP8740CJ | 5.25  | 2k|128|28|28|  | 2| 1|  | Y| Y|
+   COP8742CJ | 4.40  | 2k|128|20|20|  | 2| 1|  | Y| Y|
+
+   Feature Family
+   COP8784BC | 7.90  | 2k| 64|28|28|  | 2| 2|  | Y|  |CAN, Power-On-Reset
+   COP8788CF | 7.65  | 4k|128|40|  |44| 2|  |  | Y| Y|8-bit 8-chan
+   COP8784CF | 7.40  | 4k|128|28|28|  | 2|  |  | Y| Y|A/D
+   COP8788EG | 7.85  | 8k|256|40|  |44| 3| 2| 1| Y| Y|
+   COP8784EG | 7.60  | 8k|256|28|28|  | 3| 2| 1| Y| Y|
+   COP8788CL | 6.70  | 4k|128|40|  |44| 2|  |  | Y| Y|
+   COP8784CL | 6.45  | 4k|128|28|28|  | 2|  |  | Y| Y|
+   COP8788EK | 9.40  | 8k|256|40|  |44| 3| 1|  | Y| Y|Analog fncts
+   COP8784EK | 9.10  | 8k|256|28|28|  | 3| 1|  | Y| Y|(16-bit A/D)
+
+
+   Otherwise you can call Future Active Industrial @ 800-723-5817. They do
+   stock parts on the shelf, and should be able to ship within a day or
+   two. To find you favorite local distributor, please call National, and
+   I am sure that we should be able to tell you.
+
+   ROMmed - Check with your local National Distributor. (but they are CHEAP!
+   65 cents for the lowest priced ROM version)
+
+2.4)  Advantages in implementing control applications on this
+     family of microcontrollers
+
+   Traditional architecture - Modified Harvard (separate RAM and ROM busses) 
+   leads to an easy to learn device as well as speeding the device up. As your
+   first microcontroller, this is very well suited to learning.
+
+   More features - a COP8 is typically a "one-chip" solution since it always
+   includes such items as serial I/O, PWM, and many I/O lines, and typically 
+   includes on board A/D, UARTs, and many timers.
+
+   Fast and effective - the architecture correlates closely with the problem 
+   being solved (control systems). Specialized instructions mean that fewer 
+   bytes of code need to be fetched and fewer conditional jumps are processed.
+   (77% on instructions are single byte/single cycle - this means smaller and 
+   faster code).
+
+   Low cost - high level of system integration within one component, only a 
+   handful of components needed to create a working system.
+
+2.5) Techy Details
+
+   Not all of the below features are on all of the devices (check the 
+   datasheet):
+
+2.5.1) How fast are the parts?
+
+   The COP8 has a max Clock input (CKI) of 10MHz. Since the parts have a 
+   divide by 10 internal clock, the instruction cycle time (tc) is 1Mhz
+   or 1us. Most internal devices are fed with tc. The UART is fed by tc 
+   through a very complex divide and prescaler, which allows any standard 
+   baud rate to be generated with almost any tc. (i.e. Get the baud rate 
+   you want without having to purchase that 9.8746856MHz crystal!) Some 
+   timers are fed with CKI, giving a PWM output with **100ns** resolution.
+   Hardware multiply/divide are fed with CKI allowing a 3 byte by 2 byte 
+   multiply to be completed in 1us, and a 3 byte by 2 byte divide completing
+   in 2us.
+
+   The parts are also fast because most of the instructions execute in one
+   tc. (1us).
+
+2.5.2) What is the operating voltage of the devices?
+
+    The operating voltage of most of the ROMmed devices is between 2.3 <-> 
+    6.0V
+
+    The operating voltage of most of the OTP's is between 4.5 <-> 5.5V. A low
+    voltage (2ishV) OTP is expected within 12 months. 
+
+2.5.3) How can I guarantee that my program will run reliably?
+
+   You can't.
+
+   Not COP8, nor any other microcontroller is guaranteed to operate when a 
+   10MegaWatt Radar wave is passing through it.  EMI can cause any 
+   microcontroller to do *VERY* funny things. What your microcontroller can 
+   do is provide a couple features to ensure that the application realizes
+   that funny things have gone on.
+
+   The COP8 provides 3 methods of trapping these types of events.
+   NOTE: these events are just as likely to happen on a HC11, 8051,
+   PIC, ect . . . COP8 just traps them.
+
+   SOFTWARE TRAP - since the Program Counter (PC) is 15 bits in length
+   (Max theoretical ROM space of 32K) and the biggest part we make (currently)
+   is a 16K part (and most smaller) there is a possibility that the PC could
+   point to ROM that does not physically exist.  This will be trapped within 
+   one tc (instruction cycle) and cause an interrupt to occur. The interrupt 
+   will reload the PC with a known value (0x00FF) and go to that value.  A 
+   Software Trap is the only non-maskible interrupt on the COP8. This can also
+   be valuable when your program takes 4097 bytes (As most programs do) and
+   you have to use a part with an 8K ROM. The upper 4095 bytes of ROM are 
+   physically there, but unused. If the PC does the funky chicken and points
+   to those ROM locations, is this trapped? (Well - I wouldn't ask the 
+   question if I didn't have the answer). Yes, this can be trapped. The 
+   best method of doing this is to load all unused ROM locations with 0x00.
+   (Software Trap is simple a 00 OpCode). Since this is an interrupt, your
+   interrupt handler can do anything it wants. (i.e. re-initialize the device)
+
+   WATCHDOG - In a well thought out program this works wonderfully.  The
+   software designer knows exactly how long program execution takes, and
+   services a timer every so often.  This time frame (the amount of time
+   you have to service the timer) is software selectable between 2k->8k,
+   2k->16k, 2k->32k or 2k->64k tc. This means there is two ways to have 
+   the watchdog time out - either servicing the clock too fast (more
+   than once every 2k tc) or too slow (having more than one selectable
+   go by). This is actually very powerful - if your "bug" is in your 
+   routine that services the watchdog, you will still find out - on most
+   other microcontrollers this is not true.
+
+   When a Watchdog becomes active, nothing happens internally in the device 
+   with the exception of on pin going low. This is because if you are 
+   controlling a huge metal lathe with your COP8, and you have a watchdog, it 
+   is a bad thing. If you reset the part, you continue on business as usual. 
+   A Watchdog is a catastrophic failure. Maybe you want to turn off your 
+   lathe, and sound an alarm that the lathe needs servicing. 
+
+   This all seems well, but what happens in my real-time controller when my
+   crystal starts to fail?  My real-time stops being very real time. (This is 
+   another one of those questions that I better have an answer for.)
+
+   CLOCK MONITOR - This is guaranteed not to reject the clock if the 
+   instruction cycle clock (1/tc) is greater than 10kHz. This equates to
+   a clock input rate (CKI) of greater than or equal to 100kHz. Again 
+   this simply brings a pin (/RESET) low on the part - and nothing else.
+   This is software selectable (You can turn it off if you want to run 
+   the parts slower than 100kHz.)
+
+2.5.4) What kind of power savings features do you have?
+
+    The device can be placed into IDLE/HALT mode by software control.
+    In both Halt and Idle conditions the state of the microcontroller
+    remains.  RAM is not cleared and any outputs are not changed.
+
+    HALT - 
+     In Halt mode, all activities are stopped (including timers and
+     counters).  The only way to wake up is by a reset or device
+     interrupt (such as an I/O port).  The power requirements of the
+     device are minimal and the applied voltage (Vcc) can sometimes be
+     decreased below operating voltage without altering the state
+     (RAM/Outputs) of the device.  Current consumption is typically
+     less than 1 uA.
+
+     A common application of HALT mode is in laptop keyboards.  In
+     order to have maximum power saving, the controller is in halt
+     until it detects a keystroke (via a device interrupt).  It then
+     wakes up, decodes and sends the keystroke to the host, and then
+     goes back into halt mode, waiting either for another keystroke, 
+     or information from the host.
+
+     The disadvantage of HALT mode is that since *ALL* activities are
+     stopped (including your crystal oscillator) it takes some time 
+     before your oscillator will start going again - sometimes this can 
+     be in the range of 12 - 100mS (that's milli, not micro). In some 
+     applications this is a bad thing - and you want to wake up faster.
+     (NOTE: this is a function of the oscillator design, not the 
+     microcontroller.)
+
+   IDLE - 
+     In IDLE mode, all activities are stopped except:
+         - associated on-board oscillator circuitry
+         - watchdog logic (if any)
+         - the clock monitor
+         - the idle timer (a free running timer)
+     Power supply requirements on the microcontroller in this mode are
+     typically around 30% of normal power requirements of the
+     microprocessor.  Idle mode is exited by a reset, or some other
+     stimulus (such as timer interrupt, serial port, etc.).  A special
+     timer/counter (the idle timer) causes the chip to wake up at a
+     regular interval to check if things are OK.  The chip then goes
+     back to sleep.
+
+     IDLE mode is extremely useful for remote, unattended data logging
+     - the microprocessor wakes up at regular intervals, takes its
+     measurements, logs the data, and then goes back to sleep.
+
+     Since the crystal is still going during IDLE mode, the time that it
+     takes to get going again is two tc (2 uSec) - but the trade off is 
+     more power consumption.
+
+
+2.5.5) What about EMI?
+
+    The control and minimization of Electro-Magnetic Interference (EMI)
+    is a technology that is, out of necessity, growing rapidly. EMI will
+    be defined shortly but, for now, you might be more familiar with the 
+    terms Radio Noise, Electrical Noise, or Radio Frequency 
+    Interference (RFI). The technology's exploration includes a wide
+    frequency spectrum, from dc to 40GHz. It also deals with 
+    susceptibility to EMI as well as the emissions of EMI by equipment
+    or components. Emissions corresponds to that potential EMi which
+    comes out of a piece of equipment or component. Susceptibility, on
+    the other hand, is that which couples from the outside to the 
+    inside.
+
+    In COP8 designs to date, we have looked at noise situations ranging 
+    from 1MHz to 200MHz. EMI, in some cases, can affect radio reception,
+    TV reception, accuracy of navigation equipment, etc. In severe 
+    cases, EMI might even affect medical equipment, radar equipment
+    and automotive systems.
+
+    EMI is a form of electrical-noise pollution. Think of the time 
+    when an electric drill or some other power tool jammed a nearby
+    radio with buzzing or crackling noises. This is annoying - but not
+    catastrophic. This is much different than when aircraft navigation 
+    errors occur from EMI Interruption of air traffic controller
+    service or maybe even computer memory loss due to noise could
+    cause two aircraft to collide resulting in the loss of lives and
+    property.
+
+    The ultimate question is - What is National doing to reduce EMI
+    emissions on it's COP8? Well, the answer is...LOTS.
+
+    Gradual Turn-On Outputs - The outputs and bi-direction ports (except
+    pin G7, CKO) use gradual turn on (GTO) output drives. These drivers 
+    generate less EMI than standard drives by having slower turn-on time
+    and thereby reducing the peak instantaneous current. They have 
+    slightly longer propagation delay than standard drivers.
+
+    Idd CHOKE - The rate of change (di/dt) of Idd to the chip nucleus is
+    controlled through the use of a Idd choke block. This block actively
+    reduces current transients reaching the supply and thus reduces the
+    H field emissions from the system.
+
+    Level shifters are required for all I/O Port pins to ensure that the
+    switching is consistent and to ensure that the resultant changes in
+    the internal Vcc are not coupled to the port pins.
+
+    The oscillator uses a separate power supply filter to minimize the 
+    direct coupling of the oscillator frequency to the supply.
+
+    Low EMI Logic - In order to further reduce EMI, the logic in the
+    chip is disabled when inactive (by disabling the clocks). This 
+    will reduce switching and hence current consumption and EMI.
+
+    Not all devices have the above described EMI enhancements - *only*
+    the newer devices. National holds 11 patents on EMI reducing 
+    technology that is incorporated in the COP8.
+
+
+2.5.6) Instruction Set
+
+    The strength of the instruction set is based on the following 
+    features:
+     o Mostly single-byte opcode instructions minimize program size.
+     o One instruction cycle for the majority of single-byte 
+       instructions to minimize program execution time.
+     o Many single-byte, multiple function instructions such as DRSZ 
+       (Decrement Register and Skip if Zero).
+     o Three memory mapped pointers: two for register indirect 
+       addressing, and one for the software stack.
+     o Sixteen memory mapped registers that allow an optimized 
+       implementation of certain instructions.
+     o Ability to set, reset, and test any individual bit in data memory
+       address space, including the memory-mapped I/O ports and 
+       registers.
+     o Register-Indirect LOAD and EXCHANGE instructions with optional 
+       automatic post-incrementing or decrementing of the register 
+       pointer. This allows for greater efficiency (both in cycle time 
+       and program code) in loading, walking across and processing 
+       fields in data memory.
+     o Unique instructions to optimize program size and 
+       efficiency. Some of these instructions are: DRSZ, IFBNE, DCOR, 
+       RETSK, VIS and RRC.
+
+    The feature family has seven instructions not available on the 
+    basic family devices. These instructions are:
+     o Push Data onto Stack (PUSH)
+     o Pop Data off of Stack (POP)
+     o And Skip if Zero (ANDSZ)
+     o Rotate Left through Carry (RLC)
+     o If Not Equal (IFNE)
+     o Vector Interrupt Select (VIS)
+     o Reset Pending Bit (RPND)
+
+    The feature family instruction set contains a faster version of the 
+    LD B,# (B>15) instruction than the basic family. In the basic family
+    this instruction is 2-bytes/3-cycles. In feature family devices, 
+    this instruction is 2-bytes/2-cycles. The feature family supports an
+    additional addressing mode for the IFEQ instruction; the memory 
+    direct-immediate operand addressing mode (IFEQ MD,#).
+
+     Accumulator Bit Manipulation Instructions - The Accumulator bit 
+     manipulation instructions allow the user to shift the Accumulator 
+     bits and to swap its two nibbles.
+       Rotate Right Through Carry (RRC)
+       Rotate Left Through Carry (RLC)
+       Swap Nibbles of Accumulator (SWAP)
+
+     Stack Control Instructions
+       Push Data onto Stack (PUSH)
+       Pop Data off of Stack (POP) 
+
+     Arithmetic Instructions - The arithmetic instructions perform 
+     binary arithmetic such as addition and subtraction, with or without 
+     the Carry bit.
+       Add (ADD)
+       Add with Carry (ADC)
+       Subtract (SUB)
+       Subtract with Carry (SUBC)
+       Increment (INC)
+       Decrement (DEC)
+       Decimal Correct (DCOR)
+       Clear Accumulator (CLR)
+       Set Carry (SC)
+       Reset Carry (RC)
+
+     Conditional Instructions - The conditional instructions test a 
+     condition. If the condition is true, the next instruction is 
+     executed in the normal matter; if the condition is false, the next 
+     instruction is skipped.
+       If Equal (IFEQ)
+       If Not Equal (IFNE)
+       If Greater Than (IFGT)
+       If Carry (IFC)
+       If Not Carry (IFNC)
+       If Bit (IFBIT)
+       If B Pointer Not Equal (IFBNE)
+       And Skip if Zero (ANDSZ)
+       Decrement Register and Skip if Zero (DRSZ)
+
+     Load and Exchange Instructions - The load and exchange instructions
+     write byte values in registers or memory. The addressing mode 
+     determines the source of the data.
+       Load (LD)
+       Load Accumulator Indirect (LAID)
+       Exchange (X)
+
+     Logical Instructions - The logical instructions perform the basic 
+     logical operations AND, OR, and XOR (Exclusive OR). Other logical 
+     operations can be performed by combining these basic operations. 
+     For example, complementing is accomplished by exclusive-ORing the 
+     Accumulator with FFh.
+       Logical AND (AND)
+       Logical OR (OR)
+       Exclusive OR (XOR)
+
+     Memory Bit Manipulation Instructions - The memory bit manipulation 
+     instructions allow the user to set and reset (clear) individual 
+     bits in memory.
+       Set Bit (SBIT)
+       Reset Bit (RBIT)
+       Reset Pending Bit (RPND)
+
+     Transfer-of Control Instructions - The transfer-of-control 
+     instructions change the usual sequential program flow by altering 
+     the contents of the Program Counter. The Jump to Subroutine 
+     instruction saves the Program Counter contents on the stack before 
+     jumping; the Return instructions pops the top of the stack back 
+     into the Program Counter.
+       Jump Relative (JP)
+       Jump Absolute (JMP)
+       Jump Absolute Long (JMPL)
+       Jump Indirect (JID)
+       Jump to Subroutine (JSR)
+       Jump to Subroutine Long (JSRL)
+       Return from Subroutine (RET)
+       Return from Subroutine and Skip (RETSK)
+       Return from Interrupt (RETI)
+       Software Trap Interrupt (INTR)
+       Vector Interrupt Select (VIS)
+
+     No-Operation Instruction - The no-operation instruction does 
+     nothing, except to occupy space in the program memory and time in 
+     execution.
+       No-Operation (NOP)
+
+2.5.7) Can I hook up a LED direct?
+
+     Yep - you sure can. On all devices is a 8-bit port named D-port.
+     D-port pins can sink 10 mA (tested) 40mA (typical), and can
+     source 2mA (tested) 22mA (typical). All other ports can sink
+     2mA (tested) 17mA (typical) and can source 1mA (tested) 8mA
+     (typical).
+
+     You should check the datasheet - some parts differ.
+
+----------------------------------------------------------------------
+
+
+3)  COP8 PRODUCTS
+
+   This section includes descriptions and references to free and
+   commercial software for the COP8.  FTP sites and BBSs contain many
+   quality packages and code samples for free.  For heavy duty use, you
+   might prefer the many commercial packages that are available.  With
+   the public domain (or free) stuff, you're usually on your own.  The
+   commercial packages usually provide extensive documentation and
+   support.
+
+   Because not a lot of little companies use COP8, ('cause until about
+   a year ago we didn't make OTPs - the COP8 is used primarily by huge
+   companies - I don't think there is an American designed and built
+   car that doesn't have a COP in it somewhere - and those guys are not
+   going to use OTPs) there is not very much free software for the COP8.
+
+    Hopefully this will change. - If you have a good idea for a new 
+    product (or are interested in porting your (or somebody else's)
+    existing tool to be used with the COP8 - please contact me.)
+
+3.1)  FTP sites
+
+   The following is a list of the various anonymous ftp sites that have
+   COP8 source code and programming languages.  There are many others
+   that  are not listed here that contain bits and pieces.  Usually you
+   can find them using Archie and searching for "COP8", "National", or
+   "cop8".
+
+
+3.2)  BBSs
+
+   The following BBSs sometimes have COP8 information:
+
+   National Semiconductor Corporation
+       - contains code from Applications Notes and other interesting
+         items
+       - phone -  (800) - NSC MICRO
+                          672 6427
+               -  (408) - 781 4818
+                              4819
+                              4810
+                              4807
+      - internet - telnet nscmicro.nsc.com
+                 - ftp    nscmicro.nsc.com
+
+   Circuit Cellar, Inc.
+       - contains code from their magazine articles and from the
+         original Circuit Cellar articles in Byte magazine, also
+         contains many other interesting items
+       - The BBS is mentioned in the masthead of each issue (on the
+         table of contents page).  Excerpts from the BBS appear in Ken
+         Davidson's ConnecTime column in every issue with a description
+         of how to access the system at the end of every column.
+       - (203)871-1988
+       - Voice: (203)875-2751
+       - Fax: (203)872-2204
+
+   Electronics Now
+       - contains code from their magazine articles
+       - (516)293-2283
+       - 1200/2400
+       - 8 Data Bits, No parity, 1 Stop bit
+
+3.3)  Free languages and development tools
+
+    There are none. (Besides the Assembler and Software Utilities that
+    National gives away)
+
+    Hopefully this will change. - If you have a good idea for a new 
+    product (or are interested in porting your (or somebody else's)
+    existing tool to be used with the COP8 - please contact me.
+    National has a program in place with incentives for people who do things
+    with COP8 - for more information contact rgetz@esd.nsc.com)
+
+3.4)  Free C compilers
+
+    There are none.
+
+    Hopefully this will change. - If you have a good idea for a new 
+    product (or are interested in porting your (or somebody else's)
+    existing tool to be used with the COP8 - please contact me.
+    See above 3.3)
+
+3.5)  Plans for COP8-based boards
+
+    There are none.
+
+    Hopefully this will change. - If you have a good idea for a new 
+    product (or are interested in porting your (or somebody else's)
+    existing tool to be used with the COP8 - please contact me.
+    See above 3.3)
+
+3.6)  Commercially available products
+
+   Many firms (large and small) offer a variety of COP8 programming
+   languages, support packages, and development systems.  No endorsement
+   is implied by inclusion in this list.  I have made an attempt to
+   include as many companies as possible.  I apologize to those I left
+   out;  It's only because I didn't know about you.  If you want to be
+   included in this list, just drop me a line - please.  Any corrections
+   appreciated.
+
+   C compilers - ByteCraft - contains a complete C compiler and integrated
+     development environment for the COP8 family of microcontrollers. This 
+     system provides ease of use and debugging capabilities not found in 
+     other compilers.  AI system generates efficient, tight object code and
+     fast execution. Includes linker and built in macro assembler.
+
+     COP8 C-Code Development System
+     ByteCraft Limited
+     421 King Street North
+     Waterloo, Ontario, Canada
+     N2J 4E4
+     (519) 888 - 6911 
+     support@bytecraft.com
+
+   Assemblers
+     National Semiconductor Corporation
+     - available for free on ftp:\\nscmicro.nsc.com\pub\cop8\assembler\
+
+   Fuzzy Logic
+     NeuFuz4 - NueFuz4 software, with up to 4 analog inputs and 1 analog
+               output. Generates COP8 assembly Code.
+     Contact National, or a National distributor.
+     - demo copy on nscmicro.nsc.com
+
+   In System Emulators
+     iceMaster - Metalink - full in circuit emulator supporting all of
+       the COP8 basic and feature family. Includes features such as a
+       full performance analyzer, 4k - frame trace buffer, symbolic
+       debugging, electrically transparent, 32K program space, hardware
+       breakpoints.
+
+     debug Module - Metalink - almost full in circuit emulator (does
+       not support hardware breakpoints). Includes features such as 
+       8 software breakpoints, 100 frame trace buffer, symbolic debugging,
+       Sockets for programming COP8 OTPs in DIP, SO and PLCC.
+
+     Evaluation and Programming Unit (EPU) - Metalink - in circuit 
+       simulation (non real-time emulation). Includes features such as
+       4k program size, 8 software breakpoints, 100 frame trace buffer,
+       Symbolic debugging, 40-pin DIP socket for programming COP8780 and
+       COP87M80 OTPs.
+   
+     All Metalink Tools can be purchased through National.
+
+   Real-time Operating Systems (RTOS)
+    There are none.
+
+    Hopefully this will change. - If you have a good idea for a new 
+    product (or are interested in porting your (or somebody else's)
+    existing tool to be used with the COP8 - please contact me.)
+
+   Programmers for OTPs and Windowed parts
+                    North America     Europe          ASIA
+    Metalink        (603) 926-0797  (49) 8141-1030    (852) 737-1800
+    Xeltek          (408) 745-7974  (49) 2041-684758  (65) 276-6433
+    BP Microsystems (800) 225-2102  (49) 89-8576667   (852) 3888-0629
+    Data I/O        (800) 322-8246  (49) 89-85-8020   (33) 432-6991
+    Abcom                           (89) 808707
+    System General  (408) 263-6667  (31) 921-7844     (886) 2-9173005
+
+
+3.7) Contacting National
+
+    Worldwide support (in English) on COP8 Tools you can email:
+      coptools@esd.nsc.com
+
+    For pricing, avaliblity, or support in your native language, call:
+    Country         Tel                       Fax
+    Australia       (3) 558 - 9999            (3) 558 - 9998
+    Brazil          (55-11) 212 - 5066        (55-11) 212 - 1181
+    Bulgaria        (02) 88 - 01 - 16         (02) 80 - 36 - 18
+    Canada          (800) 272 - 9959          (800) 432 - 9672
+    Denmark         (57) 67 - 20 - 80         (57) 67 - 20 - 82
+    Finland         (0) 759 - 1855            (0) 759 - 1393
+    France          (01) 40 - 94 - 88 - 88    (01) 40 - 94 - 88 - 11
+    Germany         (0 - 69) 789 - 1090       (0 - 69) 789 - 4383
+    Hong Kong       (852) 737 - 1600          (852) 736 - 9960
+    Ireland         (01) 260 - 0022           (01) 283 - 0650
+    Italy           (02) 57500300             (02) 57500400
+    Japan           (043) 299 - 2300          (043) 299 - 2500
+    Korea           (02) 784 - 8051           (02) 784 - 8054
+    Mexico          (525) 661 - 7155          (525) 661 - 6905
+    Puerto Rico     (809) 758 - 9211          (809) 763 - 6959
+    Singapore       (65) 225 - 2226           (65) 225 - 7080
+    Spain           (01) 7 - 33 - 29 - 58     (01) 7 - 33 - 80 - 18
+    Sweden          (08) 7228050              (08) 7229095
+    Switzerland     (01) 8 - 30 - 27 - 27     (01) 8 - 30 - 19 - 00
+    Taiwan          (02) 521 - 3288           (02) 561 - 3054
+    United Kingdom  (0793) 61 - 41 - 41       (0793) 52 - 21 - 80
+    United States   (800) 272 - 9959          (800) 432 - 9672
+
+----------------------------------------------------------------------
+
+
+4)  COP8 DOCUMENTATION
+
+4.1) Periodicals
+
+   Various magazines and journals (journals seems to be THE popular name
+   for magazines these days) provide articles from time to time on the
+   COP8 line of microcontrollers:
+
+   The Computer Applications Journal (Circuit Cellar Ink)
+       - programming and construction articles
+       - POB 7694, Riverton, NJ  08077-8784
+       - Fax: (203)872-2204
+       - Voice orders: (609) 786-0409
+       - On-line orders (BBS): (203) 871-1988
+       - Email orders: ken.davidson@circellar.com
+       - $21.95, $31.95 surface Canada and Mexico,
+         $49.95 air all other countries
+
+   Computer Design
+       - industry announcements and trends
+       - One Technology Park Drive, P.O. Box 990, Westford, MA  01886
+       - (508)692-0700
+
+   The Computer Journal
+       - programming and construction articles
+       - PO Box 535, Lincoln  96648
+
+   Dr. Dobbs Journal
+       - programming articles, concepts, and designs
+       - 411 Borel Ave., San Mateo, CA  94402
+       - (415)358-9500
+
+   Electronic Engineering Times
+       - industry announcements and trends
+       - 500-B Bi-County Boulevard, Farmingdale, NY  11735
+       - (516)293-3000
+
+   Electronics Now
+       - construction articles
+       - Box 55115, Boulder, CO  80321-5115
+       - $19.97 one year
+
+   Elektor Electronics
+       - programming and construction articles
+       - World Wide Subscription Service Ltd
+         Unit 4, Gibbs Reed Farm, Pashley Road
+         Ticehurst TN5 7HE, England
+       - 27 UK pounds
+    or
+       - Old Colony Sound Lab, P.O. Box 243, Peterborough, NH 03458
+       - Tel. (603) 924-6371, 924-6526
+       - Fax: (603) 924-9467
+       - $57 USA and Canada per year
+
+   Embedded Systems Programming
+       - programming and systems design articles
+       - Miller Freeman Publications
+       - 500 Howard St., San Francisco, CA  94105
+       - (415) 397-1881
+
+   Microcomputer Journal (formerly Computer Craft)
+       - programming and construction articles
+       - 76 N. Broadway, Hicksville, NY  11801
+       - $18.95 one year, foreign $23.00, foreign air mail $76.00
+
+   Midnight Engineering
+       - 1700 Washington Ave., Rocky Road, CO  81067
+       - (719)254-4553
+
+   Nuts & Volts Magazine
+       - A National Publication for the Buying and Selling of
+         Electronic Equipment
+       - 430 Princeland Court, Corona, CA  91719
+       - Mailed third class, USA only:  $17.00 one year
+                                        $31.00 two years
+       - Mailed first class, one year only:  $34.00-USA
+                                             $35.00-Canada/Mexico
+       - Foreign/Air Mail - $70.00;  Foreign/Surface - $39.00
+       - (800)783-4624
+       - Email:  74262.3664@Compuserve.com
+
+4.2)  Data Books / Application Notes
+
+   If you know of any books that cover the COP8, or if you can provide
+   any details on the books listed here, please send me a note.  Thanks.
+
+   Books provided by National about the COP8
+
+   COP8 Databook
+     - Lit # 400007-001
+     - Current databook for COP8
+ 
+   COP8 Advertisement
+     - Lit #620900-001
+     - Introduces 8-bit microcontrollers and COP8
+
+   Utility Disk
+     - Mac Version - Lit #630000-001
+     - Win Version - Lit #630001-001
+     - Typical microcontroller application and sample application code
+
+   Product Overview Disk
+     - Mac Version - Lit #630004-001
+     - Win Version - Lit #630005-001
+     - Self-lead COP8 overview. Shows product features/benefit and 
+       includes an electronic selection guide.
+
+   COP8 Selection Guide
+     - Lit # 630006-001
+     - Selection guide including 20 application examples
+
+   COP8 Selection Sheet
+     - Lit #620899-001
+     - Selection guide only
+
+   COP8 Designers Information Kit
+     - Lit #630007-005
+     - Includes databook, Selection Guide, Independent Software Analysis
+       Utility and Overview disks
+
+   Independent 8-bit Instruction Set Analysis
+     - Lit #630008-001
+     - Independently prepared software analysis of National's COP8,
+       Motorola's M68HC05, Intel's 8051 and Microchip's PIC16C5X.
+
+   8780 EPU Product Brief
+     - Lit #610506-001
+     - Metalink's COP8780 Evaluation / Programming Unit
+
+   Debug Module Product Brief
+     - Lit #610520-001
+     - Fact sheet on Metalink's Debug Module
+
+   iceMaster Product Brief
+     - 630074-001
+     - Fact Sheet on Metalink's in-circuit emulator
+
+   COP8C Product Brief
+     - Lit #610505-001
+     - Fact Sheet on ByteCraft's C compiler for COP8
+
+   NueFuz Product Information Pack
+     - Lit #633101-002
+     - Intro to NeuFuz4 (disk, app-not and fact sheet)
+
+   Application Notes
+     - Lit #100823-001 - Timekeeping using a COP800
+     - Lit #100643-001 - EMI / RFI Board Design
+     - Lit #100959-001 - Battery charger with Neufuz
+     - Lit #400007-001 - Others can be found in the 1994 databook. 
+
+   Programmer's Reference Guide
+     - Programmer's Reference Guide includes block diagrams, connection 
+       diagrams, memory map, instruction set, bytes and cycles per
+       instruction, and device features.
+     - Lit #630018-001 - COP820/840
+     - Lit #630019-001 - COP888CL / COP888CF / COP888CG
+
+   COP800 Basic Family Users Manual
+     - Doc #420410703-001
+     - Describes all basic family devices, in-depth features and
+       common pitfalls
+
+   COP888 Features Family Users Manual
+     - Doc #420411060-001
+     - Describes all feature family devices, in-depth features and
+       common pitfalls
+
+   COP8 Assembler / Linker / Librarian Users' Manual
+     - Doc #424421632-001
+     - Printed version of COP8 Assembler Manual.
+
+   NeuFuz User's Manual
+     - Doc #424421645-001
+     - Manual for Neural / Fuzzy software
+
+   Dial-A-Helper User's Manual
+     - Doc #420410902-001
+     - Manual for National's BBS
+
+__________________________________________________________
+
+Some parts Copyright (c) 1994 by Russell Hersch,<sibit@datasrv.co.il>
+   all rights reserved. (Used with permission)
+
+The rest is Copyright (c) 1995 Robin Getz all rights reserved.
+-----------------------------------
+Robin Getz - rgetz@esd.nsc.com
+
+
+

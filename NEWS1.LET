@@ -1,0 +1,341 @@
+******************************************************************
+      METALINK,PROBECARDS
+******************************************************************
+
+PROBECARDS COP888 (CG/EG/CL/CF/CS)
+TO EMULATE ALL COP888.. IT IS POSSIBLE TO USE ONE PROBECARD.
+Before connecting the COP8 Probe Card and adapter, please ensure that
+the soldering jumpers are configured properly. The jumpers are located
+on the adapter board.
+
+Probe Card     Adapter Board     A-B-C Jumper     D-E-F Jumper
+
+  888CF           28 DIP            A-B              Open
+                  28 PLCC           A-B              Open
+                  40 DIP            A-B              Does not exist
+                  44 PLCC           A-B              Does not exist
+
+  888CG           28 DIP            B-C              E-F
+                  28 PLCC           B-C              E-F
+                  40 DIP            B-C              Does not exist
+                  44 PLCC           B-C              Does not exist
+
+  888CL           28 DIP            B-C              D-E
+                  28 PLCC           B-C              D-E
+                  40 DIP            Open             Does not exist
+                  44 PLCC           B-C              Does not exist
+
+
+TO EMULATE DIFFERENT COP888.. CHANGE CAREFULLY THE MOLE-DEVICE ON THE PROBECARD!
+AVAILABLE:
+44 PIN PLCC (CG/CS/EG)
+40 PIN DIL (ALL)
+28 PIN DIL (ALL)
+
+******************************************************************
+PROBECARD COP880 (820/840/880)
+TO EMULATE ALL COP82./84./88./ONE PROBECARD WITH THE MOLE-CHIP COP880
+IS NECESSARY
+
+Probe Card     Adapter Board     A-B-C Jumper     D-E-F Jumper
+
+  880C            28 DIP            B-C              E-F
+                  28 PLCC           B-C              E-F
+                  40 DIP            B-C              Does not exist
+                  44 PLCC           B-C              Does not exist
+
+
+PLEASE CHANGE THE ADAPTER BOARD FOR THE SEVERAL PIN-CONFIG..
+AVAILABLE:
+44 PIN PLCC 880
+40 PIN DIL 880
+28 PIN DIL 820/840/881
+20 PIN DIL822/842
+******************************************************************
+PROBECARD COP820CJ
+FOR COP820CJ A OWN PROBECARD IS NECESSARY!
+AVAILABLE:
+28 PIN DIL
+20 PIN DIL
+******************************************************************
+PROBECARD COP8640
+AVAILABLE: 15 JUN 92
+******************************************************************
+
+******************************************************************
+
+PLEASE AWARE THAT OUR CUSTOMERS LOSE THE GUARANTEE WHEN THEY DO
+ONE OF THESE MODIFICATION!!
+
+******************************************************************
+*******************************************************************
+I).   COP8 MOLE PERSONALITY BOARD SCRAMBLER AND JUMPER OPTIONS
+*******************************************************************
+TO CONNECT A TARGET SYSTEM TO THE REC-2 BOARD IT IS NECESSARY
+TO USE THE MOLE COP888 SCRAMBLER BOARD, EXCEPT WHEN EMULATING COP888CF.
+
+*******************************************************************
+PB1A-BOARD(COP880/840/820)
+
+ -44 PIN PLCC
+  REMOVE ALL JUMPERS (W1-W6) ON THE SCRAMBLER BOARD
+
+ -40 PIN DIP
+  CONNECT PINS 1 AND 2 OF W3 AND PINS 1 AND 2 OF W4 ON THE S. BOARD
+
+ -28 PIN DIP
+  CONNECT PINS 2 AND 3 OF W5 AND PINS 2 AND 3 OF W6 ON THE S. BOARD
+
+ -24/20 PIN DIP
+  USE A SECOND SMALL 24/20 SCRAMBLER TO BE CONNECTED ON TOP OF THE
+  INSTALLED SCRAMBLE BOARD. CONNECT PINS 2 AND 3 OF W5 AND
+  PIN 2 AND 3 of W6.
+
+*******************************************************************
+PB2-BOARD(COP888CF/888CG/EG/888CL)
+
+ -COP88XCF
+  SCRAMBLER BOARD IS NOT USED
+
+ -COP88XCG/EG
+
+  44 PIN PLCC
+  REMOVE ALL JUMPERS(W1-W6) ON THE SCRAMBLER BOARD
+
+  40 PIN DIP
+  CONNECT PINS 1 AND 2 OF W3 AND PINS 1 AND 2 OF W4
+
+  28 PIN DIP/PLCC
+  CONNECT PINS 2 AND 3 OF W5 AND PIN 2 AND 3 OF W6
+
+ -COP88XCL
+
+  44 PIN PLCC
+  REMOVE ALL JUMPERS (W1-W6) ON THE SCRAMBLER BOARD
+
+  40 PIN DIP
+  CONNECT PINS 1 AND 2 OF W1, PIN 1 AND 2 OF W2, PINS 2 AND 3 OF W3 AND
+  PIN 2 AND 3 OF W4
+
+  28 PIN DIP/PLCC
+  CONNECT PINS 1 AND 2 OF W1, PIN 1 AND 2 OF W2, PIN 1 AND 2 OF W5 AND
+  PIN 1 AND 2 OF W6
+
+******************************************************************
+
+*******************************************************************
+II).PROGRAMMABLE CLOCK GENERATOR (PCG) FOR MOLE DEVELOPMENT SYSTEM.
+*******************************************************************
+THE PCG-BOARD AS FAR AS POSSIBLE CAN BE USED TO RUN PROGRAMMS AT
+DIFFERENT SPEEDS. TO AVOID DISPLAY PROBLEMS IT IS NECESSARY TO DO SOME
+HARDWARE MODIFICATIONS.
+IF PROBLEMS OCCUR PLEASE CHECK THE FOLLOWING.
+- PIN 19/D0 (COP8720)MUST BE CONNECTED TO PIN 23 (MM5450).
+- MAKE SURE THAT PIN 23 (MM5450) IS NOT CONNECTED TO GND.
+
+******************************************************************
+
+******************************************************************
+
+III). MODIFICATION MOLE PB1 TO PB1A (Run DBCOP)
+
+******************************************************************
+DBCOP doesnt run with PB1 board in the normal configuration as
+shipped.
+TO RUN DBCOP WITH THE OLD PB1-BOARD IT IS NECESSARY TO DO SOME
+MODIFICATIONS:
+
+- PERSONALLITY-BOARD PB1
+
+  HARDWARE-MODIFICATION:
+  CUT THE TRACE FROM U59 PIN 5 TO U89 PIN 2.
+  ADD A WIRE FROM U59 PIN 5 TO U59 PIN 11.
+  ADD A WIRE FROM U59 PIN 10 TO U59 PIN 13.
+  ADD A WIRE FROM U59 PIN 12 TO U89 PIN 2.
+
+- REC1-BOARD(COP820/840)
+  REPLACE THE RESIDENT FIRMWARE WITH THE LATEST FIRMWARE REVISION.
+  FIRMWARE: COP880/REV.4.50 CHECKSUM 5D64
+  MOLE-DEVICE: COP840
+
+- REC2-BOARD(COP820/840/880)
+  REPLACE THE RESIDENT FIRMWARE WITH THE LATEST FIRMWARE REVISION.
+  FIRMWARE: COP880/REV.4.50 CHECKSUM 5D64
+  MOLE-DEVICE: COP880 (44PIN)
+******************************************************************
+
+******************************************************************
+IV).       RC-CLOCK COP800
+******************************************************************
+There are some mistakes in the COP8 Char.data report with regard to
+RC clock frequencies given.
+The correct RC CKI-freq. for all COP800 members are as follow:
+
+TA=25C
+  R(KOhm)      C(pF)      CKI(MHz)      Instr.Cycle(us)      Conditions
+  3.3           82        2.8-2.2       3.6-4.5              VCC=5V
+  5.6          100        1.5-1.1       6.7-9                VCC=5V
+  6.8          100        1.1-0.8       9-12.5               VCC=5V
+
+Some Datasheets e.g. COP820CJ include the wrong data for the RC-Oscill. freg.
+also.
+We will probaly come up with an addendum to the Char.report with correct values.
+We will keep you informed.
+******************************************************************
+
+******************************************************************
+V).        METALINK,PROBECARDS
+******************************************************************
+
+PROBECARDS COP888 (CG/EG/CL/CF/CS)
+TO EMULATE ALL COP888.. IT IS POSSIBLE TO USE ONE PROBECARD.
+Before connecting the COP8 Probe Card and adapter, please ensure that
+the soldering jumpers are configured properly. The jumpers are located
+on the adapter board.
+
+Probe Card     Adapter Board     A-B-C Jumper     D-E-F Jumper
+
+  888CF           28 DIP            A-B              Open
+                  28 PLCC           A-B              Open
+                  40 DIP            A-B              Does not exist
+                  44 PLCC           A-B              Does not exist
+
+  888CG           28 DIP            B-C              E-F
+                  28 PLCC           B-C              E-F
+                  40 DIP            B-C              Does not exist
+                  44 PLCC           B-C              Does not exist
+
+  888CL           28 DIP            B-C              D-E
+                  28 PLCC           B-C              D-E
+                  40 DIP            Open             Does not exist
+                  44 PLCC           B-C              Does not exist
+
+
+TO EMULATE DIFFERENT COP888.. CHANGE CAREFULLY THE MOLE-DEVICE ON THE PROBECARD!
+AVAILABLE:
+44 PIN PLCC (CG/CS/EG)
+40 PIN DIL (ALL)
+28 PIN DIL (ALL)
+
+******************************************************************
+PROBECARD COP880 (820/840/880)
+TO EMULATE ALL COP82./84./88./ONE PROBECARD WITH THE MOLE-CHIP COP880
+IS NECESSARY
+
+Probe Card     Adapter Board     A-B-C Jumper     D-E-F Jumper
+
+  880C            28 DIP            B-C              E-F
+                  28 PLCC           B-C              E-F
+                  40 DIP            B-C              Does not exist
+                  44 PLCC           B-C              Does not exist
+
+
+PLEASE CHANGE THE ADAPTER BOARD FOR THE SEVERAL PIN-CONFIG..
+AVAILABLE:
+44 PIN PLCC 880
+40 PIN DIL 880
+28 PIN DIL 820/840/881
+20 PIN DIL822/842
+******************************************************************
+PROBECARD COP820CJ
+FOR COP820CJ A OWN PROBECARD IS NECESSARY!
+AVAILABLE:
+28 PIN DIL
+20 PIN DIL
+******************************************************************
+PROBECARD COP8640
+AVAILABLE: 15 JUN 92
+******************************************************************
+
+******************************************************************
+
+PLEASE AWARE THAT OUR CUSTOMERS LOSE THE GUARANTEE WHEN THEY DO
+ONE OF THESE MODIFICATION!!
+
+******************************************************************
+
+******************************************************************
+VI).               Software-Updates
+******************************************************************
+******************************************************************
+A)COP800 Simulator-Software:
+  Latest Version:
+  COP8SIM1.EXE
+  COP8SIM2.EXE
+  Version 1.2.0/Jan.08,1991
+******************************************************************
+B)C0P800 Assembler-Software (MOLE-COP8-IBM):
+  Latest Version:
+  Release E/ Sep.05,1990
+******************************************************************
+C)DBCOP-Software (COP8-DEV-DBG):
+  Latest Version:
+  Version 1.1/ May 06,1991; 2 Disks
+******************************************************************
+D)Metalink-Software:
+  Latest Version:
+  Host Software: Version 3.0 Rev 22 / Version 3.1 to run COP820CJ
+  Probecard Software: Version 3.025 / Version 3.027 to run COP820CJ
+******************************************************************
+E)MOLE-Firmware:
+  PB1A(COP820/840/880)
+  Latest Version: COP880, Rev. 4.50, Checksum 5D64
+  PB2(COP888..)
+  Latest Version: COP888, Rev. 2.60, Checksum B4EC
+  PB3(COP8640)
+  Latest Version: COP8640, Rev. 1.50, Checksum 4512
+  Pb4(COP820CJ)
+  Latest Version: COP820CJ, Rev 1.50, Checksum 5F6F
+******************************************************************
+
+******************************************************************
+
+VII).     U A R T  SYNCHRONOUS mode in COP888CG:
+
+The main purpose of SYNCHRONOUS mode in our UART's (COP8 and HPC) is to
+increase the data rate. SYNCHRONOUS mode is entered in COP888CG by sett-
+int ENUI.SSEL (bit4). In addition, one must also select EXTERNAL CLOCK
+by setting ENUI.XRCLK(bit3) and ENUI.XTCLK (bit2).  This is  necessary
+even if shift clock is generated internally.
+In SYNCHRONOUS MODE the state of the UART in the COP888CG is as follows:
+
+1.) If you selected a baud rate of - say - 9600 for asynchronous mode,
+    then the shift clock is now in synchronous mode 76800 Hz, yielding
+    a period of 13 usec. This frequency is used for the internal shift-
+    registers and is made available at CKX (if PORTL bit1 is configured
+    as output - of course). The synchronous baud rate of 76800 results
+    from removing the DIV16 prescalers (in asynchronous mode) and re-
+    placing them by a DIV2 in synchronous mode: 9600 * 16 / 2 = 76800.
+2.) The TDX output is '1' between frames.
+3.) The number of data bits, stop bits and parity type must still be se-
+    lected exactly as in normal asynchronous mode.
+4.) The receiver still expects a high-to-low transition as START bit.
+5.) Data is still shifted LSB first.
+
+
+The following initialisation illustrates how to use the COP888CG UART in
+synchronous mode (10 Mhz crystal and COP888CG delivers the UART clock):
+
+
+        ...
+        SBIT    2,PORTLD        ;B2(TDX)=1. (TO AVOID UNDESIRED START-BIT)
+        SBIT    2,PORTLC        ;B2(TDX) is O/P.
+        SBIT    1,PORTLC        ;B1(CKX) is O/P.
+        RBIT    3,PORTLC        ;B3(RDX) is I/P (not needed after RESET).
+        LD      PSR,    #0xC8   ;PRESCALE FACTOR 13.
+        LD      BAUD,   #0x04   ;N-1. (9600 BAUD OR 104 USEC PER BIT IN
+                                ;UART MODE and
+                                ;9600*8=76800 BAUD OR 13 USEC PER BIT
+                                ;IN USART MODE).
+        LD      ENU,    #0x00   ;PAR_DIS,ODD,8DTA (not needed after RESET).
+        LD      ENUR,   #0x00   ;ATTN_DIS (not needed after RESET).
+        LD      ENUI,   #0x3C   ;1STP,ETDX,SSEL,CLK_EXT,INTR'S_DIS.
+                                ;MUST be external clock in SYNCHR. mode!
+                                ;Otherwise no clock at PORTL bit1.
+        ...
+
+***********************************************************************
+
+For more information contact N. Schmidt in FFB, ext 381, email cnmsge or
+Robert Weiss in FFB, ext 430, email crwege.
+

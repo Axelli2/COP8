@@ -1,0 +1,151 @@
+* MTS v2.1 data file 'MTS.ROM'
+*
+* This text file contains the NSC device codes and their corresponding sizes
+* which must be separated by a '/'. No other '/' may appear on the line.
+
+* Comment lines start with a '*' in column 1.
+
+* The device code entry may be maximal 20 characters long, and the size
+* entry is maximal 6 characters and may decimal or hexidecimal with 'H'
+* appended to the number. Spaces before or after actual information are
+* removed.  No other extraneous text may appear on the line.
+
+* It is not necessary to alphabetize the list as this is done automatically
+* by the MTS program when displaying these entries.
+
+* For MTS version 2.1, a maximum of 200 entries can be accomodated.
+
+* Example:   COP 413 L / 512
+*            HPC 123 X / 400H
+
+  COP 410 C / 512
+  COP 310 C / 512
+  COP 210 C / 512
+  COP 411 C / 512
+  COP 311 C / 512
+  COP 211 C / 512
+  COP 413 C / 512
+  COP 313 C / 512
+  COP 213 C / 512
+  COP 413 CH / 512
+  COP 313 CH / 512
+  COP 213 CH / 512
+  COP 424 C / 1024
+  COP 324 C / 1024
+  COP 224 C / 1024
+  COP 425 C / 1024
+  COP 325 C / 1024
+  COP 225 C / 1024
+  COP 426 C / 1024
+  COP 326 C / 1024
+  COP 226 C / 1024
+  COP 444 C / 2048
+  COP 344 C / 2048
+  COP 244 C / 2048
+  COP 445 C / 2048
+  COP 345 C / 2048
+  COP 245 C / 2048
+  COP 410 L / 512
+  COP 310 L / 512
+  COP 210 L / 512
+  COP 411 L / 512
+  COP 311 L / 512
+  COP 211 L / 512
+  COP 413 L / 512
+  COP 313 L / 512
+  COP 213 L / 512
+  COP 420 / 1024
+  COP 320 / 1024
+  COP 421 / 1024
+  COP 422 / 1024
+  COP 322 / 1024
+  COP 420 L / 1024
+  COP 320 L / 1024
+  COP 220 L / 1024
+  COP 421 L / 1024
+  COP 321 L / 1024
+  COP 221 L / 1024
+  COP 422 L / 1024
+  COP 322 L / 1024
+  COP 222 L / 1024
+  COP 444 L / 2048
+  COP 344 L / 2048
+  COP 244 L / 2048
+  COP 445 L / 2048
+  COP 345 L / 2048
+  COP 245 L / 2048
+  COP 440 / 2048
+  COP 340 / 2048
+  COP 441 / 2048
+  COP 341 / 2048
+  COP 442 / 2048
+  COP 342 / 2048
+  COP 2440 / 2048
+  COP 2340 / 2048
+  COP 2442 / 2048
+  COP 2342 / 2048
+  COP 2441 / 2048
+  COP 2341 / 2048
+  INS 8048-6 / 1024
+  INS 8048-11 / 1024
+  INS 8049-6 / 2048
+  INS 8049-11 / 2048
+  INS 8050-11 / 4096
+  INS 8050-6 / 4096
+  COP 620 C / 1024
+  COP 621 C / 1024
+  COP 622 C / 1024
+  COP 640 C / 2048
+  COP 641 C / 2048
+  COP 642 C / 2048
+  COP 820 C / 1024
+  COP 821 C / 1024
+  COP 822 C / 1024
+  COP 840 C / 2048
+  COP 841 C / 2048
+  COP 842 C / 2048
+  COP 880 C / 4096
+  COP 881 C / 4096
+  COP 680 C / 4096
+  COP 681 C / 4096
+  COP 820 CJ / 1024
+  COP 822 CJ / 1024
+  COP 823 CJ / 1024
+  COP 888 CL / 4096
+  COP 888 CF / 4096
+  COP 888 CG / 4096
+  COP 888 CS / 4096
+  COP 888 EG / 8192
+  COP 688 CL / 4096
+  COP 688 CF / 4096
+  COP 688 CG / 4096
+  COP 688 CS / 4096
+  COP 688 EG / 8192
+  COP 884 CG / 4096
+  COP 884 CF / 4096
+  COP 884 CL / 4096
+  COP 884 CS / 4096
+  COP 684 CG / 4096
+  COP 684 CF / 4096
+  COP 684 CL / 4096
+  COP 684 CS / 4096
+  COP 8620 C / 1024
+  COP 8621 C / 1024
+  COP 8622 C / 1024
+  COP 8640 C / 2048
+  COP 8641 C / 2048
+  COP 8642 C / 2048
+  COP 943 / 2560
+  HPC 16083 / 8192
+  HPC 26083 / 8192
+  HPC 36083 / 8192
+  HPC 46083 / 8192
+  HPC 16064 / 16384
+  HPC 26064 / 16384
+  HPC 36064 / 16384
+  HPC 46064 / 16384
+  HPC 16164 / 16384
+  HPC 26164 / 16384
+  HPC 36164 / 16384
+  HPC 46164 / 16384
+

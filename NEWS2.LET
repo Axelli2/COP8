@@ -1,0 +1,172 @@
+COP8 Newsletter
+===============
+
+- LCD-DEMO
+- Datasheet COP820CJ
+- COP820CJ Hybrid
+- Duplicator board
+- Metalink probecard jumpers
+- Metalink bugs
+
+**************************************************************
+                LCD-Demo
+**************************************************************
+We just completed a small demo showing Triplex LCD drive with
+COP800 devices.
+The documentation is finished and we have some PCB's available.
+A demo can be reveived upon special request (via Mktg).
+Please note, that the's approach of realizing a Triplex LCD drive
+will not yield an optimal contrast.
+The experiences in the past showed, that there is only little
+tendency to return demos to FFB.
+So please, do only request a demo if you see a serious chance to
+place a design win and return a demo back to us if you or your
+customer does not need it anymore.
+Providing demos is very time consuming and costy.
+Please return also other demos as far as no more needed.
+**************************************************************
+
+
+**************************************************************
+         Datasheet COP820CJ
+**************************************************************
+There is a mistake in COP820CJ preliminary datasheet as of
+Nov.1991 on page 19, second paragraph from the bottom (left side)
+it says "IEDG selects the external interrupt edge(1=rising edge,
+0=falling edge)".
+******This is wrong !!*********
+It should read ....(0=rising edge,1=falling edge)!
+**************************************************************
+
+
+**************************************************************
+        COP820CJ-Hybrid
+**************************************************************
+The highest address of the internal EPROM (1FFF) must be programmed
+with the followind data byte:
+                   20 Pin DIP         28 Pin DIP/SO
+
+Address 1FFF:         E7                   6F
+***************************************************************
+
+
+***************************************************************
+                Duplicator-Board
+***************************************************************
+To program COP8780/COP-Hybrids with the Duplicator-Board
+use the following configurations.
+
+- Duplicator-Board, Firmsoftware 7451-006A(EPROM 27C64
+  EPROM-Checksum 6060)
+
+- COP800 programming scramblers for Hybrids(20/40DIL,28SO
+  or 44/28PLCC)
+
+- COP8780 programming scrambler for COP87XX(20/28/40DIL,28SO)
+
+To update the Hybrid Duplicator-Board to COP8780/Hybrid-D.Board
+replace the Firmsoftware to the latest version and use for
+programming the COP87XX the new COP8780 programming scrambler.
+***************************************************************
+
+
+***************************************************************
+                 Metalink-Probecard-Jumpers
+***************************************************************
+Jumpers W1-W4 are available on the probecards without
+Brow Out indicator!
+All jumper are available on the probecards with yellow LED
+( VCC-Status/Brown out)
+***************************************************************
+                    W1-Jumper
+***************************************************************
+Probecard 880 (820,840,880,820CJ)
+W1 Select RAM:
+This Jumper determines how much RAM is available.
+placed between the center post and the A post: 64 Bytes
+placed between the center post and the B post: 128 Bytes
+
+Probecard 888XX
+W1 Select Halt mode:
+This Jumper select the Halt Options.
+placed between the center post and the A post: Halt disable
+placed between the center post and the B post: Halt enable
+***************************************************************
+                    W2-Jumper
+***************************************************************
+All Probecards
+W2 VCC Jumper, only available on the 2.3-6.0/2.5-6.0 Probecard
+This jumper select the Probecard power supply.
+
+placed between the center post and the PC post:
+supplied from probecard VCC = 5 Volt
+
+placed between the center post and the TAR post:
+supplied from Target system via VCC/GND Pin of microcontroller
+socket
+
+On 4.5-5.5 probe cards this jumper is hardwired to the PC setting.
+This must not be changend. Operating outside this voltage range
+may permanently damage the probe card!
+***************************************************************
+                    W3/W4-Jumper
+***************************************************************
+All probecards
+These jumpers select the clock source:
+
+placed between the center post and the PC post: internal 10MHz
+crystal clock is connected to the oscillator circuit
+
+placed between the center post and the TAR post: either a target
+crystal or clock driver can be used
+
+***************************************************************
+                   W6-Jumper
+***************************************************************
+Probecard 820CJ
+This jumper select the Brown Out option:
+
+placed between the center post and the A post: Brown Out disable
+placed between the center post and the B post: Brown Out enable
+
+All Probecards with LED:
+The Brown Out indicator (yellow LED) will always light when a voltage
+lower than the Brown Out voltage is detected, regardless of the state
+of the jumper W6
+Brown Out voltage for the 820CJ probecard is 2.34 Volt
+Brown Out voltage for all other probecards is 2.52 Volt
+
+**************************************************************
+                        W7-Jumper
+**************************************************************
+All Probecards with LED:
+The jumper W7 select the G7 options:
+
+placed between the center post and the A post: G7 is available as
+a general purpose input (RC-oscillator)
+
+placed between the center post and the B post: CKO pin is emulated
+
+When running with a target crystal W7 must be placed in the CKO (B)
+position.
+**************************************************************
+
+
+**************************************************************
+                   Metalink-bugs
+**************************************************************
+
+ Metalink-Software version 3.1 REV3, Model 3.029
+
+
+1) B-pointer,Stackpointer,X-pointer and address 0FF(S-Register
+   for 888CG/EG) are incorrectly cleared at reset. Those register
+   are set to 00 by the Metalink Software upon reset, whereas in
+   the real COP those register remain UNCHANGED upon reset.
+
+2) Ram addresses 0B0-0BF (Timer 3 register, UART, etc.) can not
+   be changed in the register window (COP888EG\CG).
+   However changing them with Display RAM modify window works
+
+**************************************************************
+

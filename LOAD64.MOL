@@ -1,0 +1,36 @@
+C 
+@M 
+CL 
+R 
+MAP 0,1,2,3 OFF 
+MAP 4,5,6,7 OFF 
+MAP 8,9,10,11 OFF 
+MAP 12,13,14,15 ON 
+@C 
+ 
+S wvldtest.LM SH $R 200/3FFF $OF C000 
+C 
+@M 
+X C200/FFFF,200 
+@C 
+ 
+S wvldtest.LM SH $R 4000/7FFF $OF 8000 
+C 
+@M 
+X C000/FFFF,4000 
+@C 
+ 
+S wvldtest.LM SH $R 8000/BFFF $OF 4000 
+C 
+@M 
+X C000/FFFF,8000 
+@C 
+ 
+S wvldtest.LM SH $R C000/FFFF 
+C 
+@M 
+X C000/FFFF,C000 
+MAP 12,13,14,15 OFF 
+R 
+ 
+@ 

@@ -1,0 +1,1 @@
+D:\lkwatc\ASM800\ASM800 %1 /L=ERROR.PRN
